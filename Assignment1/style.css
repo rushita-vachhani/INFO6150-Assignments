@@ -1,0 +1,30 @@
+.container {
+  width: min(1100px, 92%);
+  margin-inline: auto;
+}
+
+.site-header {
+  position: sticky;
+  top: 0;
+  z-index: 10;
+  background: linear-gradient(
+    180deg,
+    rgba(15, 23, 42, 0.95),
+    rgba(15, 23, 42, 0.6)
+  );
+  backdrop-filter: saturate(140%) blur(6px);
+  border-bottom: 1px solid #1f2937;
+}
+
+.site-header h1 {
+  font-size: clamp(1.1rem, 3vw, 1.4rem);
+  margin: 0;
+  white-space: nowrap;
+}
+
+.header-inner {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  padding: 1rem;
+}
