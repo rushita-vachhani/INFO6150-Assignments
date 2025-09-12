@@ -14,7 +14,7 @@
         <h1 class="logo">Healthy Recipes & Nutrition Tips</h1>
         <nav class="nav" aria-label="Primary">
           <ul>
-            <li><a href="#recipes" class="active">RECIPES</a></li>
+            <li><a href="#recipes">RECIPES</a></li>
             <li><a href="#nutrition-corner">NUTRITION CORNER</a></li>
             <li><a href="#subscribe">SUBSCRIBE</a></li>
           </ul>
@@ -56,7 +56,7 @@
 
         <figure class="hero-figure">
           <img
-            src="assets/stacked-burger.png"
+            src="/Users/Rushita/Downloads/Study/Web Design & Dev/INFO6150-Assignments/Assignment1/assets/food stack.svg"
             alt="Stacked fresh ingredients"
           />
         </figure>
@@ -130,5 +130,105 @@
         </article>
       </div>
     </section>
+    <!-- RECIPES (third section) -->
+    <section
+      id="recipes"
+      class="recipes section"
+      aria-labelledby="recipes-title"
+    >
+      <div class="container recipes-grid">
+        <!-- LEFT -->
+        <div class="recipes-left">
+          <span class="pill small">FEATURED RECIPES</span>
+
+          <h2 id="recipes-title" class="recipes-title">
+            AVOCADO <span class="accent">CHICKPEA</span><br />TOAST
+          </h2>
+
+          <ul class="recipes-points">
+            <li>
+              <strong>Canned chickpeas</strong> make life easier—no soaking or
+              long cooking. Other beans work too.
+            </li>
+            <li>
+              <strong>Spices</strong> — follow the recipe or freestyle; add as
+              much or as little chili as you like.
+            </li>
+            <li><strong>Garlic</strong> is a must in most savory recipes.</li>
+            <li>
+              <strong>Avocado</strong> adds creaminess and healthy fats; season
+              with salt, pepper, and lemon.
+            </li>
+            <li>
+              <strong>Sourdough</strong> gives crunch and tang; any bread (incl.
+              gluten-free) will work.
+            </li>
+          </ul>
+
+          <a class="btn primary" href="#learn-chickpeas"
+            >Learn about chickpeas →</a
+          >
+        </div>
+
+        <!-- RIGHT -->
+        <figure class="recipes-figure">
+          <img
+            class="main-photo"
+            src="/Users/Rushita/Downloads/Study/Web Design & Dev/INFO6150-Assignments/Assignment1/assets/Group 7.svg"
+            alt="Avocado chickpea toast on slate board"
+          />
+        </figure>
+      </div>
+    </section>
+
+    <!-- optional anchor target the button scrolls to -->
+    <section
+      id="learn-chickpeas"
+      class="anchor-target"
+      aria-hidden="true"
+    ></section>
+
+    <!-- FOOTER / SUBSCRIBE section -->
+    <footer
+      id="subscribe"
+      class="site-footer section"
+      aria-labelledby="footer-title"
+    >
+      <div class="container footer-grid">
+        <!-- LEFT content -->
+        <div class="footer-left">
+          <h2 id="footer-title" class="footer-heading">
+            Healthy Recipes & Nutrition Tips
+          </h2>
+          <p class="footer-sub">Ready to Transform Your Healthy Life?</p>
+
+          <p class="footer-contact">
+            <strong>Contact:</strong><br />
+            <a href="mailto:hello@healthytips.test">hello@healthytips.test</a> ·
+            <a href="tel:+1234567890">+1 (234) 567-890</a>
+          </p>
+
+          <p class="footer-copy">© 2025 Healthy Recipes & Nutrition Tips</p>
+
+          <a href="#top" class="btn primary">Back to Top →</a>
+        </div>
+
+        <!-- RIGHT images -->
+        <div class="footer-right">
+          <div class="footer-img-wrap yellow">
+            <img
+              src="/Users/Rushita/Downloads/Study/Web Design & Dev/INFO6150-Assignments/Assignment1/assets/dish 1.svg"
+              alt="Healthy meal plate"
+            />
+          </div>
+          <div class="footer-img-wrap blue">
+            <img
+              src="/Users/Rushita/Downloads/Study/Web Design & Dev/INFO6150-Assignments/Assignment1/assets/dish 2.svg"
+              alt="Healthy meal plate"
+            />
+          </div>
+        </div>
+      </div>
+    </footer>
   </body>
 </html>
