@@ -1,14 +1,15 @@
 <!DOCTYPE html>
 <html lang="en">
   <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
     <title>Healthy Recipes & Nutrition Tips</title>
     <link rel="stylesheet" href="style.css" />
+    <link rel="icon" href="assets/favicon.ico" type="image/x-icon" />
   </head>
 
   <body id="top">
-    <!-- STICKY HEADER -->
+    <!-- Header -->
     <header class="site-header">
       <div class="container header-inner">
         <h1 class="logo">Healthy Recipes & Nutrition Tips</h1>
@@ -22,43 +23,55 @@
       </div>
     </header>
 
-    <!-- HERO (first section) -->
+    <!-- Hero -->
     <section class="hero">
       <div class="container hero-grid">
         <div class="hero-left">
-          <span class="pill">🥗 Eat Well, Feel Great</span>
+          <span class="pill"> 🥗 &nbsp; Eat Well, Feel Great</span>
           <h1 class="hero-title">
             SMART. SIMPLE. <span class="accent">SAVORY.</span>
           </h1>
           <p class="hero-sub">
             Discover quick, wholesome recipes and simple nutrition advice you
-            can trust. No fad diets—just balanced meals and science-backed tips.
+            can trust. No fad diets - just balanced meals and science - backed
+            tips.
           </p>
 
           <div class="media-cards">
             <article class="card dark">
               <h3>Watch: Meal Prep Basics</h3>
-              <video controls poster="assets/meal-prep-poster.jpg">
-                <source src="assets/sample-480p.mp4" type="video/mp4" />
-              </video>
+              <div class="video-wrapper">
+                <iframe
+                  width="100%"
+                  height="215"
+                  src="https://www.youtube.com/embed/ERysyFbJH7w?si=KuV36xsxZe2O8BIQ"
+                  title="YouTube video player"
+                  frameborder="0"
+                  allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                  allowfullscreen
+                >
+                </iframe>
+              </div>
             </article>
 
             <article class="card dark">
               <h3>Listen: 60-second Breakfast Tips</h3>
               <audio controls>
-                <source src="assets/tip-60s.mp3" type="audio/mpeg" />
+                <source src="assets/breakfast.mp3" type="audio/mpeg" />
               </audio>
             </article>
           </div>
 
-          <a href="#subscribe" class="btn primary">Subscribe →</a>
+          <a href="#subscribe" class="btn primary">Subscribe ></a>
         </div>
 
         <figure class="hero-figure">
-          <img src="assets/food stack.svg" alt="Stacked fresh ingredients" />
+          <img src="assets/food-stack.svg" alt="Stacked fresh ingredients" />
+          <figcaption>Fresh ingredients stacked in a balanced meal.</figcaption>
         </figure>
       </div>
     </section>
+
     <!-- NUTRITION CORNER (second section) -->
     <section
       id="nutrition-corner"
@@ -66,19 +79,29 @@
       aria-labelledby="nc-title"
     >
       <div class="container">
-        <h2 id="nc-title" class="nutrition-title">
-          <span class="teal">NUTRITION</span> <span class="black">CORNER</span>
-        </h2>
-        <p class="nutrition-sub">
-          Aim for a mix of soluble and insoluble fiber from whole grains,
-          legumes, fruits, and vegetables. It supports digestion, heart health,
-          and satiety.
-        </p>
+        <!-- Top row: heading + description + aside -->
+        <div class="nutrition-top">
+          <div>
+            <h2 id="nc-title" class="nutrition-title">
+              <span class="teal">NUTRITION</span>
+              <span class="black">CORNER</span>
+            </h2>
+            <p class="nutrition-sub">
+              Aim for a mix of soluble and insoluble fiber from whole grains,
+              legumes, fruits, and vegetables. It supports digestion, heart
+              health, and satiety.
+            </p>
+          </div>
 
-        <article class="panel" aria-labelledby="panel-title">
-          <h3 id="panel-title" class="panel-title">
-            Fiber: Small Habit, Big Impact
-          </h3>
+          <aside class="nutrition-tip">
+            💡 <strong>Tip:</strong> Adults should aim for at least
+            <strong>25–30 grams of fiber</strong> per day for optimal health.
+          </aside>
+        </div>
+
+        <!-- Full-width panel with table -->
+        <article class="panel">
+          <h3 class="panel-title">Fiber: Small Habit, Big Impact</h3>
           <p class="panel-copy">
             Aim for a mix of soluble and insoluble fiber from whole grains,
             legumes, fruits, and vegetables. It supports digestion, heart
@@ -89,7 +112,7 @@
 
           <div class="table-card">
             <div class="table-caption">Approximate values per serving</div>
-            <table class="stats">
+            <table class="stats full-width">
               <thead>
                 <tr>
                   <th scope="col">Item</th>
@@ -124,68 +147,81 @@
               </tbody>
             </table>
           </div>
+
+          <details class="nutrition-details">
+            <summary>Learn more about fiber types</summary>
+            <p>
+              <strong>Soluble fiber</strong> dissolves in water and helps lower
+              glucose and cholesterol levels. Found in oats, beans, apples, and
+              citrus fruits.<br /><br />
+              <strong>Insoluble fiber</strong> adds bulk to stool and helps food
+              pass more quickly through the digestive system. Found in whole
+              wheat flour, nuts, beans, and vegetables like cauliflower and
+              potatoes.
+            </p>
+          </details>
         </article>
       </div>
     </section>
-    <!-- RECIPES (third section) -->
+
+    <!-- Recipes -->
     <section
       id="recipes"
       class="recipes section"
       aria-labelledby="recipes-title"
     >
       <div class="container recipes-grid">
-        <!-- LEFT -->
         <div class="recipes-left">
           <span class="pill small">FEATURED RECIPES</span>
-
           <h2 id="recipes-title" class="recipes-title">
             AVOCADO <span class="accent">CHICKPEA</span><br />TOAST
           </h2>
-
           <ul class="recipes-points">
             <li>
               <strong>Canned chickpeas</strong> make life easier—no soaking or
-              long cooking. Other beans work too.
+              long cooking.
             </li>
             <li>
-              <strong>Spices</strong> — follow the recipe or freestyle; add as
-              much or as little chili as you like.
+              <strong>Spices</strong> — follow the recipe or freestyle; add
+              chili to taste.
             </li>
             <li><strong>Garlic</strong> is a must in most savory recipes.</li>
             <li>
               <strong>Avocado</strong> adds creaminess and healthy fats; season
-              with salt, pepper, and lemon.
+              well.
             </li>
             <li>
-              <strong>Sourdough</strong> gives crunch and tang; any bread (incl.
-              gluten-free) will work.
+              <strong>Sourdough</strong> gives crunch and tang; any bread works.
             </li>
           </ul>
-
-          <a class="btn primary" href="#learn-chickpeas"
-            >Learn about chickpeas →</a
+          <a
+            class="btn primary"
+            href="https://en.wikipedia.org/wiki/Chickpeas"
+            target="_blank"
+            >Learn about chickpeas ></a
           >
         </div>
 
-        <!-- RIGHT -->
         <figure class="recipes-figure">
           <img
             class="main-photo"
-            src="assets/Group 7.svg"
+            src="assets/toast.svg"
             alt="Avocado chickpea toast on slate board"
           />
+          <figcaption>
+            Avocado chickpea toast served with tomatoes and herbs.
+          </figcaption>
         </figure>
       </div>
     </section>
 
-    <!-- optional anchor target the button scrolls to -->
     <section
       id="learn-chickpeas"
       class="anchor-target"
       aria-hidden="true"
     ></section>
 
-    <!-- FOOTER / SUBSCRIBE -->
+    <!-- Footer / Subscribe -->
     <footer
       id="subscribe"
       class="site-footer-cta"
@@ -205,9 +241,72 @@
           <a href="tel:+1234567890">+1 (234) 567-890</a>
         </p>
 
-        <p class="footer-cta-copy">© 2025 Healthy Recipes & Nutrition Tips</p>
+        <!-- Contact Form -->
+        <form class="footer-form" action="#" method="post" autocomplete="on">
+          <div class="form-row">
+            <label for="name">Name:</label>
+            <input
+              type="text"
+              id="name"
+              name="name"
+              autocomplete="name"
+              required
+            />
+          </div>
 
-        <a href="#top" class="btn primary footer-cta-btn">Back to Top →</a>
+          <div class="form-row">
+            <label for="email">Email:</label>
+            <input
+              type="email"
+              id="email"
+              name="email"
+              autocomplete="email"
+              required
+            />
+          </div>
+
+          <div class="form-row">
+            <label for="password">Password:</label>
+            <input
+              type="password"
+              id="password"
+              name="password"
+              minlength="6"
+              autocomplete="new-password"
+              required
+            />
+          </div>
+
+          <div class="form-row">
+            <label for="topic">Topic:</label>
+            <input
+              type="text"
+              id="topic"
+              name="topic"
+              list="topics"
+              placeholder="Start typing…"
+            />
+            <datalist id="topics">
+              <option value="Recipes"></option>
+              <option value="Nutrition"></option>
+              <option value="Meal Prep"></option>
+              <option value="Breakfast Tips"></option>
+              <option value="Vegan"></option>
+              <option value="Gluten-free"></option>
+            </datalist>
+          </div>
+
+          <div class="form-row full-width">
+            <label for="message">Description:</label>
+            <textarea id="message" name="message" rows="3" required></textarea>
+          </div>
+
+          <div class="form-row full-width">
+            <button type="submit" class="btn primary">Submit</button>
+          </div>
+        </form>
+
+        <p class="footer-cta-copy">© 2025 Healthy Recipes & Nutrition Tips</p>
       </div>
     </footer>
   </body>
