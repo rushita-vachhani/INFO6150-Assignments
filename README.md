@@ -1,7 +1,7 @@
 # Healthy Recipes & Nutrition Tips — README
 
 ## 1) Project Overview
-A single-page website with a sticky header, hero, “Nutrition Corner” (with table + details/summary + aside), a “Featured Recipes” section, and a footer with contact info and a side-by-side form.
+A single-page website with a sticky header, hero, “Nutrition Corner” (with table + details/summary + aside), a “Featured Recipes” section, a footer with contact information & form.
 
 Files
 ```
@@ -12,16 +12,14 @@ assets/
   food-stack.svg
   toast.svg
   meal-prep-poster.jpg (optional)
-  breakfast.mp3 (your audio)
+  breakfast.mp3 (audio file)
 README.md
 ```
 
 
 ## 2) How to Run
-1. Keep the folder structure as shown above.
+1. Maintain the folder structure as shown above.
 2. Open `index.html` in any modern browser.
-3. If the favicon doesn’t appear, hard-refresh (Cmd/Ctrl + Shift + R) or try a private window.
-
 
 
 ## 3) All HTML Tags Used (with short descriptions)
