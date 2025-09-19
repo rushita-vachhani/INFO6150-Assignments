@@ -5,30 +5,163 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Rushita Vachhani - Portfolio</title>
     <link rel="stylesheet" href="style.css" />
+    <link rel="shortcut icon" href="favicon.ico" type="image/x-icon" />
   </head>
   <body>
     <header>
-      <nav></nav>
+      <div class="header-content">
+        <h1>Rushita Vachhani</h1>
+      </div>
+      <nav>
+        <ul>
+          <li><a href="#home">Home</a></li>
+          <li><a href="#about">About</a></li>
+          <li><a href="#testimonials">Testimonials</a></li>
+          <li><a href="#portfolio">Portfolio</a></li>
+          <li><a href="#contact">Contact</a></li>
+          <li><a href="cv.pdf" download class="button">Download CV</a></li>
+        </ul>
+      </nav>
     </header>
 
     <main>
-      <section id="about"></section>
+      <section id="home">
+        <div class="hero">
+          <p class="greeting">Hello It's Me</p>
+          <h1 class="name">Rushita Vachhani</h1>
+          <p class="title">And I'm a Full-Stack Developer</p>
+          <div class="hero-image">
+            <img src="assets/profile.jpg" alt="Rushita Vachhani" />
+          </div>
+          <div class="hero-text">
+            <p>
+              Experienced Business and Technology Leader with 6 years in
+              business management, product ownership, and technology analysis.
+              Proven track record in driving product development, optimizing
+              processes & leading teams.
+            </p>
+          </div>
+        </div>
+      </section>
+
+      <section id="about">
+        <h2>About Me</h2>
+        <div class="about-container">
+          <div class="about-image">
+            <img src="images/profile.jpg" alt="Rushita Vachhani" />
+          </div>
+          <div class="about-text">
+            <p>
+              Experienced Business and Technology Leader with almost 6 years of
+              diverse expertise in business management, product ownership, and
+              technology analysis. Proven track record in driving product
+              development, optimizing business processes, and leading
+              cross-functional teams. Adept at managing complex projects from
+              inception to completion, aligning business goals with
+              technological solutions, and delivering high-impact results.
+            </p>
+          </div>
+        </div>
+      </section>
 
       <section id="testimonials">
-        <article class="testimonial-card"></article>
+        <h2>My Testimonials</h2>
+        <div class="testimonial-container">
+          <article class="testimonial-card">
+            <p class="role">Full-Stack Developer</p>
+
+            <p class="quote">
+              "I will hire Square Infosoft team in all my future projects, if u
+              are looking for perfect quality then you should hire them too..
+              one more thing i would to share that team starts to expand and Ms.
+              Rushita helped me a lot to make thing very easy & well prepared
+              for all the given tasks in different phases."
+            </p>
+
+            <p class="author">- CEO Farooq Aziz</p>
+          </article>
+          <article class="testimonial-card">
+            <p class="role">Product Owner</p>
+
+            <p class="quote">
+              "I had a very good experience both in the design and
+              implementation phases, congratulations! Quick & precise responses,
+              willingness to evaluate new requests or resolve doubts & an
+              excellent result (app) both in terms of aesthetics and
+              functionality. My project contact is Rushita, I highly recommend
+              her."
+            </p>
+
+            <p class="author">- CTO Kenny T</p>
+          </article>
+          <article class="testimonial-card">
+            <p class="role">UI/UX Designer</p>
+
+            <p class="quote">
+              "Rushita has shown great amount of responsibility, sincerity and a
+              genuine willingness to learn and zeal to take on new assignments &
+              challenges. In particular, her coordination skills and
+              communication skills are par excellence and her attention to
+              details is impressive."
+            </p>
+
+            <p class="author">-Founder Manish Gupta</p>
+          </article>
+        </div>
       </section>
 
       <section id="portfolio">
-        <div class="image-gallery"></div>
+        <h2>My Portfolio</h2>
+        <div class="image-gallery">
+          <div class="gallery-item">
+            <img src="images/ono-teas.jpg" alt="Ono Teas - Blue Pea" />
+          </div>
+          <div class="gallery-item">
+            <img
+              src="images/dcp-innovation.jpg"
+              alt="DCP Innovation - Sign Up"
+            />
+          </div>
+          <div class="gallery-item">
+            <img src="images/blufield.jpg" alt="BluField - Login" />
+          </div>
+        </div>
       </section>
 
       <section id="contact">
-        <form></form>
+        <h2>Contact Me!</h2>
+        <form>
+          <div class="form-row">
+            <div class="form-group">
+              <label for="firstName">First Name</label>
+              <input type="text" id="firstName" name="firstName" />
+            </div>
+            <div class="form-group">
+              <label for="lastName">Last Name</label>
+              <input type="text" id="lastName" name="lastName" />
+            </div>
+          </div>
+          <div class="form-row">
+            <div class="form-group">
+              <label for="email">Email Address</label>
+              <input type="email" id="email" name="email" />
+            </div>
+            <div class="form-group">
+              <label for="mobile">Mobile Number</label>
+              <input type="tel" id="mobile" name="mobile" />
+            </div>
+          </div>
+          <div class="form-group full-width">
+            <label for="message">Your Message</label>
+            <textarea id="message" name="message" rows="5"></textarea>
+          </div>
+          <button type="submit" class="button">SUBMIT</button>
+        </form>
       </section>
-
-      <aside></aside>
     </main>
 
-    <footer></footer>
+    <footer>
+      <p>&copy; 2023 Rushita Vachhani. All Rights Reserved.</p>
+    </footer>
   </body>
 </html>
