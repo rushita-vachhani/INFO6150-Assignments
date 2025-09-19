@@ -1,0 +1,23 @@
+body {
+  font-family: Arial, sans-serif;
+  margin: 0;
+  padding: 0;
+}
+
+header {
+  /* Flexbox properties to align navigation */
+  display: flex;
+  justify-content: space-between; /* justify-content is a required property */
+  align-items: center; /* align-items is a required property */
+}
+
+nav ul {
+  list-style: none;
+  display: flex;
+  flex-wrap: wrap; /* flex-wrap is a required property */
+}
+
+/* Style the navigation links and buttons */
+.download-btn {
+  /* Style the download CV button */
+}
