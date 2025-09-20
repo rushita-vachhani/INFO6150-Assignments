@@ -446,6 +446,7 @@ img.cta {
   color: #cfe0e6;
   font-style: italic;
   line-height: 1.65;
+  flex-grow: 1;
 }
 .t-quote strong {
   color: #fff;
