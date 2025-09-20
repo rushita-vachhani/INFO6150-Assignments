@@ -14,15 +14,15 @@
     />
 
     <link rel="stylesheet" href="style.css" />
-    <link href="assets/favicon.ico" type="image/x-icon" />
+    <link rel="shortcut icon" href="assets/favicon.ico" type="image/x-icon" />
   </head>
   <body>
-    <!-- ================= Header ================= -->
+    <!-- Header -->
     <header class="site-header">
       <div class="header-inner">
         <a class="brand" href="#home">Portfolio</a>
 
-        <!-- mobile toggle (CSS-only) -->
+        <!-- Minimal hamburger: one span; pseudos draw the other bars -->
         <input
           type="checkbox"
           id="nav-toggle"
@@ -34,7 +34,7 @@
           class="nav-toggle-btn"
           aria-label="Toggle navigation"
         >
-          <span></span><span></span><span></span>
+          <span class="bar"></span>
         </label>
 
         <nav class="nav" aria-label="Primary">
@@ -49,7 +49,7 @@
       </div>
     </header>
 
-    <!-- ================= Hero ================= -->
+    <!-- Hero -->
     <section id="home" class="hero">
       <div class="container hero-grid">
         <div class="hero-copy">
@@ -95,12 +95,7 @@
             </a>
           </div>
 
-          <a
-            class="btn-cta"
-            href="https://docs.google.com/document/d/1WnkwwxgY9QmxlvZQo22PkOlY3e7H9jwx6OW6TEakylc/edit?usp=sharing"
-            target="_blank"
-            >Download CV</a
-          >
+          <a class="cta" href="cv.pdf" download>Download CV</a>
         </div>
 
         <div
@@ -108,22 +103,26 @@
           role="img"
           aria-label="Portrait of Rushita Vachhani"
         >
-          <img class="photo" src="assets/profile.jpg" alt="Rushita Vachhani" />
+          <img
+            class="photo cta"
+            src="assets/profile.jpg"
+            alt="Rushita Vachhani"
+          />
         </div>
       </div>
     </section>
 
-    <!-- ================= About (Skills left) ================= -->
+    <!-- About + Skills -->
     <section id="about" class="about">
       <div class="container about-grid">
-        <!-- LEFT: Skills -->
-        <div class="about-left">
-          <h2 class="skills-title top">Technical <span>Skills</span></h2>
+        <!-- Left: Skills board -->
+        <aside class="skills-board" aria-label="Technical Skills">
+          <h2 class="skills-heading">Technical <span>Skills</span></h2>
 
           <div class="skills-grid">
-            <section class="skill-card">
-              <h4>Programming Languages</h4>
-              <ul class="chips">
+            <section class="panel">
+              <h3>Programming Languages</h3>
+              <ul class="pills">
                 <li>Java</li>
                 <li>Python</li>
                 <li>Node.js</li>
@@ -135,9 +134,9 @@
               </ul>
             </section>
 
-            <section class="skill-card">
-              <h4>Tools &amp; Platforms</h4>
-              <ul class="chips">
+            <section class="panel">
+              <h3>Tools &amp; Platforms</h3>
+              <ul class="pills">
                 <li>Jira</li>
                 <li>Trello</li>
                 <li>VS Code</li>
@@ -147,9 +146,9 @@
               </ul>
             </section>
 
-            <section class="skill-card">
-              <h4>Methodologies</h4>
-              <ul class="chips">
+            <section class="panel">
+              <h3>Methodologies</h3>
+              <ul class="pills">
                 <li>Agile</li>
                 <li>Waterfall</li>
                 <li>Scrum</li>
@@ -157,9 +156,9 @@
               </ul>
             </section>
 
-            <section class="skill-card">
-              <h4>Project Management</h4>
-              <ul class="chips">
+            <section class="panel">
+              <h3>Project Management</h3>
+              <ul class="pills">
                 <li>G-Suite</li>
                 <li>MS Office</li>
                 <li>ClickUp</li>
@@ -167,22 +166,10 @@
                 <li>Figma</li>
               </ul>
             </section>
-
-            <section class="skill-card span-2">
-              <h4>Other Skills</h4>
-              <ul class="chips">
-                <li>SaaS Product Management</li>
-                <li>Backlog Management</li>
-                <li>User Story Authoring</li>
-                <li>Cross-functional Communication</li>
-                <li>Full-Stack Development</li>
-                <li>OOP</li>
-              </ul>
-            </section>
           </div>
-        </div>
+        </aside>
 
-        <!-- RIGHT: About copy -->
+        <!-- Right: About copy -->
         <div class="about-copy">
           <h2 class="about-title">About <span>Me</span></h2>
           <p class="about-sub">Full-Stack Developer</p>
@@ -199,11 +186,10 @@
       </div>
     </section>
 
-    <!-- ================= Testimonials ================= -->
+    <!-- Testimonials -->
     <section id="testimonials" class="testi">
       <div class="container">
         <h2 class="testi-title">My <span>Testimonials</span></h2>
-
         <div class="t-grid">
           <article class="t-card">
             <h3 class="t-role">ChefQU</h3>
@@ -245,13 +231,12 @@
       </div>
     </section>
 
-    <!-- ================= Portfolio ================= -->
+    <!-- Portfolio -->
     <section id="portfolio" class="folio">
       <div class="container">
         <h2 class="folio-title">My <span>Portfolio</span></h2>
 
         <div class="folio-grid">
-          <!-- JOTS360 / DCP -->
           <article class="folio-card is-light" tabindex="0">
             <img
               class="folio-media"
@@ -274,10 +259,8 @@
                 <p>
                   DCP is a legacy platform for healthcare organisations to
                   manage patient files, appointment scheduling, invoicing,
-                  reporting, and accounting across multiple clinics and orgs.
-                </p>
-                <p>
-                  It supports multi-patient file systems, multi-slot scheduling,
+                  reporting, and accounting across multiple clinics and orgs. It
+                  supports multi-patient file systems, multi-slot scheduling,
                   payments &amp; invoices, and rich reporting for
                   decision-making.
                 </p>
@@ -285,7 +268,6 @@
             </div>
           </article>
 
-          <!-- ONO TEAS -->
           <article class="folio-card" tabindex="0">
             <img
               class="folio-media"
@@ -313,7 +295,7 @@
       </div>
     </section>
 
-    <!-- ================= Contact (table layout) ================= -->
+    <!-- Contact (table layout) -->
     <section id="contact" class="contact">
       <div class="container">
         <h2 class="contact-title">Contact <span>Me!</span></h2>
@@ -381,7 +363,7 @@
               </tr>
               <tr>
                 <td colspan="2" class="submit-cell">
-                  <button class="btn-cta contact-submit" type="submit">
+                  <button class="cta" type="submit">
                     SUBMIT
                     <svg viewBox="0 0 24 24" aria-hidden="true">
                       <path
@@ -396,5 +378,12 @@
         </form>
       </div>
     </section>
+
+    <footer class="site-footer">
+      <div class="container">
+        <a href="#home" class="to-top">↑ Back to top</a>
+        <p>© 2025 Rushita Vachhani. All rights reserved.</p>
+      </div>
+    </footer>
   </body>
 </html>
