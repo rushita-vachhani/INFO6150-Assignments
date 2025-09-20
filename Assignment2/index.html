@@ -4,164 +4,428 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Rushita Vachhani - Portfolio</title>
+
+    <!-- Font -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;800&display=swap"
+      rel="stylesheet"
+    />
+
     <link rel="stylesheet" href="style.css" />
     <link rel="shortcut icon" href="favicon.ico" type="image/x-icon" />
   </head>
   <body>
-    <header>
-      <div class="header-content">
-        <h1>Rushita Vachhani</h1>
+    <!-- Header -->
+    <header class="site-header">
+      <div class="header-inner">
+        <a class="brand" href="#home">Portfolio</a>
+
+        <!-- mobile toggle (CSS-only) -->
+        <input
+          type="checkbox"
+          id="nav-toggle"
+          class="nav-toggle"
+          aria-hidden="true"
+        />
+        <label
+          for="nav-toggle"
+          class="nav-toggle-btn"
+          aria-label="Toggle navigation"
+        >
+          <span></span><span></span><span></span>
+        </label>
+
+        <nav class="nav" aria-label="Primary">
+          <ul>
+            <li><a href="#home">Home</a></li>
+            <li><a href="#about">About</a></li>
+            <li><a href="#testimonials">Testimonial</a></li>
+            <li><a href="#portfolio">Portfolio</a></li>
+            <li><a href="#contact">Contact</a></li>
+          </ul>
+        </nav>
       </div>
-      <nav>
-        <ul>
-          <li><a href="#home">Home</a></li>
-          <li><a href="#about">About</a></li>
-          <li><a href="#testimonials">Testimonials</a></li>
-          <li><a href="#portfolio">Portfolio</a></li>
-          <li><a href="#contact">Contact</a></li>
-          <li><a href="cv.pdf" download class="button">Download CV</a></li>
-        </ul>
-      </nav>
     </header>
 
-    <main>
-      <section id="home">
-        <div class="hero">
-          <p class="greeting">Hello It's Me</p>
-          <h1 class="name">Rushita Vachhani</h1>
-          <p class="title">And I'm a Full-Stack Developer</p>
-          <div class="hero-image">
-            <img src="assets/profile.jpg" alt="Rushita Vachhani" />
+    <!-- Hero -->
+    <section id="home" class="hero">
+      <div class="container hero-grid">
+        <div class="hero-copy">
+          <p class="eyebrow">Hello It’s Me</p>
+          <h1 class="hero-title">Rushita Vachhani</h1>
+          <p class="and-i-am">
+            And I’m a <span class="role">Full-Stack Developer</span>
+          </p>
+
+          <p class="hero-subtitle">
+            Experienced Business and Technology Leader with 6 years in business
+            management, product ownership, and technology analysis. Proven track
+            record in driving product development, optimizing processes, &amp;
+            leading teams.
+          </p>
+
+          <div class="social-row" aria-label="Social links">
+            <!-- LinkedIn -->
+            <a
+              class="icon-btn"
+              href="https://www.linkedin.com/in/rushita-vachhani/"
+              target="_blank"
+              aria-label="LinkedIn"
+            >
+              <svg viewBox="0 0 24 24" aria-hidden="true">
+                <path
+                  d="M4.98 3.5C4.98 4.88 3.87 6 2.5 6S0 4.88 0 3.5 1.12 1 2.5 1s2.48 1.12 2.48 2.5zM0 8h5v16H0V8zm7.5 0H12v2.2h.06c.63-1.2 2.17-2.46 4.47-2.46 4.78 0 5.66 3.15 5.66 7.25V24h-5v-6.9c0-1.65-.03-3.77-2.3-3.77-2.3 0-2.66 1.79-2.66 3.65V24h-5V8z"
+                />
+              </svg>
+            </a>
+            <!-- GitHub -->
+            <a
+              class="icon-btn"
+              href="https://github.com/rushita-vachhani"
+              target="_blank"
+              aria-label="GitHub"
+            >
+              <svg viewBox="0 0 24 24" aria-hidden="true">
+                <path
+                  d="M12 0C5.37 0 0 5.37 0 12c0 5.3 3.44 9.8 8.2 11.39.6.11.82-.26.82-.58 0-.29-.01-1.06-.02-2.07-3.34.73-4.04-1.61-4.04-1.61-.55-1.41-1.34-1.79-1.34-1.79-1.1-.75.08-.74.08-.74 1.22.09 1.86 1.25 1.86 1.25 1.08 1.85 2.83 1.32 3.52 1.01.11-.78.42-1.32.76-1.63-2.66-.3-5.46-1.33-5.46-5.93 0-1.31.47-2.38 1.24-3.22-.13-.3-.54-1.52.12-3.17 0 0 1.01-.32 3.3 1.23.96-.27 1.98-.4 3-.4s2.04.13 3 .4c2.29-1.55 3.3-1.23 3.3-1.23.66 1.65.25 2.87.12 3.17.77.84 1.24 1.91 1.24 3.22 0 4.61-2.8 5.63-5.48 5.92.43.37.81 1.1.81 2.22 0 1.6-.02 2.88-.02 3.27 0 .32.21.7.82.58C20.56 21.8 24 17.3 24 12 24 5.37 18.63 0 12 0z"
+                />
+              </svg>
+            </a>
           </div>
-          <div class="hero-text">
-            <p>
-              Experienced Business and Technology Leader with 6 years in
-              business management, product ownership, and technology analysis.
-              Proven track record in driving product development, optimizing
-              processes & leading teams.
-            </p>
-          </div>
+
+          <a class="btn-cta" href="cv.pdf" download>Download CV</a>
         </div>
-      </section>
 
-      <section id="about">
-        <h2>About Me</h2>
-        <div class="about-container">
-          <div class="about-image">
-            <img src="images/profile.jpg" alt="Rushita Vachhani" />
-          </div>
-          <div class="about-text">
-            <p>
-              Experienced Business and Technology Leader with almost 6 years of
-              diverse expertise in business management, product ownership, and
-              technology analysis. Proven track record in driving product
-              development, optimizing business processes, and leading
-              cross-functional teams. Adept at managing complex projects from
-              inception to completion, aligning business goals with
-              technological solutions, and delivering high-impact results.
-            </p>
-          </div>
+        <div
+          class="hero-media"
+          role="img"
+          aria-label="Portrait of Rushita Vachhani"
+        >
+          <!-- simple circular image with solid border -->
+          <img class="photo" src="assets/profile.jpg" alt="Rushita Vachhani" />
         </div>
-      </section>
+      </div>
+    </section>
 
-      <section id="testimonials">
-        <h2>My Testimonials</h2>
-        <div class="testimonial-container">
-          <article class="testimonial-card">
-            <p class="role">Full-Stack Developer</p>
+    <!-- About -->
+    <section id="about" class="about">
+      <div class="container about-grid">
+        <div class="about-art" aria-hidden="true">
+          <svg
+            class="about-illustration"
+            viewBox="0 0 900 560"
+            preserveAspectRatio="xMidYMid slice"
+          >
+            <defs>
+              <radialGradient id="glowA" cx="50%" cy="20%" r="55%">
+                <stop offset="0" stop-color="#0f4a52" stop-opacity="0.55" />
+                <stop offset="1" stop-color="#0f1e21" stop-opacity="0" />
+              </radialGradient>
+              <radialGradient id="glowB" cx="75%" cy="0%" r="65%">
+                <stop offset="0" stop-color="#0b3f46" stop-opacity="0.55" />
+                <stop offset="1" stop-color="#0f1e21" stop-opacity="0" />
+              </radialGradient>
+            </defs>
+            <rect width="900" height="560" fill="url(#glowA)" />
+            <rect width="900" height="560" fill="url(#glowB)" />
+            <path
+              d="M520,105 C640,65 720,70 810,110"
+              fill="#0b2430"
+              opacity=".65"
+            />
+            <path
+              d="M170,110 C260,80 330,85 410,115"
+              fill="#0b2430"
+              opacity=".65"
+            />
+            <rect
+              x="450"
+              y="120"
+              width="6"
+              height="290"
+              rx="3"
+              fill="#0f2c35"
+              opacity=".75"
+            />
+            <path
+              d="M90,420 H820"
+              stroke="#0e2a33"
+              stroke-width="3"
+              opacity=".8"
+            />
+            <circle cx="205" cy="255" r="26" fill="#091b22" opacity=".9" />
+            <rect
+              x="150"
+              y="280"
+              width="150"
+              height="26"
+              rx="6"
+              fill="#07171d"
+              opacity=".9"
+            />
+            <path
+              d="M150,306 L260,306 L305,365 L185,365 Z"
+              fill="#07171d"
+              opacity=".9"
+            />
+            <rect
+              x="265"
+              y="292"
+              width="80"
+              height="10"
+              rx="5"
+              fill="#081d23"
+              opacity=".9"
+            />
+            <path
+              d="M100,230 C260,200 410,285 620,260"
+              fill="none"
+              stroke="#e9f7fb"
+              stroke-opacity=".75"
+              stroke-width="3"
+            />
+          </svg>
+        </div>
 
-            <p class="quote">
-              "I will hire Square Infosoft team in all my future projects, if u
+        <div class="about-copy">
+          <h2 class="about-title">About <span>Me</span></h2>
+          <p class="about-sub">Full-Stack Developer</p>
+          <p class="about-text">
+            Experienced Business and Technology Leader with almost 6 years of
+            diverse expertise in business management, product ownership, and
+            technology analysis. Proven track record in driving product
+            development, optimizing business processes, and leading
+            cross-functional teams. Adept at managing complex projects from
+            inception to completion, aligning business goals with technological
+            solutions, and delivering high-impact results.
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <!-- Testimonials -->
+    <section id="testimonials" class="testi">
+      <div class="container">
+        <h2 class="testi-title">My <span>Testimonials</span></h2>
+        <div class="t-grid">
+          <article class="t-card">
+            <h3 class="t-role">ChefQU</h3>
+            <blockquote class="t-quote">
+              “I will hire Square Infosoft team in all my future projects, if u
               are looking for perfect quality then you should hire them too..
               one more thing i would to share that team starts to expand and Ms.
-              Rushita helped me a lot to make thing very easy & well prepared
-              for all the given tasks in different phases."
-            </p>
-
-            <p class="author">- CEO Farooq Aziz</p>
+              <strong>Rushita</strong> helped me a lot to make thing very easy
+              &amp; well prepared for all the given tasks in different phases.”
+            </blockquote>
+            <p class="t-sig">~ CEO Farooq Aziz</p>
           </article>
-          <article class="testimonial-card">
-            <p class="role">Product Owner</p>
 
-            <p class="quote">
-              "I had a very good experience both in the design and
-              implementation phases, congratulations! Quick & precise responses,
-              willingness to evaluate new requests or resolve doubts & an
-              excellent result (app) both in terms of aesthetics and
-              functionality. My project contact is Rushita, I highly recommend
-              her."
-            </p>
-
-            <p class="author">- CTO Kenny T</p>
+          <article class="t-card">
+            <h3 class="t-role">JOTS360</h3>
+            <blockquote class="t-quote">
+              “I had a very good experience both in the design and
+              implementation phases, congratulations! Quick &amp; precise
+              responses, willingness to evaluate new requests or resolve doubts
+              &amp; an excellent result (app) both in terms of aesthetics and
+              functionality. My project contact is <strong>Rushita</strong>, I
+              highly recommend her.”
+            </blockquote>
+            <p class="t-sig">~ CTO Kenny T</p>
           </article>
-          <article class="testimonial-card">
-            <p class="role">UI/UX Designer</p>
 
-            <p class="quote">
-              "Rushita has shown great amount of responsibility, sincerity and a
-              genuine willingness to learn and zeal to take on new assignments &
-              challenges. In particular, her coordination skills and
-              communication skills are par excellence and her attention to
-              details is impressive."
-            </p>
-
-            <p class="author">-Founder Manish Gupta</p>
+          <article class="t-card">
+            <h3 class="t-role">ONO TEAS</h3>
+            <blockquote class="t-quote">
+              “<strong>Rushita</strong> has shown great amount of
+              responsibility, sincerity and a genuine willingness to learn and
+              zeal to take on new assignments &amp; challenges. In particular,
+              her coordination skills and communication skills are par
+              excellence and her attention to details is impressive.”
+            </blockquote>
+            <p class="t-sig">~ Founder Manish Gupta</p>
           </article>
         </div>
-      </section>
+      </div>
+    </section>
 
-      <section id="portfolio">
-        <h2>My Portfolio</h2>
-        <div class="image-gallery">
-          <div class="gallery-item">
-            <img src="images/ono-teas.jpg" alt="Ono Teas - Blue Pea" />
-          </div>
-          <div class="gallery-item">
+    <!-- Portfolio -->
+    <section id="portfolio" class="folio">
+      <div class="container">
+        <h2 class="folio-title">My <span>Portfolio</span></h2>
+
+        <div class="folio-grid">
+          <article class="folio-card is-light" tabindex="0">
             <img
+              class="folio-media"
               src="images/dcp-innovation.jpg"
-              alt="DCP Innovation - Sign Up"
+              alt="DCP Innovation — Sign up screen"
             />
-          </div>
-          <div class="gallery-item">
-            <img src="images/blufield.jpg" alt="BluField - Login" />
-          </div>
+            <div class="card-overlay">
+              <h3 class="proj-title">JOTS360 / DCP Innovations</h3>
+              <ul class="pills">
+                <li>Health Care Data Management System</li>
+                <li>Product Owner</li>
+                <li>Frontend (React)</li>
+                <li>Web Software</li>
+                <li>Project Manager</li>
+                <li>Legacy Application</li>
+                <li>Mobile Application</li>
+                <li>Tablet/iPad App</li>
+              </ul>
+              <div class="proj-copy">
+                <p>
+                  DCP is a legacy platform for healthcare organisations to
+                  manage patient files, appointment scheduling, invoicing,
+                  reporting, and accounting across multiple clinics and orgs.
+                </p>
+                <p>
+                  It supports multi-patient file systems, multi-slot scheduling,
+                  payments &amp; invoices, and rich reporting for
+                  decision-making.
+                </p>
+              </div>
+              <a
+                class="ext-btn"
+                href="https://gret.jots360dev.com/register/"
+                target="_blank"
+                rel="noopener"
+                aria-label="Open JOTS360 / DCP"
+              >
+                <svg viewBox="0 0 24 24" aria-hidden="true">
+                  <path
+                    fill="currentColor"
+                    d="M14 3h7v7h-2V7.41l-8.29 8.3-1.42-1.42 8.3-8.29H14V3ZM5 5h6v2H7v10h10v-4h2v6H5V5Z"
+                  />
+                </svg>
+              </a>
+            </div>
+          </article>
+
+          <article class="folio-card" tabindex="0">
+            <img
+              class="folio-media"
+              src="images/ono-teas.jpg"
+              alt="ONO TEAS — Blue Pea campaign artwork"
+            />
+            <div class="card-overlay">
+              <h3 class="proj-title">ONO TEAS</h3>
+              <ul class="pills">
+                <li>Graphics Design</li>
+                <li>Social Media Marketing Campaign</li>
+                <li>Health &amp; Wellness Tea Brand</li>
+                <li>UI/UX Design</li>
+              </ul>
+              <div class="proj-copy">
+                <p>
+                  Ono Teas is a boutique wellness brand with 120+ handcrafted
+                  herbal blends co-created with health experts. Campaign and
+                  UI/UX support across brand, social, and web touchpoints.
+                </p>
+              </div>
+              <a
+                class="ext-btn"
+                href="https://www.onoteas.com/"
+                target="_blank"
+                rel="noopener"
+                aria-label="Open ONO TEAS"
+              >
+                <svg viewBox="0 0 24 24" aria-hidden="true">
+                  <path
+                    fill="currentColor"
+                    d="M14 3h7v7h-2V7.41l-8.29 8.3-1.42-1.42 8.3-8.29H14V3ZM5 5h6v2H7v10h10v-4h2v6H5V5Z"
+                  />
+                </svg>
+              </a>
+            </div>
+          </article>
         </div>
-      </section>
+      </div>
+    </section>
 
-      <section id="contact">
-        <h2>Contact Me!</h2>
-        <form>
-          <div class="form-row">
-            <div class="form-group">
-              <label for="firstName">First Name</label>
-              <input type="text" id="firstName" name="firstName" />
-            </div>
-            <div class="form-group">
-              <label for="lastName">Last Name</label>
-              <input type="text" id="lastName" name="lastName" />
-            </div>
-          </div>
-          <div class="form-row">
-            <div class="form-group">
-              <label for="email">Email Address</label>
-              <input type="email" id="email" name="email" />
-            </div>
-            <div class="form-group">
-              <label for="mobile">Mobile Number</label>
-              <input type="tel" id="mobile" name="mobile" />
-            </div>
-          </div>
-          <div class="form-group full-width">
-            <label for="message">Your Message</label>
-            <textarea id="message" name="message" rows="5"></textarea>
-          </div>
-          <button type="submit" class="button">SUBMIT</button>
+    <!-- Contact (table layout) -->
+    <section id="contact" class="contact">
+      <div class="container">
+        <h2 class="contact-title">Contact <span>Me!</span></h2>
+
+        <form class="contact-form" action="#" method="post" novalidate>
+          <table class="contact-table" aria-describedby="contact-caption">
+            <caption id="contact-caption" class="vh">
+              Contact form laid out using a table (two columns on desktop).
+            </caption>
+            <tbody>
+              <tr>
+                <td>
+                  <label class="vh" for="firstName">First Name</label>
+                  <input
+                    id="firstName"
+                    name="firstName"
+                    type="text"
+                    placeholder="First Name"
+                    required
+                  />
+                </td>
+                <td>
+                  <label class="vh" for="lastName">Last Name</label>
+                  <input
+                    id="lastName"
+                    name="lastName"
+                    type="text"
+                    placeholder="Last Name"
+                    required
+                  />
+                </td>
+              </tr>
+              <tr>
+                <td>
+                  <label class="vh" for="email">Email Address</label>
+                  <input
+                    id="email"
+                    name="email"
+                    type="email"
+                    placeholder="Email Address"
+                    required
+                  />
+                </td>
+                <td>
+                  <label class="vh" for="mobile">Mobile Number</label>
+                  <input
+                    id="mobile"
+                    name="mobile"
+                    type="tel"
+                    placeholder="Mobile Number"
+                  />
+                </td>
+              </tr>
+              <tr>
+                <td colspan="2">
+                  <label class="vh" for="message">Your Message</label>
+                  <textarea
+                    id="message"
+                    name="message"
+                    rows="7"
+                    placeholder="Your Message"
+                    required
+                  ></textarea>
+                </td>
+              </tr>
+              <tr>
+                <td colspan="2" class="submit-cell">
+                  <button class="btn-cta contact-submit" type="submit">
+                    SUBMIT
+                    <svg viewBox="0 0 24 24" aria-hidden="true">
+                      <path
+                        d="M5 12h10.17l-4.59-4.59L12 6l7 6-7 6-1.41-1.41L15.17 12H5z"
+                      />
+                    </svg>
+                  </button>
+                </td>
+              </tr>
+            </tbody>
+          </table>
         </form>
-      </section>
-    </main>
-
-    <footer>
-      <p>&copy; 2023 Rushita Vachhani. All Rights Reserved.</p>
-    </footer>
+      </div>
+    </section>
   </body>
 </html>
