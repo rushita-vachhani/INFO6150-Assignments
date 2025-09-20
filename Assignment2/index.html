@@ -14,10 +14,10 @@
     />
 
     <link rel="stylesheet" href="style.css" />
-    <link rel="shortcut icon" href="favicon.ico" type="image/x-icon" />
+    <link href="assets/favicon.ico" type="image/x-icon" />
   </head>
   <body>
-    <!-- Header -->
+    <!-- ================= Header ================= -->
     <header class="site-header">
       <div class="header-inner">
         <a class="brand" href="#home">Portfolio</a>
@@ -49,7 +49,7 @@
       </div>
     </header>
 
-    <!-- Hero -->
+    <!-- ================= Hero ================= -->
     <section id="home" class="hero">
       <div class="container hero-grid">
         <div class="hero-copy">
@@ -95,7 +95,12 @@
             </a>
           </div>
 
-          <a class="btn-cta" href="cv.pdf" download>Download CV</a>
+          <a
+            class="btn-cta"
+            href="https://docs.google.com/document/d/1WnkwwxgY9QmxlvZQo22PkOlY3e7H9jwx6OW6TEakylc/edit?usp=sharing"
+            target="_blank"
+            >Download CV</a
+          >
         </div>
 
         <div
@@ -103,92 +108,81 @@
           role="img"
           aria-label="Portrait of Rushita Vachhani"
         >
-          <!-- simple circular image with solid border -->
           <img class="photo" src="assets/profile.jpg" alt="Rushita Vachhani" />
         </div>
       </div>
     </section>
 
-    <!-- About -->
+    <!-- ================= About (Skills left) ================= -->
     <section id="about" class="about">
       <div class="container about-grid">
-        <div class="about-art" aria-hidden="true">
-          <svg
-            class="about-illustration"
-            viewBox="0 0 900 560"
-            preserveAspectRatio="xMidYMid slice"
-          >
-            <defs>
-              <radialGradient id="glowA" cx="50%" cy="20%" r="55%">
-                <stop offset="0" stop-color="#0f4a52" stop-opacity="0.55" />
-                <stop offset="1" stop-color="#0f1e21" stop-opacity="0" />
-              </radialGradient>
-              <radialGradient id="glowB" cx="75%" cy="0%" r="65%">
-                <stop offset="0" stop-color="#0b3f46" stop-opacity="0.55" />
-                <stop offset="1" stop-color="#0f1e21" stop-opacity="0" />
-              </radialGradient>
-            </defs>
-            <rect width="900" height="560" fill="url(#glowA)" />
-            <rect width="900" height="560" fill="url(#glowB)" />
-            <path
-              d="M520,105 C640,65 720,70 810,110"
-              fill="#0b2430"
-              opacity=".65"
-            />
-            <path
-              d="M170,110 C260,80 330,85 410,115"
-              fill="#0b2430"
-              opacity=".65"
-            />
-            <rect
-              x="450"
-              y="120"
-              width="6"
-              height="290"
-              rx="3"
-              fill="#0f2c35"
-              opacity=".75"
-            />
-            <path
-              d="M90,420 H820"
-              stroke="#0e2a33"
-              stroke-width="3"
-              opacity=".8"
-            />
-            <circle cx="205" cy="255" r="26" fill="#091b22" opacity=".9" />
-            <rect
-              x="150"
-              y="280"
-              width="150"
-              height="26"
-              rx="6"
-              fill="#07171d"
-              opacity=".9"
-            />
-            <path
-              d="M150,306 L260,306 L305,365 L185,365 Z"
-              fill="#07171d"
-              opacity=".9"
-            />
-            <rect
-              x="265"
-              y="292"
-              width="80"
-              height="10"
-              rx="5"
-              fill="#081d23"
-              opacity=".9"
-            />
-            <path
-              d="M100,230 C260,200 410,285 620,260"
-              fill="none"
-              stroke="#e9f7fb"
-              stroke-opacity=".75"
-              stroke-width="3"
-            />
-          </svg>
+        <!-- LEFT: Skills -->
+        <div class="about-left">
+          <h2 class="skills-title top">Technical <span>Skills</span></h2>
+
+          <div class="skills-grid">
+            <section class="skill-card">
+              <h4>Programming Languages</h4>
+              <ul class="chips">
+                <li>Java</li>
+                <li>Python</li>
+                <li>Node.js</li>
+                <li>JavaScript</li>
+                <li>TypeScript</li>
+                <li>React</li>
+                <li>HTML</li>
+                <li>CSS</li>
+              </ul>
+            </section>
+
+            <section class="skill-card">
+              <h4>Tools &amp; Platforms</h4>
+              <ul class="chips">
+                <li>Jira</li>
+                <li>Trello</li>
+                <li>VS Code</li>
+                <li>PyCharm CE</li>
+                <li>Google Play Console</li>
+                <li>App Store Connect</li>
+              </ul>
+            </section>
+
+            <section class="skill-card">
+              <h4>Methodologies</h4>
+              <ul class="chips">
+                <li>Agile</li>
+                <li>Waterfall</li>
+                <li>Scrum</li>
+                <li>SDLC</li>
+              </ul>
+            </section>
+
+            <section class="skill-card">
+              <h4>Project Management</h4>
+              <ul class="chips">
+                <li>G-Suite</li>
+                <li>MS Office</li>
+                <li>ClickUp</li>
+                <li>Miro</li>
+                <li>Figma</li>
+              </ul>
+            </section>
+
+            <section class="skill-card span-2">
+              <h4>Other Skills</h4>
+              <ul class="chips">
+                <li>SaaS Product Management</li>
+                <li>Backlog Management</li>
+                <li>User Story Authoring</li>
+                <li>Cross-functional Communication</li>
+                <li>Full-Stack Development</li>
+                <li>OOP</li>
+              </ul>
+            </section>
+          </div>
         </div>
 
+        <!-- RIGHT: About copy -->
         <div class="about-copy">
           <h2 class="about-title">About <span>Me</span></h2>
           <p class="about-sub">Full-Stack Developer</p>
@@ -205,10 +199,11 @@
       </div>
     </section>
 
-    <!-- Testimonials -->
+    <!-- ================= Testimonials ================= -->
     <section id="testimonials" class="testi">
       <div class="container">
         <h2 class="testi-title">My <span>Testimonials</span></h2>
+
         <div class="t-grid">
           <article class="t-card">
             <h3 class="t-role">ChefQU</h3>
@@ -250,16 +245,17 @@
       </div>
     </section>
 
-    <!-- Portfolio -->
+    <!-- ================= Portfolio ================= -->
     <section id="portfolio" class="folio">
       <div class="container">
         <h2 class="folio-title">My <span>Portfolio</span></h2>
 
         <div class="folio-grid">
+          <!-- JOTS360 / DCP -->
           <article class="folio-card is-light" tabindex="0">
             <img
               class="folio-media"
-              src="images/dcp-innovation.jpg"
+              src="assets/DCP_Port.png"
               alt="DCP Innovation — Sign up screen"
             />
             <div class="card-overlay">
@@ -286,27 +282,14 @@
                   decision-making.
                 </p>
               </div>
-              <a
-                class="ext-btn"
-                href="https://gret.jots360dev.com/register/"
-                target="_blank"
-                rel="noopener"
-                aria-label="Open JOTS360 / DCP"
-              >
-                <svg viewBox="0 0 24 24" aria-hidden="true">
-                  <path
-                    fill="currentColor"
-                    d="M14 3h7v7h-2V7.41l-8.29 8.3-1.42-1.42 8.3-8.29H14V3ZM5 5h6v2H7v10h10v-4h2v6H5V5Z"
-                  />
-                </svg>
-              </a>
             </div>
           </article>
 
+          <!-- ONO TEAS -->
           <article class="folio-card" tabindex="0">
             <img
               class="folio-media"
-              src="images/ono-teas.jpg"
+              src="assets/Ono_Teas.png"
               alt="ONO TEAS — Blue Pea campaign artwork"
             />
             <div class="card-overlay">
@@ -324,27 +307,13 @@
                   UI/UX support across brand, social, and web touchpoints.
                 </p>
               </div>
-              <a
-                class="ext-btn"
-                href="https://www.onoteas.com/"
-                target="_blank"
-                rel="noopener"
-                aria-label="Open ONO TEAS"
-              >
-                <svg viewBox="0 0 24 24" aria-hidden="true">
-                  <path
-                    fill="currentColor"
-                    d="M14 3h7v7h-2V7.41l-8.29 8.3-1.42-1.42 8.3-8.29H14V3ZM5 5h6v2H7v10h10v-4h2v6H5V5Z"
-                  />
-                </svg>
-              </a>
             </div>
           </article>
         </div>
       </div>
     </section>
 
-    <!-- Contact (table layout) -->
+    <!-- ================= Contact (table layout) ================= -->
     <section id="contact" class="contact">
       <div class="container">
         <h2 class="contact-title">Contact <span>Me!</span></h2>
