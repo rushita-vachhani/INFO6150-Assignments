@@ -3,20 +3,20 @@ document.addEventListener('DOMContentLoaded', function() {
         console.log("@nr Add record");
         let table = document.getElementById('myTable');
         let tbody = table.querySelector('tbody');
-        // get the last Book row index
+        // get the last Student Table row index
         let lastRow = tbody.lastElementChild;
-        let bookCell = lastRow?.children[1];
-        let lastRowIndex = bookCell ? parseInt(bookCell.textContent.replace(/\D/g, '')) : 0;
+        let studentCell = lastRow?.children[1];
+        let lastRowIndex = studentCell ? parseInt(studentCell.textContent.replace(/\D/g, '')) : 0;
         // create the new row
         let newRow = document.createElement('tr');
         let newCheckboxCell = document.createElement('td');
         newCheckboxCell.innerHTML = '<input type="checkbox" onclick="onClickCheckbox(this)">';
-        let newBookCell = document.createElement('td');
-        newBookCell.textContent = `Book ${lastRowIndex + 1}`;
+        let newstudentCell = document.createElement('td');
+        newstudentCell.textContent = `Student ${lastRowIndex + 1}`;
         let newAuthorCell = document.createElement('td');
-        newAuthorCell.textContent = `Author ${lastRowIndex + 1}`;
+        newAuthorCell.textContent = `Teacher ${lastRowIndex + 1}`;
         newRow.appendChild(newCheckboxCell);
-        newRow.appendChild(newBookCell);
+        newRow.appendChild(newstudentCell);
         newRow.appendChild(newAuthorCell);
         tbody.appendChild(newRow);
     };
@@ -26,7 +26,7 @@ document.addEventListener('DOMContentLoaded', function() {
         let selectedRow = checkbox.closest('tr');
         if (checkbox.checked) {
             // highlight the row
-            selectedRow.style.backgroundColor = '#d97676ff';
+            selectedRow.style.backgroundColor = '#fff200ff';
             // create a delete button cell
             let deleteCell = document.createElement('td');
             deleteCell.innerHTML = '<button onclick="onClickDelete(this)">Delete</button>';
@@ -43,9 +43,9 @@ document.addEventListener('DOMContentLoaded', function() {
     }
     window.onClickDelete = function(deleteButton) {
         let rowToDelete = deleteButton.closest('tr');
-        let bookCell = rowToDelete.children[1];
-        let index = bookCell.textContent.split(' ')[1];
+        let studentCell = rowToDelete.children[1];
+        let index = studentCell.textContent.split(' ')[1];
         rowToDelete.remove(); // remove the row
-        alert(`Book ${index} deleted!`);
+        alert(`Student ${index} Record deleted successfully!`);
     }
 });
