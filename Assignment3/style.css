@@ -6,7 +6,7 @@ body {
 /* header / banner */
 header h1 {
   margin: 16px 0;
-  color: #ff4000;
+  color: #0a720d;
   text-align: center;
 }
 .banner {
@@ -24,7 +24,7 @@ table {
   width: 95%;
   margin: 10px auto 16px;
   border-collapse: collapse;
-  border: 2px solid #000;
+  border: 2px solid #115500;
   background: #fff;
 }
 caption {
@@ -35,12 +35,12 @@ caption {
 }
 th,
 td {
-  border: 1px solid #000;
+  border: 1px solid #115500;
   padding: 6px 8px;
   text-align: left;
 }
 thead th {
-  background: #6a1b9a;
+  background: #008f00;
   color: #fff;
   text-transform: uppercase;
   text-align: center;
@@ -88,7 +88,7 @@ button {
   cursor: pointer;
 }
 #addBtn {
-  background: orange;
+  background: rgb(181, 181, 181);
 }
 #submitBtn[disabled] {
   background: #e0e0e0;
