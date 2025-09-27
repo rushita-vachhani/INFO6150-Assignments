@@ -184,4 +184,19 @@ document.addEventListener('DOMContentLoaded', () => {
     const selected = getCheckedRows().map(r => r.querySelector('.student').textContent);
     alert(`Submitting: ${selected.join(', ')}`);
   });
+
+  const f = document.getElementById('feedbackForm');
+if (f) {
+  f.addEventListener('submit', (e) => {
+    e.preventDefault();
+    if (!f.reportValidity()) {             // ← simple: all fields must be filled
+      alert('Please fill out all required fields.');
+      return;
+    }
+    alert('Thanks! Your feedback was submitted.');
+    f.reset();
+  });
+}
+
+
 });

@@ -68,5 +68,22 @@
         </tr>
       </tfoot>
     </table>
+    
+
+    <form id="feedbackForm" style="margin:16px 0;max-width:520px" novalidate>
+  <div style="display:grid;gap:8px;">
+    <label>Name
+      <input id="fbName" name="name" required />
+    </label>
+    <label>Email
+      <input id="fbEmail" name="email" type="email" required />
+    </label>
+    <label>Feedback
+      <textarea id="fbMsg" name="message" rows="4" required></textarea>
+    </label>
+    <button type="submit">Submit</button>
+  </div>
+</form>
+
   </body>
 </html>
