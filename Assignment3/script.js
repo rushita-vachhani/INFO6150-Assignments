@@ -1,14 +1,11 @@
 document.addEventListener('DOMContentLoaded', () => {
-  // === CONFIG: replace with your details ===
-  const FULL_NAME = "Your Full Name";
-  const NUID = "001234567";
-  // If you have up/down icons, set both; otherwise we'll rotate with CSS
+  
+  
   const ICON_DOWN = "assets/down.png";
-  const ICON_UP   = "assets/down.png"; // or "assets/chevron-up.svg"
+  const ICON_UP   = "assets/up.png"; 
 
   // Banner
-  const meta = document.getElementById('studentMeta');
-  meta.textContent = `${FULL_NAME} • NUID: ${NUID}`;
+ 
 
   const table = document.getElementById('myTable');
   const tbody = table.querySelector('tbody');
@@ -67,22 +64,24 @@ document.addEventListener('DOMContentLoaded', () => {
 
   // Expand/collapse a row via the SVG button
   function toggleExpand(btn) {
-    const row = btn.closest('tr');
-    const expanded = btn.getAttribute('aria-expanded') === 'true';
-    const icon = btn.querySelector('.expand-icon');
-    const label = row.querySelector('.student')?.textContent || 'Student';
+  const row = btn.closest('tr');
+  const expanded = btn.getAttribute('aria-expanded') === 'true';
+  const icon = btn.querySelector('.expand-icon');
+  const label = row.querySelector('.student')?.textContent || 'Student';
 
-    if (expanded) {
-      const next = row.nextElementSibling;
-      if (next && next.classList.contains('details-row')) next.remove();
-      btn.setAttribute('aria-expanded', 'false');
-      if (ICON_UP !== ICON_DOWN) icon.src = ICON_DOWN;
-    } else {
-      row.after(buildDetailsRow(label));
-      btn.setAttribute('aria-expanded', 'true');
-      if (ICON_UP !== ICON_DOWN) icon.src = ICON_UP;
-    }
+  if (expanded) {
+    // collapse
+    const next = row.nextElementSibling;
+    if (next && next.classList.contains('details-row')) next.remove();
+    btn.setAttribute('aria-expanded', 'false');
+    icon.src = ICON_DOWN;               // show "closed" image
+  } else {
+    // expand
+    row.after(buildDetailsRow(label));
+    btn.setAttribute('aria-expanded', 'true');
+    icon.src = ICON_UP;                 // show "open" image
   }
+}
 
   // Add a new record: based on the last existing row (no reindexing of others)
   function addRecord() {

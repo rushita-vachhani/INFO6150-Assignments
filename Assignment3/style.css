@@ -1,6 +1,6 @@
 /* base */
 body {
-  font-family: system-ui, Arial, sans-serif;
+  font-family: sans-serif;
 }
 
 /* header / banner */
@@ -69,11 +69,6 @@ thead th {
 .expand-icon {
   width: 18px;
   height: 18px;
-  transition: transform 0.2s;
-  transform-origin: 50% 55%;
-}
-.expand-btn[aria-expanded="true"] .expand-icon {
-  transform: rotate(180deg);
 }
 
 /* row interactions */
