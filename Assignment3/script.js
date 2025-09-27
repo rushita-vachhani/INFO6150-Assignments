@@ -85,6 +85,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
   // Add a new record: based on the last existing row (no reindexing of others)
   function addRecord() {
+    try {
     const { studentIndex, teacherIndex, budget } = getLastRowInfo();
     const nextStudent = (studentIndex || 0) + 1;
     const nextTeacher = (teacherIndex || 0) + 1;
@@ -112,6 +113,8 @@ document.addEventListener('DOMContentLoaded', () => {
     tbody.appendChild(tr);
 
     alert(`Student ${nextStudent} Record added successfully`);
+    } catch (err) {
+      alert(`Error: Could not add Student ${nextStudent}.`); }
     updateSubmitState();
   }
 
