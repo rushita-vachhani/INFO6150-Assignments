@@ -10,25 +10,60 @@
   <body>
     <header>
       <h1>Data Management Application</h1>
+      <div id="studentMeta" class="banner"></div>
     </header>
-    <table id="myTable">
+
+    <table id="myTable" aria-label="Student Awards Table">
+      <caption>
+        Student Awards
+      </caption>
       <thead>
         <tr>
-          <th>checkboxs</th>
-          <th>Student</th>
-          <th>Advisor</th>
-          <th>Actions</th>
+          <th>Controls</th>
+          <th>STUDENT</th>
+          <th>ADVISOR</th>
+          <th>AWARD STATUS</th>
+          <th>SEMESTER</th>
+          <th>TYPE</th>
+          <th>BUDGET #</th>
+          <th>PERCENTAGE</th>
+          <th>DELETE</th>
+          <th>EDIT</th>
         </tr>
       </thead>
       <tbody>
-        <tr>
-          <td><input type="checkbox" onclick="onClickCheckbox(this)" /></td>
-          <td>Student 1</td>
-          <td>Teacher 1</td>
+        <!-- Seed row -->
+        <tr class="data-row">
+          <td class="ctrl-cell">
+            <button
+              class="expand-btn"
+              title="Expand row"
+              aria-label="Expand row"
+              aria-expanded="false"
+            >
+              <img src="assets/down.png" alt="" class="expand-icon" />
+            </button>
+            <input type="checkbox" class="row-check" aria-label="Select row" />
+          </td>
+          <td class="student">Student 1</td>
+          <td class="advisor">Teacher 1</td>
+          <td>Approved</td>
+          <td>Fall</td>
+          <td>TA</td>
+          <td class="budget">12345</td>
+          <td>100%</td>
+          <td class="delete-cell"></td>
+          <td class="edit-cell"></td>
         </tr>
       </tbody>
+      <tfoot>
+        <tr>
+          <td colspan="10" class="table-actions">
+            <button id="submitBtn" disabled>SUBMIT SELECTED AWARDS</button>
+            <button id="addBtn" type="button">Add New Student</button>
+          </td>
+        </tr>
+      </tfoot>
     </table>
-    <br /><br />
-    <button type="button" onclick="addRecord()">Add New Student</button>
   </body>
 </html>

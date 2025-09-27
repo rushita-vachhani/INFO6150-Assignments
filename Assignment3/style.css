@@ -1,41 +1,112 @@
-* {
-  margin: 0;
-  padding: 0;
+/* base */
+body {
+  font-family: system-ui, Arial, sans-serif;
+}
+
+/* header / banner */
+header h1 {
+  margin: 16px 0;
+  color: #ff4000;
+  text-align: center;
+}
+.banner {
+  margin: 8px auto 16px;
+  padding: 8px 12px;
+  border: 1px solid #d6e2ff;
+  border-radius: 6px;
+  background: #f6f9ff;
+  width: fit-content;
   text-align: center;
 }
 
-header h1 {
-  margin: 15px;
-  padding: 15px;
-  color: rgb(255, 64, 0);
-}
-
+/* table */
 table {
-  border: 2px solid black;
+  width: 95%;
+  margin: 10px auto 16px;
   border-collapse: collapse;
-  margin: 10px auto;
-  width: 80%;
+  border: 2px solid #000;
+  background: #fff;
 }
-
-table th,
+caption {
+  caption-side: top;
+  padding: 6px;
+  font-weight: 600;
+  text-align: left;
+}
+th,
 td {
-  border: 1px solid black;
-  padding: 5px;
+  border: 1px solid #000;
+  padding: 6px 8px;
+  text-align: left;
+}
+thead th {
+  background: #6a1b9a;
+  color: #fff;
+  text-transform: uppercase;
+  text-align: center;
+}
+.table-actions {
+  text-align: center;
 }
 
-table th {
-  color: white;
-  background-color: purple;
+/* controls column (expand SVG + select checkbox) */
+.ctrl-cell {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+}
+.expand-btn {
+  padding: 4px 6px;
+  border: 1px solid #7ed957;
+  border-radius: 6px;
+  background: #eaffea;
+  line-height: 0;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+}
+.expand-icon {
+  width: 18px;
+  height: 18px;
+  transition: transform 0.2s;
+  transform-origin: 50% 55%;
+}
+.expand-btn[aria-expanded="true"] .expand-icon {
+  transform: rotate(180deg);
 }
 
-table input {
-  margin: 5px;
+/* row interactions */
+.row-checked {
+  background: #fff200 !important;
+}
+.details-row td {
+  background: #fafafa;
+  padding: 10px 12px;
 }
 
+/* buttons */
 button {
-  border-radius: 3px;
-  padding: 5px;
-  margin: 0 auto;
-  background-color: orange;
+  padding: 6px 10px;
+  border: 1px solid #999;
+  border-radius: 4px;
   cursor: pointer;
+}
+#addBtn {
+  background: orange;
+}
+#submitBtn[disabled] {
+  background: #e0e0e0;
+  color: #777;
+  cursor: not-allowed;
+}
+#submitBtn.enabled {
+  background: orange;
+  color: #111;
+}
+.delete-btn {
+  background: #ffd4d4;
+}
+.edit-btn {
+  background: #fff4b2;
 }
