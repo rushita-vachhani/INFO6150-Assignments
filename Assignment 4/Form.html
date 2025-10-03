@@ -3,7 +3,6 @@
   <head>
     <title>Feedback</title>
     <link rel="stylesheet" href="styles.css" />
-    <script href="script.js"></script>
     <style>
       label {
         float: left;
@@ -22,11 +21,17 @@
   <body>
     <div id="container">
       <main>
+        <!-- AI Assistant Button -->
+        <button type="button" id="aiBtn" class="ai-launch">
+          🧠 AI Assistant
+        </button>
         <h2>Feeback</h2>
         <h3>Love something? Hate something? Let us know!</h3>
         Note : Fields marked with an asterisk(*) are mandatory
         <br /><br />
-        <form method="post" id="feedbackForm" novalidate>
+
+        <!-- ====== FORM ====== -->
+        <form id="feedbackForm" method="post" novalidate>
           <label>Title*:</label>
           <input
             type="radio"
@@ -112,4 +117,5 @@
 
     <script></script>
   </body>
+  <script src="script.js"></script>
 </html>
