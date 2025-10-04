@@ -16,6 +16,14 @@
       main {
         padding: 50px;
       }
+      .form-group,
+      .form-group-inline {
+        margin-bottom: 20px;
+        overflow: auto;
+      }
+      .js-error {
+        clear: both;
+      }
     </style>
   </head>
   <body>
@@ -32,82 +40,86 @@
 
         <!-- ====== FORM ====== -->
         <form id="feedbackForm" method="post" novalidate>
-          <label>Title*:</label>
-          <input
-            type="radio"
-            name="title"
-            id="miss"
-            value="miss"
-            required="required"
-          />Miss
-          <input
-            type="radio"
-            name="title"
-            id="mr"
-            value="mr"
-            required="required"
-          />Mr.
-          <input
-            type="radio"
-            name="title"
-            id="mrs"
-            value="mrs"
-            required="required"
-          />Mrs. <br /><br />
-          <label for="firstName">First Name*:</label>
-          <input
-            type="text"
-            name="firstName"
-            id="firstName"
-            placeholder="First Name"
-          />
-          <br /><br />
+          <div class="form-group-inline">
+            <label>Title*:</label>
+            <input
+              type="radio"
+              name="title"
+              id="miss"
+              value="miss"
+              required="required"
+            />Miss
+            <input
+              type="radio"
+              name="title"
+              id="mr"
+              value="mr"
+              required="required"
+            />Mr.
+            <input
+              type="radio"
+              name="title"
+              id="mrs"
+              value="mrs"
+              required="required"
+            />Mrs. <br /><br />
+            <label for="firstName">First Name*:</label>
+            <input
+              type="text"
+              name="firstName"
+              id="firstName"
+              placeholder="First Name"
+            />
+          </div>
 
-          <label for="lastName">Last Name*:</label>
-          <input
-            type="text"
-            name="lastName"
-            id="lastName"
-            placeholder="Last Name"
-          />
-          <br /><br />
+          <div class="form-group-inline"></div>
+            <label for="lastName">Last Name*:</label>
+            <input
+              type="text"
+              name="lastName"
+              id="lastName"
+              placeholder="Last Name"
+            />
+          </div>
+          <div class="form-group-inline">
+            <label for="emailId">Email Id*:</label>
+            <input
+              type="text"
+              name="emailId"
+              id="emailId"
+              placeholder="yourname@domain.com"
+            />
+          </div>
+          <div class="form-group-inline"></div>
+            <label for="phoneNumber">Phone Number*:</label>
+            <input
+              type="text"
+              name="phoneNumber"
+              id="phoneNumber"
+              placeholder="xxx-xxx-xxxx"
+            />
+          </div>
+          <div class="form-group-inline"></div>
+            <label for="zipcode">ZipCode*:</label>
+            <input type="text" name="zipcode" id="zipcode" placeholder="xxxxxx" />
+          </div>
+          <div class="form-group-inline">
+            <label for="zipcode">How did you hear*:</label>
+            <input type="checkbox" name="source" value="facebook" /> Facebook
+            <input type="checkbox" name="source" value="google" /> Google
+            <input type="checkbox" name="source" value="yelp" /> Yelp 
+          </div>
 
-          <label for="emailId">Email Id*:</label>
-          <input
-            type="text"
-            name="emailId"
-            id="emailId"
-            placeholder="yourname@domain.com"
-          />
-          <br /><br />
-
-          <label for="phoneNumber">Phone Number*:</label>
-          <input
-            type="text"
-            name="phoneNumber"
-            id="phoneNumber"
-            placeholder="xxx-xxx-xxxx"
-          />
-          <br /><br />
-
-          <label for="zipcode">ZipCode*:</label>
-          <input type="text" name="zipcode" id="zipcode" placeholder="xxxxxx" />
-          <br /><br />
-
-          <label for="zipcode">How did you hear*:</label>
-          <input type="checkbox" name="source" value="facebook" /> Facebook
-          <input type="checkbox" name="source" value="google" /> Google
-          <input type="checkbox" name="source" value="yelp" /> Yelp <br /><br />
-
-          <label for="comments">Comments*:</label>
-          <textarea
-            name="text"
-            id="comments"
-            placeholder="Your comments"
-            rows="5"
-            cols="25"
-          ></textarea>
-          <br /><br />
+          <div class="form-group-inline"></div>
+            <label for="comments">Comments*:</label>
+            <textarea
+              name="text"
+              id="comments"
+              placeholder="Your comments"
+              rows="5"
+              cols="25"
+            ></textarea>
+        </div>
           <input type="Submit" />
           <input type="Reset" />
           <br /><br />
