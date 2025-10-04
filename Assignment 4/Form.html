@@ -1,13 +1,15 @@
 <!DOCTYPE html>
 <html lang="en">
   <head>
+    <meta charset="UTF-8" />
     <title>Feedback</title>
+    <link rel="icon" href="assets/favicon.png" type="image/x-icon" />
     <link rel="stylesheet" href="styles.css" />
     <style>
       label {
         float: left;
         width: 150px;
-        line-height: 25px; /* Ensures vertical alignment with input field */
+        line-height: 25px;
       }
       #container {
         width: 700px;
@@ -94,7 +96,14 @@
         border: 0;
         color: #fff;
         font-size: 18px;
-        cursor: pointer;
+        font-weight: 700;
+        line-height: 1;
+        padding: 0 5px;
+        opacity: 0.9;
+      }
+
+      .ai-close:hover {
+        opacity: 0.7;
       }
       .ai-body {
         padding: 12px;
@@ -146,10 +155,7 @@
         color: #fff;
         cursor: pointer;
       }
-      .muted {
-        color: #666;
-        font-size: 0.9em;
-      }
+
       .select-upgrade-group {
         display: flex;
         align-items: center;
@@ -162,7 +168,7 @@
     </style>
   </head>
   <body>
-    <button type="button" id="aiBtn" class="ai-launch">🧠 AI Assistant</button>
+    <button type="button" id="aiBtn" class="ai-launch">AI Assistant</button>
 
     <div id="aiPanel" class="ai-panel"></div>
 

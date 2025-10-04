@@ -295,7 +295,7 @@ document.addEventListener('DOMContentLoaded', function () {
     const tbody = '<tbody>' + rows.map(r => (
       '<tr>' + headers.map(h => `<td>${(r[h] ?? '').replace(/</g, '&lt;')}</td>`).join('') + '</tr>'
     )).join('') + '</tbody>';
-    resultsHost.innerHTML = `<h3>Submitted Entries</h3><div class="muted">Previous rows are kept.</div><table>${thead}${tbody}</table>`;
+    resultsHost.innerHTML = `<h3>Submitted Entries</h3><table>${thead}${tbody}</table>`;
   }
 
   function hardResetForm() { // Requirement 20
@@ -435,13 +435,13 @@ document.addEventListener('DOMContentLoaded', function () {
       </div>
       <div class="ai-body"></div>
       <div class="ai-footer">
-        <input type="text" class="ai-input" placeholder="Ask about the form…" />
+        <input type="text" class="ai-input" placeholder="Ask about the format" />
         <button type="button" class="ai-send">Send</button>
       </div>
     `;
 
     // Initial greeting
-    addMsg('bot', "Hi! I can help with the form’s rules. Try asking about email requirements, phone format, or any other form-related questions!");
+    addMsg('bot', "Hi! I can help with the form's rules. Try asking about email requirements, phone format, or any other form-related questions!");
 
     // Wire events (Requirement 47, 49)
     panel.querySelector('.ai-send').addEventListener('click', ()=> send());
