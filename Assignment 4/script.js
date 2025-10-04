@@ -227,7 +227,7 @@ document.addEventListener('DOMContentLoaded', function () {
             upgradeTextHost.innerHTML = ''; 
             if (upgradeCheck.checked) {
                 upgradeTextHost.innerHTML = `
-                    <label for="upgradeDetails" style="width: auto; margin-top: 10px;">Special Request*:</label>
+                    <label for="upgradeDetails">Special Request*:</label>
                     <input type="text" id="upgradeDetails" required placeholder="e.g., Extra sugar" />
                 `;
                 
