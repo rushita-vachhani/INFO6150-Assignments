@@ -7,6 +7,7 @@
       label {
         float: left;
         width: 150px;
+        line-height: 25px; /* Ensures vertical alignment with input field */
       }
       #container {
         width: 700px;
@@ -16,53 +17,174 @@
       main {
         padding: 50px;
       }
-      .form-group,
+
+      /* === LAYOUT FIX CSS === */
       .form-group-inline {
+        /* Fixes the layout jump by ensuring consistent vertical space */
         margin-bottom: 20px;
+        /* Contains the floated label and any injected error message */
         overflow: auto;
       }
+      /* Inline validation UI */
       .js-error {
         clear: both;
+        color: #b00020;
+        font-size: 0.9em;
+        margin-top: 4px;
+        line-height: 1; /* Helps stabilize height */
+      }
+      .invalid {
+        outline: 2px solid #b00020;
+        outline-offset: 1px;
+      }
+
+      /* === RESULTS TABLE STYLES === */
+      #results table {
+        border-collapse: collapse;
+        width: 100%;
+        margin-top: 18px;
+        background: #fff;
+      }
+      #results th,
+      #results td {
+        border: 1px solid #ddd;
+        padding: 8px;
+        text-align: left;
+      }
+      #results th {
+        background: #f7f7f7;
+      }
+      #results .muted {
+        color: #666;
+        font-size: 0.9em;
+      }
+
+      /* === AI CHAT PANEL STYLES === */
+      .ai-launch {
+        position: fixed; /* Fixed position */
+        top: 20px;
+        right: 20px;
+        z-index: 999;
+      }
+      .ai-panel {
+        position: fixed;
+        right: 20px;
+        top: 60px; /* Positioned below the button */
+        width: 320px;
+        max-height: 60vh;
+        background: #fff;
+        border: 1px solid #ddd;
+        border-radius: 10px;
+        box-shadow: 0 12px 24px rgba(0, 0, 0, 0.12);
+        display: none; /* Initially hidden */
+        overflow: hidden;
+        z-index: 9999;
+      }
+      .ai-header {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        padding: 10px 12px;
+        background: #0b57d0; /* Blue header */
+        color: #fff;
+        font-weight: 600;
+      }
+      .ai-close {
+        background: none;
+        border: 0;
+        color: #fff;
+        font-size: 18px;
+        cursor: pointer;
+      }
+      .ai-body {
+        padding: 12px;
+        overflow-y: auto;
+        max-height: 250px; /* Max height for message area */
+        background: #f7f7f7;
+      }
+      .ai-msg {
+        margin: 8px 0;
+        line-height: 1.3;
+      }
+      .ai-msg.user {
+        text-align: right;
+      }
+      .ai-msg.user .bubble {
+        display: inline-block;
+        background: #d9e5f7;
+        color: #0b57d0;
+        padding: 8px 10px;
+        border-radius: 12px 12px 2px 12px;
+        max-width: 85%;
+      }
+      .ai-msg.bot .bubble {
+        display: inline-block;
+        background: #e9e9eb;
+        color: #202124;
+        padding: 8px 10px;
+        border-radius: 12px 12px 12px 2px;
+        max-width: 85%;
+      }
+      .ai-footer {
+        display: flex;
+        gap: 8px;
+        padding: 10px 12px;
+        border-top: 1px solid #eee;
+        background: #fff;
+      }
+      .ai-input {
+        flex: 1;
+        padding: 8px;
+        border: 1px solid #ccc;
+        border-radius: 8px;
+      }
+      .ai-send {
+        padding: 8px 12px;
+        border: 0;
+        border-radius: 8px;
+        background: #0b57d0;
+        color: #fff;
+        cursor: pointer;
+      }
+      .muted {
+        color: #666;
+        font-size: 0.9em;
+      }
+      .select-upgrade-group {
+        display: flex;
+        align-items: center;
+        gap: 5px;
+      }
+      .select-upgrade-group label {
+        width: auto; /* Override default label width for dynamic element */
+        float: none;
       }
     </style>
   </head>
   <body>
+    <button type="button" id="aiBtn" class="ai-launch">🧠 AI Assistant</button>
+
+    <div id="aiPanel" class="ai-panel"></div>
+
     <div id="container">
       <main>
-        <!-- AI Assistant Button -->
-        <button type="button" id="aiBtn" class="ai-launch">
-          🧠 AI Assistant
-        </button>
         <h2>Feeback</h2>
         <h3>Love something? Hate something? Let us know!</h3>
         Note : Fields marked with an asterisk(*) are mandatory
         <br /><br />
 
-        <!-- ====== FORM ====== -->
         <form id="feedbackForm" method="post" novalidate>
           <div class="form-group-inline">
             <label>Title*:</label>
-            <input
-              type="radio"
-              name="title"
-              id="miss"
-              value="miss"
-              required="required"
-            />Miss
-            <input
-              type="radio"
-              name="title"
-              id="mr"
-              value="mr"
-              required="required"
-            />Mr.
-            <input
-              type="radio"
-              name="title"
-              id="mrs"
-              value="mrs"
-              required="required"
-            />Mrs. <br /><br />
+            <input type="radio" name="title" id="miss" value="Miss" required />
+            Miss
+            <input type="radio" name="title" id="mr" value="Mr" required /> Mr.
+            <input type="radio" name="title" id="mrs" value="Mrs" required />
+            Mrs.
+            <div class="js-error" id="err-title">&nbsp;</div>
+          </div>
+
+          <div class="form-group-inline">
             <label for="firstName">First Name*:</label>
             <input
               type="text"
@@ -70,9 +192,10 @@
               id="firstName"
               placeholder="First Name"
             />
+            <div class="js-error" id="err-firstName">&nbsp;</div>
           </div>
 
-          <div class="form-group-inline"></div>
+          <div class="form-group-inline">
             <label for="lastName">Last Name*:</label>
             <input
               type="text"
@@ -80,37 +203,82 @@
               id="lastName"
               placeholder="Last Name"
             />
+            <div class="js-error" id="err-lastName">&nbsp;</div>
           </div>
+
           <div class="form-group-inline">
             <label for="emailId">Email Id*:</label>
             <input
               type="text"
               name="emailId"
               id="emailId"
-              placeholder="yourname@domain.com"
+              placeholder="yourname@northeastern.edu"
             />
+            <div class="js-error" id="err-emailId">&nbsp;</div>
           </div>
-          <div class="form-group-inline"></div>
+
+          <div class="form-group-inline">
             <label for="phoneNumber">Phone Number*:</label>
             <input
               type="text"
               name="phoneNumber"
               id="phoneNumber"
-              placeholder="xxx-xxx-xxxx"
+              placeholder="(xxx) xxx-xxxx"
             />
-          </div>
-          <div class="form-group-inline"></div>
-            <label for="zipcode">ZipCode*:</label>
-            <input type="text" name="zipcode" id="zipcode" placeholder="xxxxxx" />
-          </div>
-          <div class="form-group-inline">
-            <label for="zipcode">How did you hear*:</label>
-            <input type="checkbox" name="source" value="facebook" /> Facebook
-            <input type="checkbox" name="source" value="google" /> Google
-            <input type="checkbox" name="source" value="yelp" /> Yelp 
+            <div class="js-error" id="err-phoneNumber">&nbsp;</div>
           </div>
 
-          <div class="form-group-inline"></div>
+          <div class="form-group-inline">
+            <label for="zipcode">ZipCode*:</label>
+            <input
+              type="text"
+              name="zipcode"
+              id="zipcode"
+              placeholder="xxxxxx"
+              maxlength="6"
+            />
+            <div class="js-error" id="err-zipcode">&nbsp;</div>
+          </div>
+
+          <div class="form-group-inline">
+            <label for="address2">Street address 2:</label>
+            <input
+              type="text"
+              name="address2"
+              id="address2"
+              placeholder="Apt, Suite, etc."
+              maxlength="20"
+            />
+            <div id="address2Counter" class="muted" style="float: right">
+              0/20 characters used
+            </div>
+            <div class="js-error" id="err-address2">&nbsp;</div>
+          </div>
+
+          <div class="form-group-inline">
+            <label for="drinks">Drinks*:</label>
+            <select name="drinks" id="drinks" required>
+              <option value="">-- Select a drink --</option>
+              <option value="Hot Black Tea">Hot Black Tea - Keemun</option>
+              <option value="Iced Coffee">Iced Coffee - Brazil</option>
+              <option value="Green Tea">Green Tea - Matcha</option>
+              <option value="Espresso">Espresso - Italian</option>
+              <option value="Decaf">Decaf - Columbian</option>
+            </select>
+            <div class="js-error" id="err-drinks">&nbsp;</div>
+          </div>
+
+          <div class="form-group-inline" id="dynamicContentContainer"></div>
+
+          <div class="form-group-inline">
+            <label for="source">How did you hear*:</label>
+            <input type="checkbox" name="source" value="Facebook" /> Facebook
+            <input type="checkbox" name="source" value="Google" /> Google
+            <input type="checkbox" name="source" value="Yelp" /> Yelp
+            <div class="js-error" id="err-sources">&nbsp;</div>
+          </div>
+
+          <div class="form-group-inline">
             <label for="comments">Comments*:</label>
             <textarea
               name="text"
@@ -119,15 +287,16 @@
               rows="5"
               cols="25"
             ></textarea>
-        </div>
-          <input type="Submit" />
-          <input type="Reset" />
-          <br /><br />
+            <div class="js-error" id="err-comments">&nbsp;</div>
+          </div>
+
+          <input type="submit" />
+          <input type="reset" />
         </form>
+
+        <div id="results"></div>
       </main>
     </div>
-
-    <script></script>
   </body>
   <script src="script.js"></script>
 </html>
