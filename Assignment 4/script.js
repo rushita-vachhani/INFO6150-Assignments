@@ -22,8 +22,8 @@ document.addEventListener('DOMContentLoaded', function () {
   const dynamicContentContainer = document.getElementById('dynamicContentContainer');
 
   
-  const NAME_MIN = 2, NAME_MAX = 30;
-  const CMNT_MIN = 10, CMNT_MAX = 500;
+  const NAME_MIN = 1, NAME_MAX = 30;
+  const CMNT_MIN = 4, CMNT_MAX = 50;
   const EMAIL_NEU = /^[a-z0-9._%+-]+@northeastern\.edu$/i; 
   const PHONE_FMT = /^\(\d{3}\)\s\d{3}-\d{4}$/;
   const ZIP_6 = /^\d{6}$/; 
