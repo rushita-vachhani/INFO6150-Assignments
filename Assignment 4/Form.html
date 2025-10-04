@@ -12,35 +12,30 @@
         line-height: 25px;
       }
       #container {
-        width: 700px;
+        width: 100%;
         margin: auto;
         background-color: beige;
       }
       main {
-        padding: 50px;
+        padding: 150px;
       }
 
-      /* === LAYOUT FIX CSS === */
       .form-group-inline {
-        /* Fixes the layout jump by ensuring consistent vertical space */
         margin-bottom: 20px;
-        /* Contains the floated label and any injected error message */
-        overflow: auto;
+        overflow: hidden;
       }
-      /* Inline validation UI */
       .js-error {
         clear: both;
         color: #b00020;
         font-size: 0.9em;
         margin-top: 4px;
-        line-height: 1; /* Helps stabilize height */
+        line-height: 1;
       }
       .invalid {
         outline: 2px solid #b00020;
         outline-offset: 1px;
       }
 
-      /* === RESULTS TABLE STYLES === */
       #results table {
         border-collapse: collapse;
         width: 100%;
@@ -56,14 +51,13 @@
       #results th {
         background: #f7f7f7;
       }
-      #results .muted {
+      .muted {
         color: #666;
         font-size: 0.9em;
       }
 
-      /* === AI CHAT PANEL STYLES === */
       .ai-launch {
-        position: fixed; /* Fixed position */
+        position: fixed;
         top: 20px;
         right: 20px;
         z-index: 999;
@@ -71,14 +65,14 @@
       .ai-panel {
         position: fixed;
         right: 20px;
-        top: 60px; /* Positioned below the button */
+        top: 60px;
         width: 320px;
         max-height: 60vh;
         background: #fff;
         border: 1px solid #ddd;
         border-radius: 10px;
         box-shadow: 0 12px 24px rgba(0, 0, 0, 0.12);
-        display: none; /* Initially hidden */
+        display: none;
         overflow: hidden;
         z-index: 9999;
       }
@@ -87,7 +81,7 @@
         align-items: center;
         justify-content: space-between;
         padding: 10px 12px;
-        background: #0b57d0; /* Blue header */
+        background: #0b57d0;
         color: #fff;
         font-weight: 600;
       }
@@ -108,7 +102,7 @@
       .ai-body {
         padding: 12px;
         overflow-y: auto;
-        max-height: 250px; /* Max height for message area */
+        max-height: 250px;
         background: #f7f7f7;
       }
       .ai-msg {
@@ -162,7 +156,7 @@
         gap: 5px;
       }
       .select-upgrade-group label {
-        width: auto; /* Override default label width for dynamic element */
+        width: auto;
         float: none;
       }
     </style>

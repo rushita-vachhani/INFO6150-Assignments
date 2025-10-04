@@ -1,5 +1,5 @@
 document.addEventListener('DOMContentLoaded', function () {
-  // --- Form + Fields ---
+  
   const form = document.querySelector('form');
   if (!form) return;
 
@@ -15,20 +15,20 @@ document.addEventListener('DOMContentLoaded', function () {
   const comments = document.getElementById('comments');
   const sources = Array.from(form.querySelectorAll('input[name="source"]'));
 
-  // NEW FIELDS
+  
   const address2 = document.getElementById('address2');
   const address2Counter = document.getElementById('address2Counter');
   const drinksSelect = document.getElementById('drinks');
   const dynamicContentContainer = document.getElementById('dynamicContentContainer');
 
-  // --- Rules ---
+  
   const NAME_MIN = 2, NAME_MAX = 30;
   const CMNT_MIN = 10, CMNT_MAX = 500;
-  const EMAIL_NEU = /^[a-z0-9._%+-]+@northeastern\.edu$/i; // Requirement 21
-  const PHONE_FMT = /^\(\d{3}\)\s\d{3}-\d{4}$/; // Requirement 9, 26
-  const ZIP_6 = /^\d{6}$/; // Based on your placeholder
+  const EMAIL_NEU = /^[a-z0-9._%+-]+@northeastern\.edu$/i; 
+  const PHONE_FMT = /^\(\d{3}\)\s\d{3}-\d{4}$/;
+  const ZIP_6 = /^\d{6}$/; 
 
-  // --- First-blur Gating ---
+  
   const touched = new Set();
   let showAllErrors = false;
   const KEYS = {
@@ -47,15 +47,15 @@ document.addEventListener('DOMContentLoaded', function () {
   const markTouched = k => touched.add(k);
   const shouldShow = k => showAllErrors || touched.has(k);
 
-  // --- Inline Error Helpers ---
+  
   function ensureErrorAfter(target) {
     if (!target) return null;
     let next = target.nextElementSibling;
-    // Find the pre-created error holder or insert one if missing (layout stabilization)
+    
     if (next && next.classList?.contains('js-error')) {
       return next;
     }
-    // Fallback if structure is wrong
+    
     let holder = document.createElement('div');
     holder.className = 'js-error';
     target.after(holder);
@@ -76,13 +76,13 @@ document.addEventListener('DOMContentLoaded', function () {
     const target = holderTarget || el;
     const holder = target.nextElementSibling;
     if (holder && holder.classList?.contains('js-error')) {
-      holder.textContent = '\u00A0'; // Keep height, prevent layout jump
+      holder.textContent = '\u00A0'; 
     }
     el?.classList?.remove('invalid');
     el?.removeAttribute?.('aria-invalid');
   }
 
-  // --- Validators ---
+
   function requireRadioGroup(radios, msg) {
     const ok = radios.some(r => r.checked);
     const holderTarget = radios[radios.length - 1];
@@ -99,7 +99,7 @@ document.addEventListener('DOMContentLoaded', function () {
     checkboxes[0]?.setCustomValidity(ok ? '' : msg);
     return ok;
   }
-  function sanitizeAlnum(el) { if (el) el.value = el.value.replace(/[^a-z0-9 ]/gi, ''); } // Requirement 7
+  function sanitizeAlnum(el) { if (el) el.value = el.value.replace(/[^a-z0-9 ]/gi, ''); } 
   function validateName(el, label, key) {
     if (!el) return true;
     sanitizeAlnum(el);
@@ -159,7 +159,7 @@ document.addEventListener('DOMContentLoaded', function () {
     clearError(zipcode, zipcode); zipcode.setCustomValidity(''); return true;
   }
 
-  // --- NEW FIELD VALIDATORS ---
+  
   function validateDrinksSelect() {
     if (!drinksSelect) return true;
     const ok = !!drinksSelect.value;
@@ -170,10 +170,10 @@ document.addEventListener('DOMContentLoaded', function () {
     return ok;
   }
 
-  function validateDynamicTextField() { // Requirement 17
+  function validateDynamicTextField() { 
     const textField = document.getElementById('upgradeDetails');
     const upgradeCheck = document.getElementById('drinkUpgradeCheck');
-    if (!textField || !upgradeCheck?.checked) return true; // Only validate if checkbox is checked
+    if (!textField || !upgradeCheck?.checked) return true; 
 
     const msg = 'Special Request is required when Large drink is selected.';
     const ok = !!textField.value.trim();
@@ -183,7 +183,7 @@ document.addEventListener('DOMContentLoaded', function () {
   }
 
   function validateAll() {
-    // Note: address2 is omitted from validation as it is not mandatory (Requirement 22)
+    
     const ok =
       requireRadioGroup(titleRadios, 'Please select a title.') &
       validateName(firstName, 'First Name', KEYS.firstName) &
@@ -197,19 +197,19 @@ document.addEventListener('DOMContentLoaded', function () {
       validateComments();
 
     const allValid = !!ok && form.checkValidity();
-    if (submitBtn) submitBtn.disabled = !allValid; // Requirement 3, 8
+    if (submitBtn) submitBtn.disabled = !allValid; 
     return allValid;
   }
 
-  // --- Dynamic Content Handlers ---
-  function handleDrinkSelection() { // Requirement 12, 13
-    dynamicContentContainer.innerHTML = ''; // Clear previous
+  
+  function handleDrinkSelection() { 
+    dynamicContentContainer.innerHTML = ''; 
     const selectedDrink = drinksSelect.value;
     const selectedOption = drinksSelect.options[drinksSelect.selectedIndex];
     const selectedDrinkName = selectedOption ? selectedOption.textContent : '';
 
     if (selectedDrink) {
-        // Create Checkbox (Example Requirement 16)
+        
         dynamicContentContainer.innerHTML = `
             <div class="select-upgrade-group">
                 <input type="checkbox" id="drinkUpgradeCheck" name="drinkUpgradeCheck" value="large" />
@@ -224,48 +224,44 @@ document.addEventListener('DOMContentLoaded', function () {
         const upgradeErrorHost = document.getElementById('err-upgradeDetails-host');
 
         upgradeCheck.addEventListener('change', () => {
-            upgradeTextHost.innerHTML = ''; // Clear previous content
+            upgradeTextHost.innerHTML = ''; 
             if (upgradeCheck.checked) {
-                // Create mandatory text field (Requirement 17)
                 upgradeTextHost.innerHTML = `
                     <label for="upgradeDetails" style="width: auto; margin-top: 10px;">Special Request*:</label>
                     <input type="text" id="upgradeDetails" required placeholder="e.g., Extra sugar" />
                 `;
-                // Wire validation event
+                
                 const textField = document.getElementById('upgradeDetails');
                 textField.addEventListener('input', validateAll);
                 textField.addEventListener('blur', () => { markTouched(KEYS.upgradeDetails); validateAll(); });
             }
-            validateAll(); // Re-validate the entire form
+            validateAll(); 
         });
         
-        // Ensure error holder for checkbox group is initialized
         upgradeCheck.dataset.errId = upgradeErrorHost.id;
     }
     validateAll(); 
   }
   if (drinksSelect) drinksSelect.addEventListener('change', handleDrinkSelection);
 
-  // Live Character Counter (Requirement 31, 32)
   if (address2) {
     const MAX_CHARS = address2.maxLength || 20;
     address2.addEventListener('input', () => {
       address2Counter.textContent = `${address2.value.length}/${MAX_CHARS} characters used`;
       validateAll();
     });
-    // Initial call
+    
     address2Counter.textContent = `${address2.value.length}/${MAX_CHARS} characters used`;
   }
 
-  // --- Results Table Logic (Requirement 18, 19) ---
   const resultsHost = document.getElementById('results');
-  const rows = []; // Stores previous data
+  const rows = []; 
 
   function collectFormData() {
     const title = (titleRadios.find(r => r.checked) || {}).value || '';
     const srcs = sources.filter(c => c.checked).map(c => c.value).join(', ');
     
-    // Collect dynamic field data
+    
     const drinkUpgradeCheck = document.getElementById('drinkUpgradeCheck');
     const upgradeDetails = document.getElementById('upgradeDetails');
     let upgrade = 'No';
@@ -280,7 +276,7 @@ document.addEventListener('DOMContentLoaded', function () {
       'Email': (emailId?.value || '').trim(),
       'Phone': (phone?.value || '').trim(),
       'Zip': (zipcode?.value || '').trim(),
-      'Address 2': (address2?.value || '').trim(), // Requirement 22, 23
+      'Address 2': (address2?.value || '').trim(), 
       'Drink': drinksSelect?.value || '',
       'Drink Upgrade': upgrade,
       'Sources': srcs,
@@ -298,34 +294,29 @@ document.addEventListener('DOMContentLoaded', function () {
     resultsHost.innerHTML = `<h3>Submitted Entries</h3><table>${thead}${tbody}</table>`;
   }
 
-  function hardResetForm() { // Requirement 20
+  function hardResetForm() {
     form.reset();
     touched.clear();
     showAllErrors = false;
 
-    // Reset fields and clear custom validity
     [firstName, lastName, emailId, phone, zipcode, comments, address2, drinksSelect].forEach(el => {
       if (!el) return;
       el.setCustomValidity('');
       clearError(el, el);
     });
 
-    // Clear radio/checkbox errors
     const holderTargetRadios = titleRadios[titleRadios.length - 1];
     const holderTargetSources = sources[sources.length - 1];
     if (titleRadios[0]) clearError(titleRadios[0], holderTargetRadios);
     if (sources[0]) clearError(sources[0], holderTargetSources);
     
-    // Clear dynamic content
     if (dynamicContentContainer) dynamicContentContainer.innerHTML = '';
     
-    // Reset counter
     if (address2Counter) address2Counter.textContent = '0/20 characters used';
 
     if (submitBtn) submitBtn.disabled = true;
   }
 
-  // --- Event Wiring --- (Validation on Key Events - Requirement 10)
   [firstName, lastName, comments, emailId, drinksSelect, address2].forEach(el => {
     if (!el) return;
     el.addEventListener('input', validateAll);
@@ -338,7 +329,7 @@ document.addEventListener('DOMContentLoaded', function () {
   sources.forEach(c => c.addEventListener('change', () => { markTouched(KEYS.sources); validateAll(); }));
   
 
-  // Submit Handler
+
   form.addEventListener('submit', (e) => {
     showAllErrors = true;
     if (!validateAll()) {
@@ -352,10 +343,8 @@ document.addEventListener('DOMContentLoaded', function () {
     hardResetForm();
   });
 
-  // Reset Handler
   resetBtn && resetBtn.addEventListener('click', () => setTimeout(hardResetForm));
 
-  // Initial setup: ensure all error holders exist for stable layout
   [firstName, lastName, emailId, phone, zipcode, comments, address2, drinksSelect].forEach(el => el && ensureErrorAfter(el));
   if (titleRadios.length) ensureErrorAfter(titleRadios[titleRadios.length - 1]);
   if (sources.length) ensureErrorAfter(sources[sources.length - 1]);
@@ -365,44 +354,42 @@ document.addEventListener('DOMContentLoaded', function () {
 });
 
 
-// === AI ASSISTANT (Form Helper - Requirements 33-77) ===========================================
 (function initAssistant(){
   const btn = document.getElementById('aiBtn');
   const panel = document.getElementById('aiPanel');
   if (!btn || !panel) return;
 
-  // Simple FAQ intents (Requirement 56, 57)
   const FAQS = [
     {
       q: /email|format|northeastern/i,
-      a: "Use your university email: it must end with @northeastern.edu (e.g., jane.doe@northeastern.edu)." // Requirement 60, 61
+      a: "Use your university email: it must end with @northeastern.edu (e.g., jane.doe@northeastern.edu)." 
     },
     {
       q: /phone|format|number/i,
-      a: "Phone format should be (XXX) XXX-XXXX. The field auto-formats as you type." // Requirement 62, 63
+      a: "Phone format should be (XXX) XXX-XXXX. The field auto-formats as you type." 
     },
     {
       q: /zip|zipcode|postal|digits/i,
-      a: "ZipCode must be exactly 6 digits. Only numbers are allowed." // Requirement 64, 65
+      a: "ZipCode must be exactly 6 digits. Only numbers are allowed." 
     },
     {
       q: /required|mandatory|fields|which/i,
-      a: "All fields are required except Street Address 2." // Requirement 66, 67
+      a: "All fields are required except Street Address 2."
     },
     {
       q: /address\s*2|optional|blank|mandatory/i,
-      a: "Street Address 2 is optional. If left blank, it will remain empty in the results table." // Requirement 68, 69
+      a: "Street Address 2 is optional. If left blank, it will remain empty in the results table." 
     }
   ];
 
-  function matchFaq(text){ // Requirement 71
+  function matchFaq(text){
     for (const {q,a} of FAQS) {
       if (q.test(text)) return a;
     }
-    return "Sorry, I don't know that yet. Please check the instructions."; // Requirement 74, 75
+    return "Sorry, I don't know that yet. Please check the instructions."; 
   }
 
-  function addMsg(role, text){ // Requirement 45, 77
+  function addMsg(role, text){ 
     const body = panel.querySelector('.ai-body');
     if (!body) return;
     const row = document.createElement('div');
@@ -427,7 +414,7 @@ document.addEventListener('DOMContentLoaded', function () {
   }
 
   function buildPanel(){
-    // Header
+    
     panel.innerHTML = `
       <div class="ai-header">
         <span>Form Assistant</span>
@@ -440,20 +427,20 @@ document.addEventListener('DOMContentLoaded', function () {
       </div>
     `;
 
-    // Initial greeting
+    
     addMsg('bot', "Hi! I can help with the form's rules. Try asking about email requirements, phone format, or any other form-related questions!");
 
-    // Wire events (Requirement 47, 49)
+    
     panel.querySelector('.ai-send').addEventListener('click', ()=> send());
     panel.querySelector('.ai-input').addEventListener('keydown', (e)=> {
       if (e.key === 'Enter') { e.preventDefault(); send(); }
     });
     panel.querySelector('.ai-close').addEventListener('click', ()=>{
-      panel.style.display = 'none'; // Closes window
+      panel.style.display = 'none'; 
     });
   }
 
-  btn.addEventListener('click', ()=>{ // Requirement 43
+  btn.addEventListener('click', ()=>{ 
     if (panel.innerHTML === '') buildPanel();
     panel.style.display = (panel.style.display === 'none' || !panel.style.display) ? 'block' : 'none';
     if (panel.style.display === 'block') panel.querySelector('.ai-input')?.focus();
