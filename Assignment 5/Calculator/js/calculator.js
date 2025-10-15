@@ -1,31 +1,57 @@
+/* Part A — Calculator page logic using jQuery and a single arrow function */
+$(function () {
+  // Auth check
+  const sessionStr = sessionStorage.getItem('a6_user') || localStorage.getItem('a6_user');
+  if (!sessionStr) {
+    window.location.replace('login.html');
+    return;
+  }
+  const user = JSON.parse(sessionStr);
+  $('#welcome').text(`Welcome, ${user.username}!`);
 
-
- 
-const calculate = (num1, num2, operation) => {
-    
-
-    
-    if (operation === 'divide' && num2 === 0) {
-        return "Error: Cannot divide by zero";
-    }
-
+  // Single arrow function for all operations
+  const calculate = (num1, num2, operation) => {
+    const a = Number(num1), b = Number(num2);
     switch (operation) {
-        case 'add':
-            return num1 + num2;
-        case 'subtract':
-            return num1 - num2;
-        case 'multiply':
-            return num1 * num2;
-        case 'divide':
-            return num1 / num2;
-        default:
-            return NaN;
+      case 'add': return a + b;
+      case 'subtract': return a - b;
+      case 'multiply': return a * b;
+      case 'divide':
+        if (b === 0) return '∞'; // graceful
+        return a / b;
+      default: return NaN;
     }
-    
-};
+  };
 
-$(document).ready(function() {
-   
-    $('#logoutButton').on('click', function() {
-    });
+  const $n1 = $('#num1'), $n2 = $('#num2');
+  const $n1Err = $('#num1Error'), $n2Err = $('#num2Error');
+
+  const numRegex = /^-?\d*(?:\.\d+)?$/; // allows decimals & negatives
+  const validateField = ($el, $err) => {
+    const v = $el.val().trim();
+    $err.text('');
+    if (!v.length) { $err.text('Please enter a valid number'); return false; }
+    if (!numRegex.test(v)) { $err.text('Please enter a valid number'); return false; }
+    return true;
+  };
+
+  $n1.on('focus', () => $n1Err.text(''));
+  $n2.on('focus', () => $n2Err.text(''));
+
+  $('.btn-row .btn').on('click', function () {
+    const op = $(this).data('op');
+    const ok1 = validateField($n1, $n1Err);
+    const ok2 = validateField($n2, $n2Err);
+    if (!ok1 || !ok2) return;
+
+    const result = calculate($n1.val().trim(), $n2.val().trim(), op);
+    $('#result').val(result).fadeOut(70).fadeIn(70);
+  });
+
+  $('#logoutBtn').on('click', function () {
+    // Clear session and show fade effect
+    sessionStorage.removeItem('a6_user');
+    localStorage.removeItem('a6_user');
+    $('main, .topbar').fadeOut(200, () => window.location.replace('login.html'));
+  });
 });
