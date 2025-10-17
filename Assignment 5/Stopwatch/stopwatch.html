@@ -3,42 +3,72 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Event Stopwatch</title>
-    <link rel="stylesheet" href="css/style.css" />
+    <title>Event Stopwatch — Assignment 6</title>
+    <link rel="stylesheet" href="style.css" />
+    <script
+      src="https://code.jquery.com/jquery-3.7.1.min.js"
+      integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo="
+      crossorigin="anonymous"
+    ></script>
   </head>
-  <body>
-    <div class="container">
-      <div id="timerDisplay" class="timer-display">00:00:00</div>
-      <div id="eventDetails">
-        <label for="eventDate">Date</label>
-        <input type="date" id="eventDate" value="" />
-        <div id="dateError" class="error-message"></div>
-
-        <label for="eventName">Event Name</label>
-        <input type="text" id="eventName" placeholder="What are you timing?" />
-        <div id="eventNameError" class="error-message"></div>
+  <body class="page">
+    <header class="topbar">
+      <div class="container">
+        <h1 class="logo">Event Stopwatch</h1>
+        <div class="spacer"></div>
       </div>
+    </header>
 
-      <div id="controlButtons" class="button-group">
-        <button id="startButton">Start</button>
-        <button id="pauseResumeButton" disabled>Pause</button>
-        <button id="stopSaveButton" disabled>Stop & Save</button>
-        <button id="resetButton">Reset</button>
-      </div>
+    <main class="container">
+      <section class="card center">
+        <div class="timer" id="timer">00:00:00</div>
 
-      <hr />
+        <div class="details">
+          <div class="grid">
+            <div class="grid-col">
+              <label for="date">Date</label>
+              <input type="date" id="date" />
+              <small class="error" id="dateError"></small>
+            </div>
+            <div class="grid-col">
+              <label for="event">Event Name</label>
+              <input
+                type="text"
+                id="event"
+                placeholder="What are you timing?"
+                maxlength="100"
+              />
+              <small class="error" id="eventError"></small>
+            </div>
+          </div>
+        </div>
 
-      <h2>Session History</h2>
+        <div class="btn-row">
+          <button id="startBtn" class="btn btn--primary">Start</button>
+          <button id="pauseBtn" class="btn" disabled>Pause</button>
+          <button id="stopBtn" class="btn" disabled>Stop &amp; Save</button>
+          <button id="resetBtn" class="btn btn--ghost">Reset</button>
+        </div>
+      </section>
 
-      <div id="statsDisplay" class="stats">
-        Total Sessions: <span id="totalSessions">0</span> | Total Time:
-        <span id="totalTime">00:00:00</span>
-      </div>
+      <section class="card">
+        <header class="section-head">
+          <h2>History</h2>
+          <div class="filter">
+            <label for="filterDate">Filter by date:</label>
+            <input type="date" id="filterDate" />
+            <button id="clearFilter" class="btn">Clear</button>
+          </div>
+        </header>
+        <div id="stats" class="stats"></div>
+        <ul id="history" class="history"></ul>
+        <p id="emptyHistory" class="muted">No sessions recorded yet</p>
+      </section>
+    </main>
 
-      <ul id="sessionHistoryList"></ul>
-    </div>
+    <div id="toast" class="toast" role="status" aria-live="polite"></div>
 
-    <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+    <footer class="footer">Part B • Stopwatch with Async/Await</footer>
     <script src="js/stopwatch.js"></script>
   </body>
 </html>

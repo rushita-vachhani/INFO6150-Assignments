@@ -1,41 +1,182 @@
-let timerInterval = null; 
-let totalSeconds = 0;
-let isRunning = false;
 
+$(function () {
+  // DOM
+  const $timer = $('#timer');
+  const $date = $('#date');
+  const $event = $('#event');
+  const $dateErr = $('#dateError');
+  const $eventErr = $('#eventError');
+  const $start = $('#startBtn');
+  const $pause = $('#pauseBtn');
+  const $stop = $('#stopBtn');
+  const $reset = $('#resetBtn');
+  const $history = $('#history');
+  const $empty = $('#emptyHistory');
+  const $stats = $('#stats');
+  const $filter = $('#filterDate');
+  const $clearFilter = $('#clearFilter');
+  const $toast = $('#toast');
 
-const formatTime = (totalSeconds) => { 
+  // State
+  let seconds = 0;
+  let intervalId = null;
+  let running = false;
+  let paused = false;
 
-};
+  // Helpers
+  const pad = (n) => String(n).padStart(2,'0');
+  const fmt = (s) => {
+    const h = Math.floor(s/3600), m = Math.floor((s%3600)/60), ss = s%60;
+    return `${pad(h)}:${pad(m)}:${pad(ss)}`;
+  };
+  const todayISO = () => new Date().toISOString().slice(0,10);
 
+  // Initialize defaults
+  $date.val(todayISO());
+  refreshHistory();
 
-const validateDetails = () => { 
+  // Validation (jQuery)
+  const validateDate = () => {
+    $dateErr.text('');
+    if (!$date.val()) { $dateErr.text('Please select a date'); return false; }
+    return true;
+  };
+  const nameRegex = /^[A-Za-z0-9 '\-]{3,100}$/;
+  const validateEvent = () => {
+    const v = ($event.val()||'').trim();
+    $eventErr.text('');
+    if (!v) { $eventErr.text('Event name is required'); return false; }
+    if (v.length < 3) { $eventErr.text('Event name must be at least 3 characters'); return false; }
+    if (v.length > 100) { $eventErr.text('Event name too long (max 100 characters)'); return false; }
+    if (!nameRegex.test(v)) { $eventErr.text('Event name contains invalid characters'); return false; }
+    return true;
+  };
 
-};
+  $date.on('focus', ()=> $dateErr.text(''));
+  $event.on('focus', ()=> $eventErr.text(''));
 
+  // Core logic uses Promises + async/await
+  const tick = () => {
+    seconds += 1;
+    $timer.text(fmt(seconds));
+  };
 
-const handleStart = async () => {
+  const startInterval = () => new Promise((resolve) => {
+    intervalId = setInterval(() => {
+      tick();
+      if (!running) { clearInterval(intervalId); resolve(); }
+    }, 1000);
+  });
 
-    if (!validateDetails()) {
-        return; 
+  async function startTimer() {
+    if (!validateDate() | !validateEvent()) return;
+    running = true; paused = false;
+    disableInputs(true);
+    $start.prop('disabled', true);
+    $pause.prop('disabled', false).text('Pause');
+    $stop.prop('disabled', false);
+    toast('Timer started');
+    await startInterval(); // resolves when running set to false
+  }
+
+  function pauseOrResume() {
+    if (!running) return;
+    if (!paused) {
+      paused = true;
+      clearInterval(intervalId);
+      $pause.text('Resume');
+      toast('Paused');
+    } else {
+      paused = false;
+      $pause.text('Pause');
+      startInterval();
+      toast('Resumed');
     }
-    
-    await new Promise(resolve => {
-    
-        setTimeout(resolve, 500); 
-    });
-};
+  }
 
-const handleStopAndSave = () => {
-    
-};
+  function stopAndSave() {
+    if (!running) return;
+    running = false; paused = false;
+    clearInterval(intervalId);
+    const item = { id: cryptoRandom(), date: $date.val(), name: $event.val().trim(), seconds, savedAt: new Date().toISOString() };
+    saveItem(item);
+    toast('Session saved');
+    seconds = 0;
+    $timer.text('00:00:00');
+    disableInputs(false);
+    $start.prop('disabled', false);
+    $pause.prop('disabled', true).text('Pause');
+    $stop.prop('disabled', true);
+    refreshHistory();
+  }
 
-$(document).ready(function() {
-    
-    $('#eventDate').val(new Date().toISOString().split('T')[0]);
-    
-    
-    
-    $('#startButton').on('click', handleStart);
-    $('#stopSaveButton').on('click', handleStopAndSave);
-    
+  function resetTimer() {
+    running = false; paused = false;
+    clearInterval(intervalId);
+    seconds = 0;
+    $timer.text('00:00:00');
+    disableInputs(false);
+    $start.prop('disabled', false);
+    $pause.prop('disabled', true).text('Pause');
+    $stop.prop('disabled', true);
+    toast('Reset');
+  }
+
+  function disableInputs(disabled) {
+    $date.prop('disabled', disabled);
+    $event.prop('disabled', disabled);
+  }
+
+  // Storage
+  const KEY = 'a6_stopwatch_history';
+  function loadHistory() {
+    try { return JSON.parse(localStorage.getItem(KEY) || '[]'); } catch { return []; }
+  }
+  function saveItem(item) {
+    const list = loadHistory();
+    list.push(item);
+    localStorage.setItem(KEY, JSON.stringify(list));
+  }
+
+  // UI: history + stats
+  function refreshHistory() {
+    const list = loadHistory().sort((a,b)=> new Date(b.savedAt)-new Date(a.savedAt));
+    const filter = $filter.val();
+    const filtered = filter ? list.filter(i => i.date === filter) : list;
+
+    $history.empty();
+    if (!filtered.length) {
+      $empty.show();
+    } else {
+      $empty.hide();
+      filtered.forEach(i => {
+        const li = $('<li/>');
+        li.append(`<span><strong>${i.name}</strong> <span class="badge">${i.date}</span></span>`);
+        li.append(`<span class="badge">${fmt(i.seconds)}</span>`);
+        $history.append(li);
+      });
+    }
+
+    const totalSessions = filtered.length;
+    const totalSeconds = filtered.reduce((acc,i)=> acc+i.seconds, 0);
+    $stats.html(`
+      <span class="badge">Sessions: ${totalSessions}</span>
+      <span class="badge">Total Time: ${fmt(totalSeconds)}</span>
+    `);
+  }
+
+  function toast(msg) {
+    $toast.stop(true,true).hide().text(msg).fadeIn(120).delay(900).fadeOut(220);
+  }
+
+  // Simple random id without crypto API requirement
+  function cryptoRandom(){ return 'id-' + Math.random().toString(36).slice(2,9); }
+
+  // Events
+  $start.on('click', startTimer);
+  $pause.on('click', pauseOrResume);
+  $stop.on('click', stopAndSave);
+  $reset.on('click', resetTimer);
+  $filter.on('change', refreshHistory);
+  $clearFilter.on('click', () => { $filter.val(''); refreshHistory(); });
 });
