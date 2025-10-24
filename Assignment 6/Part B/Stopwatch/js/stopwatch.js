@@ -15,7 +15,7 @@ $(function () {
   const $stats = $('#stats');
   const $filter = $('#filterDate');
   const $clearFilter = $('#clearFilter');
-  const $toast = $('#toast');
+  // const $toast = $('#toast');
 
   // State
   let seconds = 0;
@@ -75,7 +75,7 @@ $(function () {
     $start.prop('disabled', true);
     $pause.prop('disabled', false).text('Pause');
     $stop.prop('disabled', false);
-    toast('Timer started');
+    // toast('Timer started');
     await startInterval(); // resolves when running set to false
   }
 
@@ -85,12 +85,12 @@ $(function () {
       paused = true;
       clearInterval(intervalId);
       $pause.text('Resume');
-      toast('Paused');
+      // toast('Paused');
     } else {
       paused = false;
       $pause.text('Pause');
       startInterval();
-      toast('Resumed');
+      // toast('Resumed');
     }
   }
 
@@ -100,7 +100,7 @@ $(function () {
     clearInterval(intervalId);
     const item = { id: cryptoRandom(), date: $date.val(), name: $event.val().trim(), seconds, savedAt: new Date().toISOString() };
     saveItem(item);
-    toast('Session saved');
+    // toast('Session saved');
     seconds = 0;
     $timer.text('00:00:00');
     disableInputs(false);
@@ -119,7 +119,7 @@ $(function () {
     $start.prop('disabled', false);
     $pause.prop('disabled', true).text('Pause');
     $stop.prop('disabled', true);
-    toast('Reset');
+    // toast('Reset');
   }
 
   function disableInputs(disabled) {
@@ -165,9 +165,9 @@ $(function () {
     `);
   }
 
-  function toast(msg) {
-    $toast.stop(true,true).hide().text(msg).fadeIn(120).delay(900).fadeOut(220);
-  }
+  // function toast(msg) {
+  //   $toast.stop(true,true).hide().text(msg).fadeIn(120).delay(900).fadeOut(220);
+  // }
 
   // Simple random id without crypto API requirement
   function cryptoRandom(){ return 'id-' + Math.random().toString(36).slice(2,9); }
