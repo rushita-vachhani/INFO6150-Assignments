@@ -1,4 +1,4 @@
-/* Part A — Login page logic using jQuery */
+
 $(function () {
   const $email = $('#email');
   const $password = $('#password');
@@ -16,6 +16,9 @@ $(function () {
   ];
 
   const isValidEmail = (v) => /^[\w.+-]+@northeastern\.edu$/i.test(v || '');
+  const isEmailFormatValid = () => isValidEmail($email.val().trim());
+  const isPasswordLengthValid = () => $password.val().length >= 8;
+
   const validateEmail = () => {
     const v = $email.val().trim();
     $emailError.text(''); $credError.text('');
@@ -30,28 +33,53 @@ $(function () {
     const v = $password.val();
     $passwordError.text(''); $credError.text('');
     if (!v) { $passwordError.text('Password is required'); return false; }
-    if (v.length < 8) { $passwordError.text('Password must be at least 8 characters'); return false; }
+    if (!isPasswordLengthValid()) { 
+      $passwordError.text('Password must be at least 8 characters'); 
+      return false; 
+    }
     return true;
   };
 
-  const enableIfValid = () => {
-    const ok = validateEmail() && validatePassword();
+
+
+
+const enableIfValid = () => {
+    const ok = isEmailFormatValid() && isPasswordLengthValid();
     $loginBtn.prop('disabled', !ok);
     return ok;
   };
 
-  $email.on('keyup blur focus', function (e) {
-    if (e.type !== 'focus') validateEmail();
-    $loginBtn.prop('disabled', !(isValidEmail($email.val().trim()) && $password.val().length >= 8));
-  });
-  $password.on('keyup blur focus', function (e) {
-    if (e.type !== 'focus') validatePassword();
-    $loginBtn.prop('disabled', !(isValidEmail($email.val().trim()) && $password.val().length >= 8));
-  });
+  const handleInputValidation = (e) => {
+    const $field = $(e.currentTarget);
+    const $errorField = $field.next('small.error');
+
+    if (e.type === 'focus') {
+      
+      $errorField.text('');
+      $credError.text('');
+    } 
+    
+    else if (e.type === 'keyup' || e.type === 'blur') {
+      if ($field.is('#email')) {
+        validateEmail();
+      } else if ($field.is('#password')) {
+        validatePassword();
+      }
+    }
+ 
+    enableIfValid();
+  };    
+    
+  $email.on('keyup blur focus', handleInputValidation);
+  $password.on('keyup blur focus', handleInputValidation);
 
   $('#loginForm').on('submit', function (e) {
     e.preventDefault();
-    if (!enableIfValid()) return;
+    const isFormValid = validateEmail() && validatePassword();
+    if (!isFormValid) {
+       $loginBtn.prop('disabled', true);
+       return;
+    }
 
     const email = $email.val().trim();
     const pass = $password.val();
@@ -73,6 +101,6 @@ $(function () {
     store.setItem('a6_user', JSON.stringify(payload));
 
     $success.fadeIn(150);
-    setTimeout(() => { window.location.href = 'calculator.html'; }, 1600);
+    setTimeout(() => { window.location.href = 'calculator.html'; }, 2000);
   });
 });
