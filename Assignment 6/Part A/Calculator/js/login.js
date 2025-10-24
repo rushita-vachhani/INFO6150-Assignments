@@ -12,7 +12,7 @@ $(function () {
   const USERS = [
     { email: 'student1@northeastern.edu', password: 'Password123' },
     { email: 'student2@northeastern.edu', password: 'Se@123456' },
-    { email: 'you@northeastern.edu', password: 'Assignment6' }
+    { email: 'you1@northeastern.edu', password: '12345678' }
   ];
 
   const isValidEmail = (v) => /^[\w.+-]+@northeastern\.edu$/i.test(v || '');

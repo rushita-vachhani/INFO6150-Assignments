@@ -4,7 +4,7 @@
   --card: #ffffff;
   --text: hsl(0, 0%, 0%);
   --muted: #b38900;
-  --primary: #ff984f;
+  --primary: #ff5e4f;
   --danger: #b30021;
   --success: #28c98b;
   --ghost: #fff9bc;
@@ -108,15 +108,15 @@ input[readonly] {
 
 .btn {
   cursor: pointer;
-  border: none;
+  border: 1px solid var(--border);
   border-radius: 12px;
   padding: 10px 14px;
-  background: #c0fea1;
+  background: var(--primary);
   color: var(--text);
   transition: transform 0.1s ease, opacity 0.2s;
 }
 .btn:hover {
-  transform: translateY(-1px);
+  transform: translateY(-2px);
 }
 .btn:disabled {
   opacity: 0.5;
