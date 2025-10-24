@@ -88,6 +88,10 @@ input[type="date"] {
   padding: 12px 14px;
   outline: none;
 }
+input[disabled] {
+  opacity: 0.9;
+  background: #dbdbdb;
+}
 .btn {
   cursor: pointer;
   border: 1px solid var(--border);

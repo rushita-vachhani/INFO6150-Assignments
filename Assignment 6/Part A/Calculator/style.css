@@ -104,6 +104,7 @@ input[type="email"] {
 }
 input[readonly] {
   opacity: 0.9;
+  background: #dbdbdb;
 }
 
 #credentialError {

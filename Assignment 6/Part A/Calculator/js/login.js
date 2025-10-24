@@ -97,8 +97,8 @@ const enableIfValid = () => {
     const remember = $('#rememberMe').is(':checked');
     const store = remember ? localStorage : sessionStorage;
     const other = remember ? sessionStorage : localStorage;
-    other.removeItem('a6_user'); // ensure single source
-    store.setItem('a6_user', JSON.stringify(payload));
+    other.removeItem('user_data'); // ensure single source
+    store.setItem('user_data', JSON.stringify(payload));
 
     $success.fadeIn(150);
     setTimeout(() => { window.location.href = 'calculator.html'; }, 2000);

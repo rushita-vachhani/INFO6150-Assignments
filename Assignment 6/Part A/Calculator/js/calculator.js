@@ -1,7 +1,6 @@
 /* Part A — Calculator page logic using jQuery and a single arrow function */
 $(function () {
-  // Auth check
-  const sessionStr = sessionStorage.getItem('a6_user') || localStorage.getItem('a6_user');
+  const sessionStr = sessionStorage.getItem('user_data') || localStorage.getItem('user_data');
   if (!sessionStr) {
     window.location.replace('login.html');
     return;
@@ -17,7 +16,7 @@ $(function () {
       case 'subtract': return a - b;
       case 'multiply': return a * b;
       case 'divide':
-        if (b === 0) return '∞'; // graceful
+        if (b === 0) return '∞ (Divide by zero is not possible)'; // graceful
         return a / b;
       default: return NaN;
     }
@@ -49,9 +48,8 @@ $(function () {
   });
 
   $('#logoutBtn').on('click', function () {
-    // Clear session and show fade effect
-    sessionStorage.removeItem('a6_user');
-    localStorage.removeItem('a6_user');
-    $('main, .topbar').fadeOut(200, () => window.location.replace('login.html'));
+    sessionStorage.removeItem('user_data');
+    localStorage.removeItem('user_data');
+    $('main, .topbar').fadeOut(400, () => window.location.replace('login.html'));
   });
 });
