@@ -31,10 +31,6 @@ $(function () {
   };
   const todayISO = () => new Date().toISOString().slice(0,10);
 
-  // Initialize defaults
-  $date.val(todayISO());
-  refreshHistory();
-
   // Validation (jQuery)
   const validateDate = () => {
     $dateErr.text('');
@@ -94,24 +90,57 @@ $(function () {
     }
   }
 
-  function stopAndSave() {
+  // Storage
+  const KEY = 'stopwatch_history';
+  const loadHistoryAsync = () => {
+    return new Promise((resolve) => {
+      try {
+        const data = JSON.parse(localStorage.getItem(KEY) || '[]');
+        resolve(data);
+      } catch {
+        resolve([]);
+      }
+    });
+  };
+
+  const saveItemAsync = (item) => {
+    return new Promise(async (resolve) => {
+      const list = await loadHistoryAsync();
+      list.push(item);
+      localStorage.setItem(KEY, JSON.stringify(list));
+      resolve();
+    });
+  };
+
+  async function stopAndSave() {
     if (!running) return;
-    running = false; paused = false;
+    running = false; 
+    paused = false;
     clearInterval(intervalId);
-    const item = { id: cryptoRandom(), date: $date.val(), name: $event.val().trim(), seconds, savedAt: new Date().toISOString() };
-    saveItem(item);
-    // toast('Session saved');
+    
+    const item = { 
+      id: cryptoRandom(), 
+      date: $date.val(), 
+      name: $event.val().trim(), 
+      seconds, 
+      savedAt: new Date().toISOString() 
+    };
+    
+    await saveItemAsync(item);
+    
     seconds = 0;
     $timer.text('00:00:00');
     disableInputs(false);
     $start.prop('disabled', false);
     $pause.prop('disabled', true).text('Pause');
     $stop.prop('disabled', true);
-    refreshHistory();
+    
+    await refreshHistory();
   }
 
   function resetTimer() {
-    running = false; paused = false;
+    running = false; 
+    paused = false;
     clearInterval(intervalId);
     seconds = 0;
     $timer.text('00:00:00');
@@ -119,7 +148,6 @@ $(function () {
     $start.prop('disabled', false);
     $pause.prop('disabled', true).text('Pause');
     $stop.prop('disabled', true);
-    // toast('Reset');
   }
 
   function disableInputs(disabled) {
@@ -127,24 +155,16 @@ $(function () {
     $event.prop('disabled', disabled);
   }
 
-  // Storage
-  const KEY = 'a6_stopwatch_history';
-  function loadHistory() {
-    try { return JSON.parse(localStorage.getItem(KEY) || '[]'); } catch { return []; }
-  }
-  function saveItem(item) {
-    const list = loadHistory();
-    list.push(item);
-    localStorage.setItem(KEY, JSON.stringify(list));
-  }
-
-  // UI: history + stats
-  function refreshHistory() {
-    const list = loadHistory().sort((a,b)=> new Date(b.savedAt)-new Date(a.savedAt));
+  // UI: history + stats - async version
+  async function refreshHistory() {
+    const list = await loadHistoryAsync();
+    const sorted = list.sort((a,b) => new Date(b.savedAt) - new Date(a.savedAt));
     const filter = $filter.val();
-    const filtered = filter ? list.filter(i => i.date === filter) : list;
+    const filtered = filter ? sorted.filter(i => i.date === filter) : sorted;
 
+    $clearFilter.prop('disabled', !filter);
     $history.empty();
+    
     if (!filtered.length) {
       $empty.show();
     } else {
@@ -158,25 +178,34 @@ $(function () {
     }
 
     const totalSessions = filtered.length;
-    const totalSeconds = filtered.reduce((acc,i)=> acc+i.seconds, 0);
+    const totalSeconds = filtered.reduce((acc,i) => acc + i.seconds, 0);
     $stats.html(`
       <span class="badge">Sessions: ${totalSessions}</span>
       <span class="badge">Total Time: ${fmt(totalSeconds)}</span>
     `);
   }
 
-  // function toast(msg) {
-  //   $toast.stop(true,true).hide().text(msg).fadeIn(120).delay(900).fadeOut(220);
-  // }
-
   // Simple random id without crypto API requirement
-  function cryptoRandom(){ return 'id-' + Math.random().toString(36).slice(2,9); }
+  function cryptoRandom() { 
+    return 'id-' + Math.random().toString(36).slice(2,9); 
+  }
+  // Initialize with async/await
+  const initialize = async () => {
+    $date.val(todayISO());
+    await refreshHistory();
+  };
 
   // Events
   $start.on('click', startTimer);
   $pause.on('click', pauseOrResume);
   $stop.on('click', stopAndSave);
   $reset.on('click', resetTimer);
-  $filter.on('change', refreshHistory);
-  $clearFilter.on('click', () => { $filter.val(''); refreshHistory(); });
+  $filter.on('change', () => refreshHistory());
+  $clearFilter.on('click', async () => { 
+    $filter.val(''); 
+    await refreshHistory(); 
+  });
+  initialize();
 });
+
+
