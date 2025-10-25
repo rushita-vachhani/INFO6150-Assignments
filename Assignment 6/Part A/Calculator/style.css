@@ -1,6 +1,6 @@
 /* Shared base styles */
 :root {
-  --bg: #fff8bf;
+  --bg: #fff1d5;
   --card: #ffffff;
   --text: hsl(0, 0%, 0%);
   --muted: #b38900;
@@ -20,22 +20,21 @@ body {
 }
 body {
   margin: 0;
-  font: 16px/1.5 system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial,
-    Noto Sans, "Apple Color Emoji", "Segoe UI Emoji";
-  background: linear-gradient(180deg, var(--bg), #ffbf59 70%);
+  font-size: 16px;
+  background: linear-gradient(180deg, var(--bg), #c6f7ff 70%);
   color: var(--text);
 }
 
 .container {
   max-width: 920px;
   margin: 0 auto;
-  padding: 24px;
+  padding: 14px;
 }
 
 .topbar {
   position: sticky;
   top: 0;
-  background: #ffbf59;
+  background: #c6f7ff;
   backdrop-filter: saturate(1.2) blur(8px);
   border-bottom: 1px solid var(--border);
 }

@@ -18,55 +18,58 @@
         <div class="spacer"></div>
       </div>
     </header>
+    <div class="page-wrapper">
+      <main class="container">
+        <section class="card center">
+          <div class="timer" id="timer">00:00:00</div>
 
-    <main class="container">
-      <section class="card center">
-        <div class="timer" id="timer">00:00:00</div>
-
-        <div class="details">
-          <div class="grid">
-            <div class="grid-col">
-              <label for="date">Date</label>
-              <input type="date" id="date" />
-              <small class="error" id="dateError"></small>
-            </div>
-            <div class="grid-col">
-              <label for="event">Event Name</label>
-              <input
-                type="text"
-                id="event"
-                placeholder="What are you timing?"
-              />
-              <small class="error" id="eventError"></small>
+          <div class="details">
+            <div class="grid">
+              <div class="grid-col">
+                <label for="date">Date</label>
+                <input type="date" id="date" />
+                <small class="error" id="dateError"></small>
+              </div>
+              <div class="grid-col">
+                <label for="event">Event Name</label>
+                <input
+                  type="text"
+                  id="event"
+                  placeholder="What are you timing?"
+                />
+                <small class="error" id="eventError"></small>
+              </div>
             </div>
           </div>
-        </div>
 
-        <div class="btn-row">
-          <button id="startBtn" class="btn">Start</button>
-          <button id="pauseBtn" class="btn" disabled>Pause</button>
-          <button id="stopBtn" class="btn" disabled>Stop &amp; Save</button>
-          <button id="resetBtn" class="btn">Reset</button>
-        </div>
-      </section>
-
-      <section class="card">
-        <header class="section-head">
-          <h2>History</h2>
-          <div class="filter">
-            <label for="filterDate">Filter by date:</label>
-            <input type="date" id="filterDate" />
-            <button id="clearFilter" class="btn">Clear Filter</button>
+          <div class="btn-row">
+            <button id="startBtn" class="startBtn">Start</button>
+            <button id="pauseBtn" class="btn" disabled>Pause</button>
+            <button id="stopBtn" class="btn" disabled>Stop &amp; Save</button>
+            <button id="resetBtn" class="btn">Reset</button>
           </div>
-        </header>
-        <div id="stats" class="stats"></div>
-        <ul id="history" class="history"></ul>
-        <p id="emptyHistory" class="muted">No sessions recorded yet</p>
-      </section>
-    </main>
+        </section>
 
-    <div id="toast" class="toast" role="status" aria-live="polite"></div>
-
+        <section class="card">
+          <header class="section-head">
+            <h2>History</h2>
+            <div>
+              <label for="filterDate">Filter by date:</label>
+              <input type="date" id="filterDate" />
+              <button id="clearFilter" class="btn">Clear Filter</button>
+            </div>
+          </header>
+          <div id="stats" class="stats"></div>
+          <ul id="history" class="history"></ul>
+          <p id="emptyHistory" class="muted">No sessions recorded yet</p>
+        </section>
+      </main>
+    </div>
+    <div id="modalBackdrop" class="modal-backdrop">
+      <div id="modalDialog" class="modal-dialog">
+        <div id="modalContent" class="modal-content"></div>
+      </div>
+    </div>
     <script src="js/stopwatch.js"></script>
   </body>
 </html>

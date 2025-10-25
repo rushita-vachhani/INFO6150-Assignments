@@ -15,7 +15,7 @@ $(function () {
   const $stats = $('#stats');
   const $filter = $('#filterDate');
   const $clearFilter = $('#clearFilter');
-  // const $toast = $('#toast');
+  
 
   // State
   let seconds = 0;
@@ -71,7 +71,7 @@ $(function () {
     $start.prop('disabled', true);
     $pause.prop('disabled', false).text('Pause');
     $stop.prop('disabled', false);
-    // toast('Timer started');
+    
     await startInterval(); // resolves when running set to false
   }
 
@@ -81,12 +81,12 @@ $(function () {
       paused = true;
       clearInterval(intervalId);
       $pause.text('Resume');
-      // toast('Paused');
+      
     } else {
       paused = false;
       $pause.text('Pause');
       startInterval();
-      // toast('Resumed');
+      
     }
   }
 
@@ -112,6 +112,22 @@ $(function () {
     });
   };
 
+  // Get the DOM reference for the backdrop
+const $backdrop = $('#modalBackdrop');
+const $modalContent = $('#modalDialog .modal-content');
+
+
+function showModalConfirmation(msg, duration) {
+    $modalContent.html(`<p>${msg}</p>`);
+    $backdrop.css('display', 'flex').fadeIn(100); 
+
+    setTimeout(() => {
+        $backdrop.fadeOut(200, function() {            
+            $modalContent.empty(); 
+        }); 
+    }, duration);
+}
+
   async function stopAndSave() {
     if (!running) return;
     running = false; 
@@ -127,7 +143,6 @@ $(function () {
     };
     
     await saveItemAsync(item);
-    
     seconds = 0;
     $timer.text('00:00:00');
     disableInputs(false);
@@ -148,6 +163,7 @@ $(function () {
     $start.prop('disabled', false);
     $pause.prop('disabled', true).text('Pause');
     $stop.prop('disabled', true);
+    showModalConfirmation(`Timer Reset Done!`, 700);
   }
 
   function disableInputs(disabled) {
@@ -171,7 +187,7 @@ $(function () {
       $empty.hide();
       filtered.forEach(i => {
         const li = $('<li/>');
-        li.append(`<span><strong>${i.name}</strong> <span class="badge">${i.date}</span></span>`);
+        li.append(`<span> ${i.name} on<strong> ${i.date} </strong></span>`);
         li.append(`<span class="badge">${fmt(i.seconds)}</span>`);
         $history.append(li);
       });
@@ -180,7 +196,7 @@ $(function () {
     const totalSessions = filtered.length;
     const totalSeconds = filtered.reduce((acc,i) => acc + i.seconds, 0);
     $stats.html(`
-      <span class="badge">Sessions: ${totalSessions}</span>
+      <span class="badge">Total Sessions: ${totalSessions}</span>
       <span class="badge">Total Time: ${fmt(totalSeconds)}</span>
     `);
   }

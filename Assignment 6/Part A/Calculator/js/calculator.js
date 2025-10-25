@@ -25,12 +25,16 @@ $(function () {
   const $n1 = $('#num1'), $n2 = $('#num2');
   const $n1Err = $('#num1Error'), $n2Err = $('#num2Error');
 
-  const numRegex = /^-?\d*(?:\.\d+)?$/; // allows decimals & negatives
+  const numRegex = /^-?\d*\.?\d*$/; // allows decimals & negatives
   const validateField = ($el, $err) => {
     const v = $el.val().trim();
     $err.text('');
     if (!v.length) { $err.text('Please enter a valid number'); return false; }
     if (!numRegex.test(v)) { $err.text('Please enter a valid number'); return false; }
+    if (v === '.' || v === '-.') {
+      $err.text('Please enter a valid number'); 
+      return false; 
+    }
     return true;
   };
 
