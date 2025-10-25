@@ -5,6 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Event Stopwatch Assignment 6</title>
     <link rel="stylesheet" href="style.css" />
+    <link rel="icon" href="assets/stopwatch.ico" type="image/x-icon" />
     <script
       src="https://code.jquery.com/jquery-3.7.1.min.js"
       integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo="
@@ -22,6 +23,10 @@
       <main class="container">
         <section class="card center">
           <div class="timer" id="timer">00:00:00</div>
+          <div
+            id="activeEventDisplay"
+            style="min-height: 20px; margin-bottom: 8px; font-style: italic"
+          ></div>
 
           <div class="details">
             <div class="grid">

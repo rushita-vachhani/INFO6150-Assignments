@@ -10,9 +10,9 @@ $(function () {
 
   // Hardcoded users
   const USERS = [
-    { email: 'student1@northeastern.edu', password: 'Password123' },
-    { email: 'student2@northeastern.edu', password: 'Se@123456' },
-    { email: 'you1@northeastern.edu', password: '12345678' }
+    { email: 'rv@northeastern.edu', password: 'va@@@5495' },
+    { email: 'vachhani.r@northeastern.edu', password: '12345678' },
+    { email: 'demo@northeastern.edu', password: '12345678' }
   ];
 
   const isValidEmail = (v) => /^[\w.+-]+@northeastern\.edu$/i.test(v || '');

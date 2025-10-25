@@ -15,6 +15,7 @@ $(function () {
   const $stats = $('#stats');
   const $filter = $('#filterDate');
   const $clearFilter = $('#clearFilter');
+  const $activeEventDisplay = $('#activeEventDisplay');
   
 
   // State
@@ -65,15 +66,25 @@ $(function () {
   });
 
   async function startTimer() {
-    if (!validateDate() | !validateEvent()) return;
+    
+    if (!validateDate() || !validateEvent()) return; 
+
+    const eventName = $event.val().trim();
+    const eventDate = $date.val(); 
+    
+    $activeEventDisplay.html(`Currently Tracking: <strong>${eventName}</strong> on ${eventDate}`);
+
     running = true; paused = false;
     disableInputs(true);
     $start.prop('disabled', true);
     $pause.prop('disabled', false).text('Pause');
     $stop.prop('disabled', false);
     
-    await startInterval(); // resolves when running set to false
-  }
+    await startInterval(); 
+    
+    $activeEventDisplay.empty();
+    $('.details label').css('visibility', 'visible');
+}
 
   function pauseOrResume() {
     if (!running) return;
@@ -112,7 +123,7 @@ $(function () {
     });
   };
 
-  // Get the DOM reference for the backdrop
+
 const $backdrop = $('#modalBackdrop');
 const $modalContent = $('#modalDialog .modal-content');
 
@@ -149,7 +160,8 @@ function showModalConfirmation(msg, duration) {
     $start.prop('disabled', false);
     $pause.prop('disabled', true).text('Pause');
     $stop.prop('disabled', true);
-    
+    $activeEventDisplay.empty();
+$('.details label').css('visibility', 'visible');
     await refreshHistory();
   }
 
