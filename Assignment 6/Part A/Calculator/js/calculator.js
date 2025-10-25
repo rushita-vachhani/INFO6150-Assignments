@@ -31,7 +31,7 @@ $(function () {
     $err.text('');
     if (!v.length) { $err.text('Please enter a valid number'); return false; }
     if (!numRegex.test(v)) { $err.text('Please enter a valid number'); return false; }
-    if (v === '.' || v === '-.') {
+    if (v === '.' || v === '-.' || v === '-') {
       $err.text('Please enter a valid number'); 
       return false; 
     }
