@@ -1,0 +1,33 @@
+@use "variables";
+@use "functions";
+
+// FLEX CENTER
+@mixin flex-center($dir: row, $gap: variables.$space-md) {
+  display: flex;
+  flex-direction: $dir;
+  justify-content: center;
+  align-items: center;
+  gap: $gap;
+}
+
+// GRID WRAPPER
+@mixin grid-cols($cols, $min: 0, $gap: variables.$space-lg) {
+  display: grid;
+  gap: $gap;
+  grid-template-columns: repeat($cols, minmax($min, 1fr));
+}
+
+// ROUNDED CARD
+@mixin surface-card {
+  background-color: var(--bg-card);
+  border-radius: variables.$radius-lg;
+  box-shadow: 0 20px 60px var(--shadow-color);
+}
+
+// RESPONSIVE MQ USING INTERPOLATION
+// Example: @include mq(md) { ... }
+@mixin mq($size) {
+  @media (min-width: #{functions.bp($size)}) {
+    @content;
+  }
+}

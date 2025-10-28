@@ -1,0 +1,214 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Book Tickets – PulseLive</title>
+    <link rel="preconnect" href="https://fonts.gstatic.com" />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="css/style.css" />
+  </head>
+  <body class="theme-dark">
+    <!-- HEADER / NAV (reuse) -->
+    <header class="site-header">
+      <div class="container nav-bar">
+        <div class="brand">
+          <span class="brand__logo">🎵</span>
+          <span class="brand__name">PulseLive</span>
+        </div>
+
+        <nav class="main-nav">
+          <a href="index.html" class="main-nav__link">Home</a>
+          <a href="book.html" class="main-nav__link main-nav__link--active"
+            >Book Tickets</a
+          >
+          <a href="#" class="main-nav__link">Artists</a>
+          <a href="#" class="main-nav__link">Support</a>
+        </nav>
+
+        <a href="book.html" class="btn btn--primary btn--sm">Get Tickets</a>
+      </div>
+    </header>
+
+    <!-- EVENT DETAILS + PRICING GRID -->
+    <section class="booking-hero">
+      <div class="container booking-layout">
+        <!-- Left: Event details -->
+        <div class="booking-layout__info neon-card">
+          <h1 class="booking-layout__title">Midnight Electric Festival</h1>
+          <p class="booking-layout__meta">
+            Sat · Nov 16 · 10PM - 4AM<br />
+            Brooklyn Navy Yard, NYC
+          </p>
+          <p class="booking-layout__desc">
+            6+ hours of nonstop techno, house, and bass. Immersive lighting
+            tunnels, projection walls, and surprise B2B sets.
+          </p>
+          <ul class="booking-layout__highlights">
+            <li>Age 18+ only</li>
+            <li>Govt ID required</li>
+            <li>No re-entry after 1AM</li>
+          </ul>
+        </div>
+
+        <!-- Right: Pricing tiers -->
+        <div class="pricing-grid">
+          <div class="tier-card">
+            <div class="tier-card__head">
+              <h3 class="tier-card__name">General</h3>
+              <span class="tier-card__price">$59</span>
+            </div>
+            <ul class="tier-card__list">
+              <li>Floor access</li>
+              <li>Coat check</li>
+              <li>Free water stations</li>
+            </ul>
+            <button class="btn btn--block btn--primary">Select</button>
+          </div>
+
+          <div class="tier-card tier-card--hot">
+            <div class="tier-card__head">
+              <h3 class="tier-card__name">VIP</h3>
+              <span class="tier-card__price">$109</span>
+            </div>
+            <ul class="tier-card__list">
+              <li>VIP balcony lounge</li>
+              <li>Fast entry lane</li>
+              <li>Private bar access</li>
+            </ul>
+            <button class="btn btn--block btn--accent">Select</button>
+          </div>
+
+          <div class="tier-card">
+            <div class="tier-card__head">
+              <h3 class="tier-card__name">Ultra Deck</h3>
+              <span class="tier-card__price">$189</span>
+            </div>
+            <ul class="tier-card__list">
+              <li>Stage-side platform</li>
+              <li>Meet & greet photo</li>
+              <li>Complimentary merch</li>
+            </ul>
+            <button class="btn btn--block btn--primary">Select</button>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- BOOKING FORM (Flexbox vertical form card) -->
+    <section class="booking-form">
+      <div class="container form-wrapper">
+        <form class="form-card">
+          <h2 class="form-card__title">Book Your Spot</h2>
+
+          <div class="form-row">
+            <div class="form-field">
+              <label for="name">Full Name</label>
+              <input id="name" type="text" placeholder="Jane Doe" required />
+            </div>
+
+            <div class="form-field">
+              <label for="email">Email</label>
+              <input
+                id="email"
+                type="email"
+                placeholder="you@example.com"
+                required
+              />
+            </div>
+          </div>
+
+          <div class="form-row">
+            <div class="form-field">
+              <label for="qty">Ticket Quantity</label>
+              <select id="qty" required>
+                <option>1</option>
+                <option>2</option>
+                <option>3</option>
+                <option>4</option>
+              </select>
+            </div>
+
+            <div class="form-field">
+              <label for="tier">Tier</label>
+              <select id="tier" required>
+                <option>General - $59</option>
+                <option>VIP - $109</option>
+                <option>Ultra Deck - $189</option>
+              </select>
+            </div>
+          </div>
+
+          <div class="form-row">
+            <div class="form-field form-field--full">
+              <label for="notes">Special Requests</label>
+              <textarea
+                id="notes"
+                rows="3"
+                placeholder="Wheelchair access, etc."
+              ></textarea>
+            </div>
+          </div>
+
+          <button class="btn btn--accent btn--block" type="submit">
+            Confirm Reservation →
+          </button>
+
+          <p class="form-legal">
+            By continuing you agree to event policies. No refunds within 48
+            hours of showtime.
+          </p>
+        </form>
+      </div>
+    </section>
+
+    <!-- FOOTER (reuse) -->
+    <footer class="site-footer">
+      <div class="container footer-grid">
+        <div class="footer-brand">
+          <div class="brand">
+            <span class="brand__logo">🎵</span>
+            <span class="brand__name">PulseLive</span>
+          </div>
+          <p class="footer-brand__text">
+            The fastest way to get into the show. Zero scalpers. Zero drama.
+          </p>
+        </div>
+
+        <div class="footer-col">
+          <h4 class="footer-col__title">Platform</h4>
+          <ul class="footer-col__list">
+            <li><a href="#">How it works</a></li>
+            <li><a href="#">Gift cards</a></li>
+            <li><a href="#">Student deals</a></li>
+          </ul>
+        </div>
+
+        <div class="footer-col">
+          <h4 class="footer-col__title">Support</h4>
+          <ul class="footer-col__list">
+            <li><a href="#">Help Center</a></li>
+            <li><a href="#">Report an issue</a></li>
+            <li><a href="#">Cancellations</a></li>
+          </ul>
+        </div>
+
+        <div class="footer-col">
+          <h4 class="footer-col__title">Follow</h4>
+          <ul class="footer-col__list">
+            <li><a href="#">Instagram</a></li>
+            <li><a href="#">TikTok</a></li>
+            <li><a href="#">X / Twitter</a></li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="footer-bottom">
+        <p>© 2025 PulseLive Inc. All rights reserved.</p>
+      </div>
+    </footer>
+  </body>
+</html>

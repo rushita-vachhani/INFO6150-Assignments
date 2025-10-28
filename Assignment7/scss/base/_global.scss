@@ -1,0 +1,92 @@
+@use "variables";
+@use "mixins";
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+  -webkit-font-smoothing: antialiased;
+}
+
+body {
+  background-color: var(--bg-page);
+  color: var(--text-main);
+  font-family: variables.$font-stack;
+  line-height: 1.5;
+  margin: 0;
+}
+
+img {
+  max-width: 100%;
+  display: block;
+}
+
+.container {
+  width: min(100% - variables.$space-xl, var(--container-max));
+  margin-inline: auto;
+}
+
+/* placeholder selector requirement */
+%text-dim {
+  color: var(--text-dim);
+  font-size: 0.9rem;
+}
+
+/* utility classes built with @extend */
+.muted {
+  @extend %text-dim;
+  letter-spacing: .02em;
+}
+
+.highlight {
+  color: variables.$color-accent;
+}
+
+/* generic card using mixin */
+.neon-card {
+  @include mixins.surface-card;
+  border: 1px solid rgba(variables.$color-primary, 0.5);
+  position: relative;
+  padding: variables.$space-lg;
+  background-image: radial-gradient(
+    circle at 20% 20%,
+    rgba(255, 51, 102, 0.2) 0%,
+    rgba(0, 0, 0, 0) 70%
+  );
+}
+
+/* little label */
+.badge {
+  display: inline-block;
+  font-size: 0.7rem;
+  font-weight: 600;
+  padding: 0.25rem 0.5rem;
+  border-radius: variables.$radius-md;
+  text-transform: uppercase;
+  line-height: 1.2;
+
+  &--hot {
+    background-color: variables.$color-primary;
+    color: #fff;
+  }
+
+  &--new {
+    background-color: variables.$color-accent;
+    color: #000;
+  }
+
+  &--low {
+    background-color: #ff884d;
+    color: #000;
+  }
+
+  &--soldout {
+    background-color: #4d4dff;
+    color: #fff;
+  }
+}
+
+.price {
+  font-weight: 600;
+  color: #fff;
+}

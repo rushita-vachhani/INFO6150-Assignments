@@ -1,0 +1,73 @@
+@use "../base/variables";
+@use "../base/mixins";
+
+.site-footer {
+  background-color: variables.$color-bg;
+  border-top: 1px solid rgba(255,255,255,0.07);
+  margin-top: variables.$space-2xl;
+  padding-top: variables.$space-xl;
+
+  .footer-grid {
+    @include mixins.grid-cols(1, 0, variables.$space-xl);
+
+    @include mixins.mq(md) {
+      @include mixins.grid-cols(4, 0, variables.$space-xl);
+    }
+  }
+
+  .footer-brand {
+    .brand {
+      display: flex;
+      gap: variables.$space-xs;
+      align-items: center;
+
+      &__name {
+        font-weight: 600;
+        color: variables.$color-primary;
+      }
+    }
+
+    &__text {
+      margin-top: variables.$space-sm;
+      color: var(--text-dim);
+      font-size: 0.9rem;
+      max-width: 22ch;
+    }
+  }
+
+  .footer-col {
+    &__title {
+      color: #fff;
+      font-size: 0.9rem;
+      font-weight: 600;
+      margin-bottom: variables.$space-sm;
+    }
+
+    &__list {
+      list-style: none;
+      padding: 0;
+      margin: 0;
+      li {
+        margin-bottom: variables.$space-xs;
+      }
+      a {
+        color: var(--text-dim);
+        text-decoration: none;
+        font-size: 0.85rem;
+        transition: color var(--transition-fast);
+        &:hover {
+          color: variables.$color-accent;
+        }
+      }
+    }
+  }
+
+  .footer-bottom {
+    border-top: 1px solid rgba(255,255,255,0.07);
+    text-align: center;
+    margin-top: variables.$space-xl;
+    padding: variables.$space-md 0;
+    font-size: 0.8rem;
+    color: var(--text-dim);
+  }
+}

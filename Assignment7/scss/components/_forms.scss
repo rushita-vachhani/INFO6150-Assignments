@@ -1,0 +1,75 @@
+@use "../base/variables";
+@use "../base/mixins";
+
+.booking-form {
+  background-color: variables.$color-bg;
+  padding-block: variables.$space-2xl;
+}
+
+.form-wrapper {
+  max-width: 700px;
+  margin-inline: auto;
+  width: 100%;
+}
+
+.form-card {
+  @include mixins.surface-card;
+  padding: variables.$space-xl;
+  border: 1px solid rgba(255,255,255,0.07);
+
+  &__title {
+    color: #fff;
+    font-weight: 600;
+    font-size: 1.2rem;
+    margin: 0 0 variables.$space-md;
+  }
+}
+
+.form-row {
+  display: flex; /* FLEXBOX requirement */
+  flex-wrap: wrap;
+  gap: variables.$space-md;
+  margin-bottom: variables.$space-md;
+}
+
+.form-field {
+  flex: 1 1 250px;
+  display: flex;
+  flex-direction: column;
+  label {
+    color: var(--text-main);
+    font-size: 0.8rem;
+    font-weight: 500;
+    margin-bottom: variables.$space-xs;
+  }
+  input,
+  select,
+  textarea {
+    background-color: variables.$color-surface;
+    border: 1px solid rgba(255,255,255,0.12);
+    border-radius: variables.$radius-md;
+    font-family: inherit;
+    color: #fff;
+    padding: variables.$space-sm variables.$space-md;
+    font-size: 0.9rem;
+    line-height: 1.4;
+    outline: none;
+    transition: border var(--transition-fast), box-shadow var(--transition-fast);
+
+    &:focus {
+      border-color: variables.$color-primary;
+      box-shadow: 0 0 0 3px rgba(255,51,102,0.3);
+    }
+  }
+
+  &--full {
+    flex: 1 1 100%;
+  }
+}
+
+.form-legal {
+  font-size: 0.7rem;
+  color: var(--text-dim);
+  line-height: 1.4;
+  margin-top: variables.$space-md;
+}

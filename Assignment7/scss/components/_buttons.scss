@@ -1,0 +1,63 @@
+@use "../base/variables";
+@use "../base/mixins";
+
+/* Placeholder as base button style */
+%btn-base {
+  display: inline-block;
+  border: 0;
+  border-radius: variables.$radius-md;
+  font-family: inherit;
+  font-weight: 600;
+  line-height: 1.2;
+  text-align: center;
+  cursor: pointer;
+  transition: all var(--transition-fast);
+  text-decoration: none;
+  color: #fff;
+  background-color: variables.$color-primary;
+  padding: variables.$space-sm variables.$space-md;
+  box-shadow: 0 10px 30px var(--shadow-color);
+
+  &:hover {
+    transform: translateY(-2px);
+  }
+}
+
+.btn {
+  @extend %btn-base;
+
+  &--primary {
+    background-color: variables.$color-primary;
+    color: #fff;
+  }
+
+  &--accent {
+    background-color: variables.$color-accent;
+    color: #000;
+  }
+
+  &--ghost {
+    background-color: transparent;
+    border: 1px solid rgba(255,255,255,0.3);
+    color: #fff;
+
+    &:hover {
+      background-color: rgba(255,255,255,0.05);
+    }
+  }
+
+  &--sm {
+    font-size: 0.8rem;
+    padding: variables.$space-xs variables.$space-sm;
+  }
+
+  &--block {
+    width: 100%;
+    display: block;
+  }
+
+  &--small {
+    font-size: 0.8rem;
+    padding: variables.$space-xs variables.$space-sm;
+  }
+}

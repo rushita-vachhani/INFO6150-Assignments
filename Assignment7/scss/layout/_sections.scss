@@ -1,0 +1,219 @@
+@use "../base/variables";
+@use "../base/mixins";
+
+/* HERO SECTION */
+.hero {
+  padding-block: variables.$space-2xl variables.$space-xl;
+  background: radial-gradient(circle at 10% 10%, rgba(255,51,102,0.2) 0%, rgba(0,0,0,0) 60%);
+
+  .hero__wrapper {
+    @include mixins.grid-cols(1, 0, variables.$space-xl);
+
+    @include mixins.mq(md) {
+      @include mixins.grid-cols(2, 0, variables.$space-xl);
+      align-items: center;
+    }
+  }
+
+  .hero__title {
+    font-size: clamp(2rem, 1rem + 2vw, 3rem);
+    font-weight: 600;
+    color: #fff;
+    line-height: 1.2;
+  }
+
+  .hero__text {
+    margin-top: variables.$space-md;
+    color: var(--text-dim);
+    max-width: 38ch;
+    font-size: 1rem;
+  }
+
+  .hero__actions {
+    margin-top: variables.$space-lg;
+    display: flex;
+    flex-wrap: wrap;
+    gap: variables.$space-sm;
+  }
+
+  .hero__stats {
+    margin-top: variables.$space-xl;
+    display: flex;
+    flex-wrap: wrap;
+    gap: variables.$space-xl;
+    .stat {
+      display: flex;
+      flex-direction: column;
+      &__num {
+        font-size: 1.25rem;
+        font-weight: 600;
+        color: #fff;
+      }
+      &__label {
+        font-size: 0.8rem;
+        color: var(--text-dim);
+      }
+    }
+  }
+
+  .hero-card {
+    position: relative;
+    padding: variables.$space-xl;
+    border-radius: variables.$radius-lg;
+    min-height: 240px;
+
+    &__tag {
+      font-size: 0.7rem;
+      font-weight: 600;
+      color: #000;
+      background-color: variables.$color-accent;
+      padding: 0.25rem 0.5rem;
+      border-radius: variables.$radius-md;
+      display: inline-block;
+      margin-bottom: variables.$space-sm;
+    }
+
+    &__title {
+      font-size: 1.25rem;
+      color: #fff;
+      margin: 0 0 variables.$space-xs;
+      font-weight: 600;
+    }
+
+    &__meta {
+      color: var(--text-dim);
+      font-size: 0.9rem;
+      margin-bottom: variables.$space-md;
+    }
+  }
+}
+
+/* UPCOMING EVENTS GRID */
+.events {
+  padding-block: variables.$space-2xl;
+  background-color: variables.$color-bg;
+
+  .section-head {
+    @include mixins.flex-center(row, variables.$space-md);
+    justify-content: space-between;
+    flex-wrap: wrap;
+    margin-bottom: variables.$space-lg;
+
+    &__title {
+      color: #fff;
+      font-size: 1.1rem;
+      font-weight: 600;
+    }
+
+    &__link {
+      font-size: 0.9rem;
+      color: variables.$color-accent;
+      text-decoration: none;
+    }
+  }
+
+  .events-grid {
+    // GRID requirement #2
+    @include mixins.grid-cols(1, 0, variables.$space-lg);
+
+    @include mixins.mq(md) {
+      @include mixins.grid-cols(2, 0, variables.$space-lg);
+    }
+
+    @include mixins.mq(lg) {
+      @include mixins.grid-cols(4, 0, variables.$space-lg);
+    }
+  }
+}
+
+/* ARTISTS FLEX ROW */
+.artists {
+  padding-block: variables.$space-2xl;
+  background-color: variables.$color-bg;
+
+  .section-head {
+    @include mixins.flex-center(row, variables.$space-md);
+    justify-content: space-between;
+    flex-wrap: wrap;
+    margin-bottom: variables.$space-lg;
+
+    &__title {
+      color: #fff;
+      font-size: 1.1rem;
+      font-weight: 600;
+    }
+
+    &__link {
+      font-size: 0.9rem;
+      color: variables.$color-accent;
+      text-decoration: none;
+    }
+  }
+
+  .artists-row {
+    display: flex; /* FLEXBOX requirement */
+    flex-wrap: wrap;
+    gap: variables.$space-md;
+
+    @include mixins.mq(md) {
+      flex-wrap: nowrap;
+    }
+  }
+}
+
+/* BOOKING PAGE TOP SECTION */
+.booking-hero {
+  padding-block: variables.$space-2xl;
+  background: radial-gradient(circle at 80% 10%, rgba(255,215,0,0.15) 0%, rgba(0,0,0,0) 60%);
+}
+
+.booking-layout {
+  @include mixins.grid-cols(1, 0, variables.$space-xl);
+
+  @include mixins.mq(md) {
+    @include mixins.grid-cols(2, 0, variables.$space-xl);
+    align-items: start;
+  }
+
+  &__info {
+    .booking-layout__title {
+      font-weight: 600;
+      font-size: 1.5rem;
+      color: #fff;
+      margin: 0 0 variables.$space-xs;
+    }
+
+    .booking-layout__meta {
+      color: var(--text-dim);
+      font-size: 0.9rem;
+      line-height: 1.4;
+      margin-bottom: variables.$space-md;
+    }
+
+    .booking-layout__desc {
+      color: #fff;
+      font-size: 0.95rem;
+      margin-bottom: variables.$space-md;
+      max-width: 46ch;
+    }
+
+    .booking-layout__highlights {
+      margin: 0;
+      padding-left: 1rem;
+      color: var(--text-main);
+      font-size: 0.9rem;
+      li {
+        margin-bottom: variables.$space-xs;
+      }
+    }
+  }
+}
+
+/* PRICING GRID */
+.pricing-grid {
+  @include mixins.grid-cols(1, 0, variables.$space-lg);
+
+  @include mixins.mq(md) {
+    @include mixins.grid-cols(3, 0, variables.$space-lg);
+  }
+}

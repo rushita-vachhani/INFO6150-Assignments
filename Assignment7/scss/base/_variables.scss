@@ -1,0 +1,47 @@
+// COLOR PALETTE
+$color-primary: #ff3366;
+$color-accent: #ffd700;
+$color-bg: #0f0f10;
+$color-surface: #1a1a1f;
+$color-text: #f4f4f4;
+$color-muted: #8a8a8a;
+
+// TYPOGRAPHY
+$font-stack: 'Poppins', system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+
+// RADIUS / SPACING
+$radius-lg: 1rem;
+$radius-md: 0.5rem;
+$radius-sm: 0.25rem;
+
+$space-2xs: 0.25rem;
+$space-xs: 0.5rem;
+$space-sm: 0.75rem;
+$space-md: 1rem;
+$space-lg: 1.5rem;
+$space-xl: 2rem;
+$space-2xl: 3rem;
+
+// BREAKPOINTS (MAP + INTERPOLATION USAGE)
+$breakpoints: (
+  sm: 480px,
+  md: 768px,
+  lg: 1024px
+);
+
+// CSS CUSTOM PROPERTIES (requirement: use alongside SASS vars)
+:root {
+  --shadow-color: rgba(0, 0, 0, 0.6);
+  --transition-fast: 0.15s ease;
+  --container-max: 1200px;
+}
+
+// THEME VARS (dark theme)
+.theme-dark {
+  --bg-page: #0f0f10;
+  --bg-card: #1a1a1f;
+  --text-main: #f4f4f4;
+  --text-dim: #8a8a8a;
+  --brand-main: #ff3366;
+  --brand-accent: #ffd700;
+}

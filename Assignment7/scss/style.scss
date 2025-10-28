@@ -1,15 +1,15 @@
-@use "base/variables";
-@use "base/functions";
-@use "base/mixins";
-@use "base/global";
+@import "base/variables";
+@import "base/functions";
+@import "base/mixins";
+@import "base/global";
 
-@use "layout/header";
-@use "layout/footer";
-@use "layout/sections";
+@import "layout/header";
+@import "layout/footer";
+@import "layout/sections";
 
-@use "components/buttons";
-@use "components/cards";
-@use "components/forms";
+@import "components/buttons";
+@import "components/cards";
+@import "components/forms";
 
-@use "pages/home";
-@use "pages/book";
+@import "pages/home";
+@import "pages/book";
