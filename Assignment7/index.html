@@ -1,0 +1,240 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>PulseLive — Concert Tickets</title>
+    <link rel="preconnect" href="https://fonts.gstatic.com" />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="css/style.css" />
+  </head>
+  <body class="theme-dark">
+    <!-- HEADER / NAV -->
+    <header class="site-header">
+      <div class="container nav-bar">
+        <div class="brand">
+          <span class="brand__logo">🎵</span>
+          <span class="brand__name">PulseLive</span>
+        </div>
+
+        <nav class="main-nav">
+          <a href="index.html" class="main-nav__link main-nav__link--active"
+            >Home</a
+          >
+          <a href="book.html" class="main-nav__link">Book Tickets</a>
+          <a href="#" class="main-nav__link">Artists</a>
+          <a href="#" class="main-nav__link">Support</a>
+        </nav>
+
+        <a href="book.html" class="btn btn--primary btn--sm">Get Tickets</a>
+      </div>
+    </header>
+
+    <!-- HERO -->
+    <section class="hero">
+      <div class="container hero__wrapper">
+        <div class="hero__content">
+          <h1 class="hero__title">
+            Your Night. Your Sound. <span class="highlight">Live.</span>
+          </h1>
+          <p class="hero__text">
+            Book tickets for the hottest live concerts, festivals, and secret
+            shows in your city.
+          </p>
+          <div class="hero__actions">
+            <a class="btn btn--primary" href="book.html">Book Now</a>
+            <a class="btn btn--ghost" href="#">See Lineup</a>
+          </div>
+          <div class="hero__stats">
+            <div class="stat">
+              <span class="stat__num">120+</span>
+              <span class="stat__label">Events / month</span>
+            </div>
+            <div class="stat">
+              <span class="stat__num">45</span>
+              <span class="stat__label">Cities</span>
+            </div>
+            <div class="stat">
+              <span class="stat__num">1M+</span>
+              <span class="stat__label">Tickets sold</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="hero__art">
+          <div class="hero-card neon-card">
+            <div class="hero-card__tag">Featured</div>
+            <h2 class="hero-card__title">Midnight Electric Festival</h2>
+            <p class="hero-card__meta">
+              Nov 16 · Brooklyn Navy Yard · 10PM - 4AM
+            </p>
+            <a href="book.html" class="btn btn--accent btn--block"
+              >Reserve Seat →</a
+            >
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- UPCOMING EVENTS (GRID) -->
+    <section class="events">
+      <div class="container">
+        <div class="section-head">
+          <h2 class="section-head__title">Upcoming Shows</h2>
+          <a class="section-head__link" href="book.html">View all →</a>
+        </div>
+
+        <div class="events-grid">
+          <!-- Card 1 -->
+          <article class="event-card">
+            <div class="event-card__img img--1"></div>
+            <div class="event-card__body">
+              <h3 class="event-card__title">Neon Pulse Tour</h3>
+              <p class="event-card__info">Boston · Oct 31 · 8PM</p>
+              <div class="event-card__row">
+                <span class="badge badge--hot">HOT</span>
+                <span class="price">$59</span>
+              </div>
+              <a class="btn btn--small btn--primary" href="book.html">Book</a>
+            </div>
+          </article>
+
+          <!-- Card 2 -->
+          <article class="event-card">
+            <div class="event-card__img img--2"></div>
+            <div class="event-card__body">
+              <h3 class="event-card__title">Lo-Fi Nights</h3>
+              <p class="event-card__info">NYC · Nov 02 · 9PM</p>
+              <div class="event-card__row">
+                <span class="badge badge--new">NEW</span>
+                <span class="price">$42</span>
+              </div>
+              <a class="btn btn--small btn--primary" href="book.html">Book</a>
+            </div>
+          </article>
+
+          <!-- Card 3 -->
+          <article class="event-card">
+            <div class="event-card__img img--3"></div>
+            <div class="event-card__body">
+              <h3 class="event-card__title">Indie Underlights</h3>
+              <p class="event-card__info">Chicago · Nov 05 · 7PM</p>
+              <div class="event-card__row">
+                <span class="badge badge--low">LOW SEATS</span>
+                <span class="price">$35</span>
+              </div>
+              <a class="btn btn--small btn--primary" href="book.html">Book</a>
+            </div>
+          </article>
+
+          <!-- Card 4 -->
+          <article class="event-card">
+            <div class="event-card__img img--4"></div>
+            <div class="event-card__body">
+              <h3 class="event-card__title">Midnight Electric</h3>
+              <p class="event-card__info">Brooklyn · Nov 16 · 10PM</p>
+              <div class="event-card__row">
+                <span class="badge badge--soldout">ALMOST GONE</span>
+                <span class="price">$79</span>
+              </div>
+              <a class="btn btn--small btn--primary" href="book.html">Book</a>
+            </div>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <!-- FEATURED ARTISTS (FLEXBOX ROW) -->
+    <section class="artists">
+      <div class="container">
+        <div class="section-head">
+          <h2 class="section-head__title">Featured Artists</h2>
+          <a class="section-head__link" href="#">See all →</a>
+        </div>
+
+        <div class="artists-row">
+          <div class="artist-card">
+            <div class="artist-card__avatar artist--1"></div>
+            <div class="artist-card__meta">
+              <h3 class="artist-card__name">DJ Mira</h3>
+              <p class="artist-card__genre">House / Techno</p>
+            </div>
+          </div>
+
+          <div class="artist-card">
+            <div class="artist-card__avatar artist--2"></div>
+            <div class="artist-card__meta">
+              <h3 class="artist-card__name">The Slow Hours</h3>
+              <p class="artist-card__genre">Indie Alt</p>
+            </div>
+          </div>
+
+          <div class="artist-card">
+            <div class="artist-card__avatar artist--3"></div>
+            <div class="artist-card__meta">
+              <h3 class="artist-card__name">Luna Verse</h3>
+              <p class="artist-card__genre">Synth Pop</p>
+            </div>
+          </div>
+
+          <div class="artist-card">
+            <div class="artist-card__avatar artist--4"></div>
+            <div class="artist-card__meta">
+              <h3 class="artist-card__name">Riot Bloom</h3>
+              <p class="artist-card__genre">Alt Rock</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- FOOTER -->
+    <footer class="site-footer">
+      <div class="container footer-grid">
+        <div class="footer-brand">
+          <div class="brand">
+            <span class="brand__logo">🎵</span>
+            <span class="brand__name">PulseLive</span>
+          </div>
+          <p class="footer-brand__text">
+            The fastest way to get into the show. Zero scalpers. Zero drama.
+          </p>
+        </div>
+
+        <div class="footer-col">
+          <h4 class="footer-col__title">Platform</h4>
+          <ul class="footer-col__list">
+            <li><a href="#">How it works</a></li>
+            <li><a href="#">Gift cards</a></li>
+            <li><a href="#">Student deals</a></li>
+          </ul>
+        </div>
+
+        <div class="footer-col">
+          <h4 class="footer-col__title">Support</h4>
+          <ul class="footer-col__list">
+            <li><a href="#">Help Center</a></li>
+            <li><a href="#">Report an issue</a></li>
+            <li><a href="#">Cancellations</a></li>
+          </ul>
+        </div>
+
+        <div class="footer-col">
+          <h4 class="footer-col__title">Follow</h4>
+          <ul class="footer-col__list">
+            <li><a href="#">Instagram</a></li>
+            <li><a href="#">TikTok</a></li>
+            <li><a href="#">X / Twitter</a></li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="footer-bottom">
+        <p>© 2025 PulseLive Inc. All rights reserved.</p>
+      </div>
+    </footer>
+  </body>
+</html>
