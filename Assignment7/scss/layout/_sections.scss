@@ -113,7 +113,7 @@
   }
 
   .events-grid {
-    // GRID requirement #2
+    // GRID LAYOUT
     @include mixins.grid-cols(1, 0, variables.$space-lg);
 
     @include mixins.mq(md) {
@@ -151,7 +151,7 @@
   }
 
   .artists-row {
-    display: flex; /* FLEXBOX requirement */
+    display: flex; 
     flex-wrap: wrap;
     gap: variables.$space-md;
 

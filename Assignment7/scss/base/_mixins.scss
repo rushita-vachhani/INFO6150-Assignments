@@ -24,8 +24,6 @@
   box-shadow: 0 20px 60px var(--shadow-color);
 }
 
-// RESPONSIVE MQ USING INTERPOLATION
-// Example: @include mq(md) { ... }
 @mixin mq($size) {
   @media (min-width: #{functions.bp($size)}) {
     @content;

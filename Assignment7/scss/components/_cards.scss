@@ -1,7 +1,6 @@
 @use "../base/variables";
 @use "../base/mixins";
 
-/* EVENT CARD */
 .event-card {
   @include mixins.surface-card;
   overflow: hidden;
@@ -45,7 +44,6 @@
   }
 }
 
-/* Artist card row items */
 .artist-card {
   background-color: variables.$color-surface;
   border-radius: variables.$radius-md;
@@ -81,7 +79,6 @@
   }
 }
 
-/* Pricing / tier cards */
 .tier-card {
   @include mixins.surface-card;
   border: 1px solid rgba(255,255,255,0.12);
@@ -128,10 +125,7 @@
   }
 }
 
-/* INTERPOLATION + LOOP
-   Generates .img--1, .img--2 ... and .artist--1, etc.
-   This satisfies the "interpolation for dynamic selectors" requirement.
-*/
+
 
 $event-images: (
   1: linear-gradient(120deg, #ff3366 0%, #1a1a1f 60%),

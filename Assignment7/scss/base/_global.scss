@@ -26,13 +26,11 @@ img {
   margin-inline: auto;
 }
 
-/* placeholder selector requirement */
 %text-dim {
   color: var(--text-dim);
   font-size: 0.9rem;
 }
 
-/* utility classes built with @extend */
 .muted {
   @extend %text-dim;
   letter-spacing: .02em;
@@ -42,7 +40,6 @@ img {
   color: variables.$color-accent;
 }
 
-/* generic card using mixin */
 .neon-card {
   @include mixins.surface-card;
   border: 1px solid rgba(variables.$color-primary, 0.5);
@@ -55,7 +52,6 @@ img {
   );
 }
 
-/* little label */
 .badge {
   display: inline-block;
   font-size: 0.7rem;
