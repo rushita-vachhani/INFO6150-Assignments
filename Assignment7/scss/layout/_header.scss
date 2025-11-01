@@ -20,10 +20,11 @@
     gap: variables.$space-xs;
 
     &__logo {
-      font-size: 1.25rem;
+      font-size: 1.65rem;
     }
     &__name {
       font-weight: 600;
+      font-size: 1.65rem;
       color: variables.$color-primary;
     }
   }

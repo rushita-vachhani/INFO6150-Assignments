@@ -5,12 +5,10 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Book Tickets – PulseLive</title>
     <link rel="preconnect" href="https://fonts.gstatic.com" />
-    <link
-      href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600&display=swap"
-      rel="stylesheet"
-    />
     <link rel="stylesheet" href="css/style.css" />
+    <link rel="shortcut icon" href="assets/favicon.ico" type="image/x-icon" />
   </head>
+
   <body class="theme-dark">
     <!-- HEADER / NAV (reuse) -->
     <header class="site-header">
@@ -48,7 +46,6 @@
             tunnels, projection walls, and surprise B2B sets.
           </p>
           <ul class="booking-layout__highlights">
-            <li>Age 18+ only</li>
             <li>Govt ID required</li>
             <li>No re-entry after 1AM</li>
           </ul>
@@ -101,23 +98,25 @@
     <!-- BOOKING FORM (Flexbox vertical form card) -->
     <section class="booking-form">
       <div class="container form-wrapper">
-        <form class="form-card">
+        <form id="bookingForm" class="form-card" novalidate>
           <h2 class="form-card__title">Book Your Spot</h2>
 
           <div class="form-row">
             <div class="form-field">
-              <label for="name">Full Name</label>
-              <input id="name" type="text" placeholder="Jane Doe" required />
+              <label for="name">Full Name*</label>
+              <input id="name" type="text" placeholder="John Doe" required />
+              <small class="error-text" id="nameError"></small>
             </div>
 
             <div class="form-field">
-              <label for="email">Email</label>
+              <label for="email">Email*</label>
               <input
                 id="email"
                 type="email"
-                placeholder="you@example.com"
+                placeholder="you@northeastern.edu"
                 required
               />
+              <small class="error-text" id="emailError"></small>
             </div>
           </div>
 
@@ -153,7 +152,11 @@
             </div>
           </div>
 
-          <button class="btn btn--accent btn--block" type="submit">
+          <button
+            class="btn btn--accent btn--block"
+            type="submit"
+            id="submitBtn"
+          >
             Confirm Reservation →
           </button>
 
@@ -161,6 +164,10 @@
             By continuing you agree to event policies. No refunds within 48
             hours of showtime.
           </p>
+
+          <div id="successMsg" class="success-msg" style="display: none">
+            Booking successful! 🎉
+          </div>
         </form>
       </div>
     </section>
@@ -211,4 +218,78 @@
       </div>
     </footer>
   </body>
+  <script>
+    document.addEventListener("DOMContentLoaded", () => {
+      const form = document.getElementById("bookingForm");
+      const nameInput = document.getElementById("name");
+      const emailInput = document.getElementById("email");
+      const submitBtn = document.getElementById("submitBtn");
+      const nameError = document.getElementById("nameError");
+      const emailError = document.getElementById("emailError");
+      const successMsg = document.getElementById("successMsg");
+
+      const nameRegex = /^[A-Za-z\s]{2,}$/; // Require at least 2 chars
+      const emailRegex = /^[A-Za-z0-9._%+-]+@northeastern\.edu$/;
+
+      function validateName() {
+        const nameValue = nameInput.value.trim();
+        if (nameValue === "") {
+          nameError.textContent = "Full name is a required field.";
+          return false;
+        } else if (!nameRegex.test(nameValue)) {
+          nameError.textContent =
+            "Please enter a valid full name (at least 2 letters).";
+          return false;
+        } else {
+          nameError.textContent = "";
+          return true;
+        }
+      }
+
+      function validateEmail() {
+        const emailValue = emailInput.value.trim();
+        if (emailValue === "") {
+          emailError.textContent = "Email is a required field.";
+          return false;
+        } else if (!emailRegex.test(emailValue)) {
+          emailError.textContent =
+            "A valid @northeastern.edu email is required.";
+          return false;
+        } else {
+          emailError.textContent = "";
+          return true;
+        }
+      }
+
+      function validateForm() {
+        const isNameValid = validateName();
+        const isEmailValid = validateEmail();
+        return isNameValid && isEmailValid;
+      }
+
+      // On input, validate the field to give real-time feedback.
+      nameInput.addEventListener("input", () => {
+        validateName();
+      });
+      emailInput.addEventListener("input", () => {
+        validateEmail();
+      });
+
+      // On blur, show errors if the user leaves an invalid field.
+      nameInput.addEventListener("blur", validateName);
+      emailInput.addEventListener("blur", validateEmail);
+
+      form.addEventListener("submit", function (e) {
+        e.preventDefault();
+        successMsg.style.display = "none";
+
+        // Run validation on submit and only proceed if it passes
+        const isFormValid = validateForm();
+        if (isFormValid) {
+          successMsg.style.display = "block";
+          form.reset();
+        }
+      });
+    });
+  </script>
 </html>
