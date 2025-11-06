@@ -163,6 +163,11 @@ function showModalConfirmation(msg, duration) {
     $activeEventDisplay.empty();
 $('.details label').css('visibility', 'visible');
     await refreshHistory();
+    // Clear the event name after saving
+    $event.val('').trigger('input');   // clears the field (trigger updates if you listen to input/keyup)
+    $eventErr.text('');                // clear any error message
+    $event.focus();                    // optional: put cursor back in the field
+
   }
 
   function resetTimer() {

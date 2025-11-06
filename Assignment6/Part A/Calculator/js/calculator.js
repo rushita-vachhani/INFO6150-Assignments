@@ -29,7 +29,7 @@ $(function () {
   const validateField = ($el, $err) => {
     const v = $el.val().trim();
     $err.text('');
-    if (!v.length) { $err.text('Please enter a valid number'); return false; }
+    if (!v.length) { $err.text('Number input is required'); return false; }
     if (!numRegex.test(v)) { $err.text('Please enter a valid number'); return false; }
     if (v === '.' || v === '-.' || v === '-') {
       $err.text('Please enter a valid number'); 
@@ -40,6 +40,10 @@ $(function () {
 
   $n1.on('focus', () => $n1Err.text(''));
   $n2.on('focus', () => $n2Err.text(''));
+  // Validate on keyup in real-time
+$n1.on('keyup', () => validateField($n1, $n1Err));
+$n2.on('keyup', () => validateField($n2, $n2Err));
+
 
   $('.btn-row .btn').on('click', function () {
     const op = $(this).data('op');

@@ -22,7 +22,15 @@ $(function () {
   const validateEmail = () => {
     const v = $email.val().trim();
     $emailError.text(''); $credError.text('');
-    if (!v || !isValidEmail(v)) {
+    if (!v) {
+      $emailError.text('Email is required');
+      return false;
+    }
+    if (!isEmailFormatValid()) {
+      $emailError.text('Please enter a valid Northeastern email');
+      return false;
+    }
+    if (!isValidEmail(v)) {
       $emailError.text('Please enter a valid Northeastern email');
       return false;
     }
