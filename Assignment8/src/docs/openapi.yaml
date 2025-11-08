@@ -272,8 +272,27 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/Error'
+              examples:
+                invalidFormat:
+                  summary: Invalid File Format
+                  value:
+                    error: "Invalid file format. Only JPEG, PNG, and GIF are allowed."
+                imageExists:
+                  summary: Image Already Exists
+                  value:
+                    error: "Image already exists for this user."
+                emailRequired:
+                  summary: Email Required
+                  value:
+                    error: "Email is required."
+        '404':
+          description: Not Found - User with the specified email was not found.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
               example:
-                message: "Email and image file are required."
+                error: "User not found."
 
 components:
   securitySchemes:
