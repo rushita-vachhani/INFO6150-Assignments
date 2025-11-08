@@ -1,66 +1,216 @@
-openapi: 3.0.3
+openapi: 3.0.0
 info:
-  title: Assignment 8 Users API
+  title: Assignment 8 - Users API
+  description: API for managing users, including creation, authentication, and profile management.
   version: 1.0.0
+
 servers:
   - url: http://localhost:4000
+    description: Local development server
+
 paths:
   /user/create:
     post:
-      summary: Create a new user
+      summary: Create User
+      description: Creates a new user with a full name, email, and password. The email must be unique.
+      tags:
+        - User
       requestBody:
         required: true
         content:
           application/json:
             schema:
               type: object
-              required: [fullName, email, password]
               properties:
-                fullName: { type: string, example: John Doe }
-                email: { type: string, format: email, example: john@example.com }
-                password: { type: string, example: StrongP@ssw0rd }
+                fullName:
+                  type: string
+                email:
+                  type: string
+                  format: email
+                password:
+                  type: string
+                  format: password
+              required:
+                - fullName
+                - email
+                - password
+            example:
+              fullName: "Rushitaben Vachhani"
+              email: "rv@northeastern.edu"
+              password: "Nu#4106522" # Changed to match Postman
       responses:
-        "201": { description: User created successfully }
-        "400": { description: Validation failed }
+        '201':
+          description: User created successfully
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/UserResponse'
+              example:
+                message: "User created successfully"
+                user:
+                  _id: "60c72b2f9b1d8c001f8e4d1e"
+                  fullName: "Rushitaben Vachhani"
+                  email: "rv@northeastern.edu"
+        '400':
+          description: Bad Request - User with this email already exists.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+              example:
+                message: "User already exists."
+  /auth/login:
+    post:
+      summary: Login
+      description: Authenticates a user with their email and password, returning a JWT token upon success.
+      tags:
+        - Auth
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                email:
+                  type: string
+                  format: email
+                password:
+                  type: string
+                  format: password
+              required:
+                - email
+                - password
+            example:
+              email: "rv@northeastern.edu"
+              password: "Nu#4106522" # Changed to match Postman
+      responses:
+        '200':
+          description: Login successful
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  message:
+                    type: string
+                  token:
+                    type: string
+              example:
+                message: "Login successful"
+                token: "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI2MGM3MmIyZjliMWQ4YzAwMWY4ZTRkMWUiLCJpYXQiOjE2MjM2NjQwMDAsImV4cCI6MTYyMzY2NzYwMH0.example_token"
+        '401':
+          description: Unauthorized - Invalid email or password.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+              example:
+                message: "Invalid credentials"
   /user/edit:
     put:
-      summary: Update user's fullName and/or password by email (email cannot change)
+      summary: Edit User
+      description: Updates an existing user's information. The user is identified by their email. The full name and/or password can be changed.
+      tags:
+        - User
+      security:
+        - bearerAuth: []
+        - User
       requestBody:
         required: true
         content:
           application/json:
             schema:
               type: object
-              required: [email]
               properties:
-                email: { type: string, format: email }
-                fullName: { type: string }
-                password: { type: string }
+                email:
+                  type: string
+                  format: email
+                fullName:
+                  type: string
+                password:
+                  type: string
+                  format: password
+              required:
+                - email
+            example:
+              email: "rv@northeastern.edu"
+              fullName: "Rushita V."
+              password: "NewP@ssw0rd"
       responses:
-        "200": { description: User updated successfully }
-        "400": { description: Validation failed }
-        "404": { description: User not found }
+        '200':
+          description: User updated successfully
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/UserResponse'
+              example:
+                message: "User updated successfully"
+                user:
+                  _id: "60c72b2f9b1d8c001f8e4d1e"
+                  fullName: "Rushita V."
+                  email: "rv@northeastern.edu"
+        '404':
+          description: Not Found - User with the specified email was not found.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+              example:
+                message: "User not found"
   /user/delete:
     delete:
-      summary: Delete a user by email
+      summary: Delete User
+      description: Deletes a user from the database, identified by their email.
+      tags:
+        - User
+      security:
+        - bearerAuth: []
+        - User
       requestBody:
         required: true
         content:
           application/json:
             schema:
               type: object
-              required: [email]
               properties:
-                email: { type: string, format: email }
+                email:
+                  type: string
+                  format: email
+              required:
+                - email
+            example:
+              email: "rv@northeastern.edu"
       responses:
-        "200": { description: User deleted successfully }
-        "404": { description: User not found }
+        '200':
+          description: User deleted successfully
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+              example:
+                message: "User deleted successfully"
+        '404':
+          description: Not Found - User with the specified email was not found.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+              example:
+                message: "User not found"
+
   /user/getAll:
     get:
-      summary: Retrieve all users (includes hashed passwords)
+      summary: Get All Users
+      description: Retrieves a list of all users in the database. This is typically an admin-only endpoint.
+      tags:
+        - User
+      security:
+        - bearerAuth: []
+        - User
       responses:
-        "200":
-          description: OK
+        '200':
+          description: A list of users.
           content:
             application/json:
               schema:
@@ -69,42 +219,100 @@ paths:
                   users:
                     type: array
                     items:
-                      type: object
-                      properties:
-                        fullName: { type: string }
-                        email: { type: string }
-                        password: { type: string }
+                      $ref: '#/components/schemas/User'
+              example:
+                users:
+                  - _id: "60c72b2f9b1d8c001f8e4d1e"
+                    fullName: "Rushitaben Vachhani"
+                    email: "rv@northeastern.edu"
+                  - _id: "60c72b3a9b1d8c001f8e4d1f"
+                    fullName: "Jane Doe"
+                    email: "jane@example.com"
   /user/uploadImage:
     post:
-      summary: Upload an image (single per user; JPEG/PNG/GIF only)
+      summary: Upload Image
+      description: Uploads a profile image for a user, identified by their email. The image is sent as form-data.
+      tags:
+        - User
+      security:
+        - bearerAuth: []
+        - User
       requestBody:
-        required: true
         content:
           multipart/form-data:
             schema:
               type: object
-              required: [email, image]
               properties:
-                email: { type: string, format: email }
-                image: { type: string, format: binary }
+                email:
+                  type: string
+                  description: The email of the user to associate the image with.
+                image:
+                  type: string
+                  format: binary
+                  description: The image file to upload.
+              required:
+                - email
+                - image
       responses:
-        "201": { description: Image uploaded successfully }
-        "400": { description: Invalid file format or image already exists }
-        "404": { description: User not found }
-  /auth/login:
-    post:
-      summary: Login with email and password
-      requestBody:
-        required: true
-        content:
-          application/json:
-            schema:
-              type: object
-              required: [email, password]
-              properties:
-                email: { type: string, format: email }
-                password: { type: string }
-      responses:
-        "200": { description: Login successful }
-        "401": { description: Invalid credentials }
-components: {}
+        '200':
+          description: Image uploaded successfully
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  message:
+                    type: string
+                  filePath:
+                    type: string
+              example:
+                message: "Image uploaded successfully"
+                filePath: "/uploads/1623664000000-profile.jpg"
+        '400':
+          description: Bad Request - Missing email or image file.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+              example:
+                message: "Email and image file are required."
+
+components:
+  securitySchemes:
+    bearerAuth:
+      type: http
+      scheme: bearer
+      bearerFormat: JWT
+  schemas:
+    User:
+      type: object
+      properties:
+        _id:
+          type: string
+          description: The unique identifier for the user.
+          example: "60c72b2f9b1d8c001f8e4d1e"
+        fullName:
+          type: string
+          description: The full name of the user.
+          example: "Rushitaben Vachhani"
+        email:
+          type: string
+          format: email
+          description: The email address of the user.
+          example: "rv@northeastern.edu"
+    UserResponse:
+      type: object
+      properties:
+        message:
+          type: string
+          example: "User created successfully"
+        user:
+          $ref: '#/components/schemas/User'
+    Error:
+      type: object
+      properties:
+        message:
+          type: string
+          description: A message describing the error.
+      required:
+        - message

@@ -1,175 +1,389 @@
 {
-  "info": {
-    "name": "Assignment 8",
-    "_postman_id": "a8-collection-1234",
-    "description": "Assignment 8 - Users API",
-    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
-  },
-  "item": [
-    {
-      "name": "Create User",
-      "request": {
-        "method": "POST",
-        "header": [
-          {
-            "key": "Content-Type",
-            "value": "application/json"
-          }
-        ],
-        "url": {
-          "raw": "http://localhost:4000/user/create",
-          "protocol": "http",
-          "host": [
-            "localhost"
-          ],
-          "port": "4000",
-          "path": [
-            "user",
-            "create"
-          ]
-        },
-        "body": {
-          "mode": "raw",
-          "raw": "{\"fullName\": \"John Doe\", \"email\": \"john@example.com\", \"password\": \"StrongP@ssw0rd\"}"
-        }
-      }
-    },
-    {
-      "name": "Login",
-      "request": {
-        "method": "POST",
-        "header": [
-          {
-            "key": "Content-Type",
-            "value": "application/json"
-          }
-        ],
-        "url": {
-          "raw": "http://localhost:4000/auth/login",
-          "protocol": "http",
-          "host": [
-            "localhost"
-          ],
-          "port": "4000",
-          "path": [
-            "auth",
-            "login"
-          ]
-        },
-        "body": {
-          "mode": "raw",
-          "raw": "{\"email\": \"john@example.com\", \"password\": \"StrongP@ssw0rd\"}"
-        }
-      }
-    },
-    {
-      "name": "Edit User",
-      "request": {
-        "method": "PUT",
-        "header": [
-          {
-            "key": "Content-Type",
-            "value": "application/json"
-          }
-        ],
-        "url": {
-          "raw": "http://localhost:4000/user/edit",
-          "protocol": "http",
-          "host": [
-            "localhost"
-          ],
-          "port": "4000",
-          "path": [
-            "user",
-            "edit"
-          ]
-        },
-        "body": {
-          "mode": "raw",
-          "raw": "{\"email\": \"john@example.com\", \"fullName\": \"Johnny Doe\", \"password\": \"NewStr0ng!\"}"
-        }
-      }
-    },
-    {
-      "name": "Delete User",
-      "request": {
-        "method": "DELETE",
-        "header": [
-          {
-            "key": "Content-Type",
-            "value": "application/json"
-          }
-        ],
-        "url": {
-          "raw": "http://localhost:4000/user/delete",
-          "protocol": "http",
-          "host": [
-            "localhost"
-          ],
-          "port": "4000",
-          "path": [
-            "user",
-            "delete"
-          ]
-        },
-        "body": {
-          "mode": "raw",
-          "raw": "{\"email\": \"john@example.com\"}"
-        }
-      }
-    },
-    {
-      "name": "Get All Users",
-      "request": {
-        "method": "GET",
-        "header": [],
-        "url": {
-          "raw": "http://localhost:4000/user/getAll",
-          "protocol": "http",
-          "host": [
-            "localhost"
-          ],
-          "port": "4000",
-          "path": [
-            "user",
-            "getAll"
-          ]
-        }
-      }
-    },
-    {
-      "name": "Upload Image",
-      "request": {
-        "method": "POST",
-        "header": [],
-        "url": {
-          "raw": "http://localhost:4000/user/uploadImage",
-          "protocol": "http",
-          "host": [
-            "localhost"
-          ],
-          "port": "4000",
-          "path": [
-            "user",
-            "uploadImage"
-          ]
-        },
-        "body": {
-          "mode": "formdata",
-          "formdata": [
-            {
-              "key": "email",
-              "value": "john@example.com",
-              "type": "text"
-            },
-            {
-              "key": "image",
-              "type": "file",
-              "src": ""
-            }
-          ]
-        }
-      }
-    }
-  ]
+	"info": {
+		"_postman_id": "6d636275-ae44-4dae-8e9c-fc6bdbe568d0",
+		"name": "Assignment 8",
+		"description": "Assignment 8 - Users API",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "49901944",
+		"_collection_link": "https://rushita-work-3784681.postman.co/workspace/e308a904-36f1-4b13-8a5a-386c553536a1/collection/49901944-6d636275-ae44-4dae-8e9c-fc6bdbe568d0?action=share&source=collection_link&creator=49901944"
+	},
+	"item": [
+		{
+			"name": "Create User",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\"fullName\": \"Rushitaben Vachhani\", \"email\": \"rv@northeastern.edu\", \"password\": \"Nu#4106522\"}"
+				},
+				"url": {
+					"raw": "http://localhost:4000/user/create",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "4000",
+					"path": [
+						"user",
+						"create"
+					]
+				},
+				"description": "Creates a new user with a full name, email, and password. The email must be unique."
+			},
+			"response": [
+				{
+					"name": "Success",
+					"originalRequest": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\"fullName\": \"Rushitaben Vachhani\", \"email\": \"rv@northeastern.edu\", \"password\": \"Nu#4106522\"}"
+						},
+						"url": {
+							"raw": "http://localhost:4000/user/create",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "4000",
+							"path": [
+								"user",
+								"create"
+							]
+						}
+					},
+					"status": "Created",
+					"code": 201,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "Content-Type",
+							"value": "application/json"
+						}
+					],
+					"body": "{\n    \"message\": \"User created successfully\",\n    \"user\": {\n        \"_id\": \"60c72b2f9b1d8c001f8e4d1e\",\n        \"fullName\": \"Rushitaben Vachhani\",\n        \"email\": \"rv@northeastern.edu\"\n    }\n}"
+				}
+			]
+		},
+		{
+			"name": "Login",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\"email\": \"rv@northeastern.edu\", \"password\": \"Nu#4106522\"}"
+				},
+				"url": {
+					"raw": "http://localhost:4000/auth/login",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "4000",
+					"path": [
+						"auth",
+						"login"
+					]
+				},
+				"description": "Authenticates a user with their email and password, returning a JWT token upon success."
+			},
+			"response": [
+				{
+					"name": "Success",
+					"originalRequest": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\"email\": \"rv@northeastern.edu\", \"password\": \"Nu#4106522\"}"
+						},
+						"url": {
+							"raw": "http://localhost:4000/auth/login",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "4000",
+							"path": [
+								"auth",
+								"login"
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "Content-Type",
+							"value": "application/json"
+						}
+					],
+					"body": "{\n    \"message\": \"Login successful\",\n    \"token\": \"eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI2MGM3MmIyZjliMWQ4YzAwMWY4ZTRkMWUiLCJpYXQiOjE2MjM2NjQwMDAsImV4cCI6MTYyMzY2NzYwMH0.example_token\"\n}"
+				}
+			]
+		},
+		{
+			"name": "Edit User",
+			"request": {
+				"method": "PUT",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\"email\": \"rv@northeastern.edu\", \"fullName\": \"Rushita V.\", \"password\": \"NewP@ssw0rd\"}"
+				},
+				"url": {
+					"raw": "http://localhost:4000/user/edit",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "4000",
+					"path": [
+						"user",
+						"edit"
+					]
+				},
+				"description": "Updates an existing user's information. The user is identified by their email. The full name and/or password can be changed."
+			},
+			"response": [
+				{
+					"name": "Success",
+					"originalRequest": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\"email\": \"rv@northeastern.edu\", \"fullName\": \"Rushita V.\", \"password\": \"NewP@ssw0rd\"}"
+						},
+						"url": {
+							"raw": "http://localhost:4000/user/edit",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "4000",
+							"path": [
+								"user",
+								"edit"
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "Content-Type",
+							"value": "application/json"
+						}
+					],
+					"body": "{\n    \"message\": \"User updated successfully\",\n    \"user\": {\n        \"_id\": \"60c72b2f9b1d8c001f8e4d1e\",\n        \"fullName\": \"Rushita V.\",\n        \"email\": \"rv@northeastern.edu\"\n    }\n}"
+				}
+			]
+		},
+		{
+			"name": "Delete User",
+			"request": {
+				"method": "DELETE",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\"email\": \"rv@northeastern.edu\"}"
+				},
+				"url": {
+					"raw": "http://localhost:4000/user/delete",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "4000",
+					"path": [
+						"user",
+						"delete"
+					]
+				},
+				"description": "Deletes a user from the database, identified by their email."
+			},
+			"response": [
+				{
+					"name": "Success",
+					"originalRequest": {
+						"method": "DELETE",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\"email\": \"rv@northeastern.edu\"}"
+						},
+						"url": {
+							"raw": "http://localhost:4000/user/delete",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "4000",
+							"path": [
+								"user",
+								"delete"
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "Content-Type",
+							"value": "application/json"
+						}
+					],
+					"body": "{\n    \"message\": \"User deleted successfully\"\n}"
+				}
+			]
+		},
+		{
+			"name": "Get All Users",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:4000/user/getAll",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "4000",
+					"path": [
+						"user",
+						"getAll"
+					]
+				},
+				"description": "Retrieves a list of all users in the database. This is typically an admin-only endpoint."
+			},
+			"response": [
+				{
+					"name": "Success",
+					"originalRequest": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:4000/user/getAll",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "4000",
+							"path": [
+								"user",
+								"getAll"
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "Content-Type",
+							"value": "application/json"
+						}
+					],
+					"body": "{\n    \"users\": [\n        {\n            \"_id\": \"60c72b2f9b1d8c001f8e4d1e\",\n            \"fullName\": \"Rushitaben Vachhani\",\n            \"email\": \"rv@northeastern.edu\"\n        },\n        {\n            \"_id\": \"60c72b3a9b1d8c001f8e4d1f\",\n            \"fullName\": \"Jane Doe\",\n            \"email\": \"jane@example.com\"\n        }\n    ]\n}"
+				}
+			]
+		},
+		{
+			"name": "Upload Image",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "formdata",
+					"formdata": [
+						{
+							"key": "email",
+							"value": "rv@northeastern.edu",
+							"type": "text"
+						},
+						{
+							"key": "image",
+							"value": "",
+							"type": "file"
+						}
+					]
+				},
+				"url": {
+					"raw": "http://localhost:4000/user/uploadImage",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "4000",
+					"path": [
+						"user",
+						"uploadImage"
+					]
+				},
+				"description": "Uploads a profile image for a user, identified by their email. The image is sent as form-data."
+			},
+			"response": [
+				{
+					"name": "Success",
+					"originalRequest": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "formdata",
+							"formdata": []
+						},
+						"url": {
+							"raw": "http://localhost:4000/user/uploadImage",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "4000",
+							"path": [
+								"user",
+								"uploadImage"
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "Content-Type",
+							"value": "application/json"
+						}
+					],
+					"body": "{\n    \"message\": \"Image uploaded successfully\",\n    \"filePath\": \"/uploads/1623664000000-profile.jpg\"\n}"
+				}
+			]
+		}
+	]
 }
