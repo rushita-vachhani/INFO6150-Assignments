@@ -225,9 +225,7 @@ paths:
                   - _id: "60c72b2f9b1d8c001f8e4d1e"
                     fullName: "Rushitaben Vachhani"
                     email: "rv@northeastern.edu"
-                  - _id: "60c72b3a9b1d8c001f8e4d1f"
-                    fullName: "Jane Doe"
-                    email: "jane@example.com"
+                  
   /user/uploadImage:
     post:
       summary: Upload Image
