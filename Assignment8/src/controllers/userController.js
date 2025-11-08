@@ -1,4 +1,4 @@
-// src/controllers/userController.js
+
 import bcrypt from "bcryptjs";
 import jwt from "jsonwebtoken";
 import { validationResult } from "express-validator";
@@ -9,7 +9,7 @@ function handleValidation(req, res) {
   const errors = validationResult(req);
   if (!errors.isEmpty()) {
     res.status(400).json({ error: "Validation failed.", details: errors.array() });
-    return true; // signal that we already responded
+    return true; 
   }
   return false;
 }
@@ -81,7 +81,6 @@ export async function uploadImage(req, res) {
       return res.status(400).json({ error: "Image already exists for this user." });
     }
 
-    // multer populates req.file only when fileFilter passes
     if (!req.file) {
       return res.status(400).json({ error: "Invalid file format. Only JPEG, PNG, and GIF are allowed." });
     }
@@ -92,7 +91,6 @@ export async function uploadImage(req, res) {
 
     return res.status(201).json({ message: "Image uploaded successfully.", filePath: relPath });
   } catch (err) {
-    // Handle multer/fileFilter errors explicitly
     if (err?.message?.includes("Invalid file format")) {
       return res.status(400).json({ error: "Invalid file format. Only JPEG, PNG, and GIF are allowed." });
     }
