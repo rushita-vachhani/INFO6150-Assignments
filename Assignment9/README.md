@@ -1,70 +1,106 @@
-# Getting Started with Create React App
+# React Job Portal (Assignment 9)
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+This project is a React-based Job Portal developed as part of Assignment 9. It connects to the Node.js + MongoDB backend from Assignment 8 to authenticate existing users and display company data with images. The frontend uses React Router, Axios, and Material UI for navigation, API requests, and responsive UI components.
+- The Job Portal allows job seekers to:
+- Log in using existing Assignment 8 credentials (no signup).
+- Browse dynamic Job Listings stored on the frontend.
+- Explore the Company Showcase, where company images are fetched from the backend.
+- Learn more about the site in the Home, About, and Contact pages.
+- Use consistent Material UI design across all pages.
 
-## Available Scripts
+## Tech Stack
+---
+| Category         | Tools / Libraries               |
+| ---------------- | ------------------------------- |
+| Framework        | React 18 (Create React App)     |
+| Routing          | React Router v6                 |
+| HTTP Requests    | Axios                           |
+| UI Library       | Material UI (MUI)               |
+| Icons            | @mui/icons-material             |
+| Backend API      | Assignment 8 Node.js + MongoDB  |
+| State Management | React Context API (AuthContext) |
 
-In the project directory, you can run:
+## Folder Structure
 
-### `npm start`
+```
+Assignment9/
+├── public/
+│   └── index.html
+│
+├── src/
+│   ├── assets/                # Images and illustrations
+│   ├── components/            # Reusable components (NavBar, PrimaryButton)
+│   ├── pages/                 # Individual route pages
+│   │   ├── Home.jsx
+│   │   ├── About.jsx
+│   │   ├── Jobs.jsx
+│   │   ├── Contact.jsx
+│   │   ├── Companies.jsx
+│   │   └── Login.jsx
+│   ├── pages/                 # Individual route pages (Home, About, Jobs, etc.)
+│   ├── seed/                  # Static frontend data (jobPosts.js)
+│   ├── services/              # Axios setup (api.js)
+│   ├── state/                 # Auth context (login/logout/session)
+│   ├── App.css                
+│   ├── App.jsx                # App routes and layout
+│   └── index.css 
+│   ├── index.js               # React entry file
+├── .env                       # Backend API base URL
+├── .gitignore
+├── package.json
+└── README.md
+```
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+## Setup & Installation
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+**1. Clone and Install**
+```bash
+git clone <repo-url>
+cd Assignment9
+npm install
+```
 
-### `npm test`
+**2. Set Environment Variable**
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+Create a `.env` file in the project root and add backend API URL:
+```
+REACT_APP_API_BASE_URL=http://localhost:4000
+```
 
-### `npm run build`
+**3. Run the Application**
+```bash
+npm start
+```
+Open http://localhost:3000 in your browser.
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+## Navigation and Pages
+----
+| Page                 | Path         | Description                                                |
+| -------------------- | ------------ | ---------------------------------------------------------- |
+| **Home**             | `/`          | Hero banner with job search and quick info.                |
+| **About**            | `/about`     | Mission statement and founder details.                     |
+| **Job Listings**     | `/jobs`      | Displays jobs (title, skills, salary) from `jobPosts.js`.  |
+| **Contact**          | `/contact`   | Contact form with left-side image.                         |
+| **Company Showcase** | `/companies` | Protected route; shows companies with images from backend. |
+| **Login**            | `/login`     | Uses existing Assignment 8 credentials; sets JWT token.    |
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+## Login & Session Management
 
-### `npm run eject`
+- The login form authenticates users via an Axios `POST` request to `/auth/login`.
+- On success, a JWT token is stored in `localStorage`.
+- The token is attached to every protected request through an Axios interceptor.
+- Clicking "Logout" removes the token and redirects the user to the Home page.
 
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
+## Key Functionalities
 
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+- **Routing & Navigation**: All pages are handled by React Router v6.
+- **Material UI Design**: Uses `AppBar`, `Card`, `Button`, and `TextField` for a consistent and responsive UI.
+- **Dynamic Rendering**: Jobs are mapped from a local data file, while company data is fetched dynamically via Axios.
+- **Responsive Layout**: The UI is built with a Grid system that adapts to desktop, tablet, and mobile screens.
+- **Session Security**: Implements a token-based login/logout flow to protect routes.
+- **Version Control**: The project is maintained under Git, with a `.gitignore` file to exclude unnecessary files.
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
+---
 
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
-
-### Analyzing the Bundle Size
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+*Developed By Rushitaben Vachhani*
