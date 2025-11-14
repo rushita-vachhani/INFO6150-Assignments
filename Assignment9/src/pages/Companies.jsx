@@ -23,17 +23,26 @@ export default function Companies(){
 
   return (
     <>
-      <Typography variant="h4" gutterBottom>Company Showcase</Typography>
+      <Typography variant="h3" fontWeight={800} sx={{ textAlign: "center", mb: { xs: 6, md: 2 } }} gutterBottom>
+                  COMPANY SHOWCASE
+                </Typography>
       <Grid container spacing={2}>
         {items.map(it => (
           <Grid item xs={12} sm={6} md={4} key={it.id}>
             <Card>
               <CardMedia component="img" height="200"
-                image={it.img || 'https://via.placeholder.com/600x400?text=No+Image'}
+                image={it.img || 'https://images.pexels.com/photos/466685/pexels-photo-466685.jpeg?auto=compress&cs=tinysrgb&w=600'}
+                alt={it.name}/>
+              <CardContent><Typography variant="h6">{it.name}</Typography></CardContent>
+            </Card>
+            <Card>
+              <CardMedia component="img" height="200"
+                image={it.img || 'https://images.pexels.com/photos/466685/pexels-photo-466685.jpeg?auto=compress&cs=tinysrgb&w=600'}
                 alt={it.name}/>
               <CardContent><Typography variant="h6">{it.name}</Typography></CardContent>
             </Card>
           </Grid>
+          
         ))}
       </Grid>
     </>
