@@ -16,7 +16,10 @@ export default function Jobs() {
             <Grid item xs={12} key={job.id}>
               <Card
                 variant="outlined"
-                sx={{ width: '100%', p: 2, borderRadius: 2, display: 'flex', flexDirection: 'column' }}
+                sx={{ width: '100%', p: 2, borderRadius: 2, display: 'flex', flexDirection: 'column', "&:hover": {
+            transform: "translateY(-4px)",
+            boxShadow: 3,
+          }, }}
               >
                 <CardContent sx={{ flexGrow: 1, mb: -2 }}>
                   <Typography variant="h6" sx={{ mb: 1 }}>{job.title}</Typography>
@@ -45,6 +48,7 @@ export default function Jobs() {
                   </PrimaryButton>
                 </CardActions>
               </Card>
+              
             </Grid>
           ))}
         </Grid>

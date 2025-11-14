@@ -15,13 +15,16 @@ function ElevationScroll({ children }) {
   return React.cloneElement(children, { elevation: trigger ? 6 : 0 });
 }
 
-const pages = [
+const authedPages = [
   { to: "/", label: "HOME" },
   { to: "/companies", label: "COMPANIES" },
   { to: "/jobs", label: "JOBS" },
   { to: "/about", label: "ABOUT" },
   { to: "/contact", label: "CONTACT" },
-  
+];
+
+const unauthedPages = [
+  { to: "/", label: "HOME" },
 ];
 
 const linkSx = {
@@ -42,6 +45,7 @@ export default function NavBar() {
   const [open, setOpen] = React.useState(false);
 
   const handleLogout = () => { logout(); navigate("/"); };
+  const pages = isAuthed ? authedPages : unauthedPages;
 
   return (
     <ElevationScroll>

@@ -1,7 +1,9 @@
-import axios from 'axios'
-export const BASE_URL = import.meta.env.VITE_API_BASE_URL || 'http://localhost:4000'
+import axios from 'axios';
+
+export const BASE_URL = process.env.REACT_APP_API_BASE_URL || 'http://localhost:4000';
+
 export function createAPI(token) {
-  const api = axios.create({ baseURL: BASE_URL, headers: { 'Content-Type':'application/json' } })
-  if (token) api.interceptors.request.use(cfg => { cfg.headers.Authorization = `Bearer ${token}`; return cfg })
-  return api
+  const api = axios.create({ baseURL: BASE_URL, headers: { 'Content-Type':'application/json' } });
+  if (token) api.interceptors.request.use(cfg => { cfg.headers.Authorization = `Bearer ${token}`; return cfg; });
+  return api;
 }
