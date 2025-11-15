@@ -1,7 +1,6 @@
 import * as React from 'react';
-
-import { Routes, Route, Navigate, Link, useNavigate } from 'react-router-dom'
-import { AppBar, Toolbar, Typography, Button, Container, Box } from '@mui/material'
+import { Routes, Route, Navigate } from 'react-router-dom'
+import { Container, Box } from '@mui/material'
 import Home from './pages/Home.jsx'
 import About from './pages/About.jsx'
 import Jobs from './pages/Jobs.jsx'
