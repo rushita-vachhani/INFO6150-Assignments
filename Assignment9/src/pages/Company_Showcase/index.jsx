@@ -9,13 +9,15 @@ import {
   Skeleton,
   Box,
 } from "@mui/material";
-import { useAuth } from "../state/AuthContext.jsx";
-import { BASE_URL } from "../services/api.js";
-import appleImg from "../assets/apple.png";
-import googleImg from "../assets/google.png";
-import metaImg from "../assets/meta.png";
-import jpmorganImg from "../assets/jp.png";
-import tcsImg from "../assets/tcs.png";
+
+
+import { useAuth } from '../../state/AuthContext.jsx';
+import { BASE_URL } from '../../services/api.js';
+import appleImg from '../../assets/apple.png';
+import googleImg from '../../assets/google.png';
+import metaImg from '../../assets/meta.png';
+import jpmorganImg from '../../assets/jp.png';
+import tcsImg from '../../assets/tcs.png';
 
 const MOCK_COMPANIES = [
   {

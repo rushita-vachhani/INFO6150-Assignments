@@ -28,24 +28,38 @@ Assignment9/
 │   └── index.html
 │
 ├── src/
-│   ├── assets/                # Images and illustrations
-│   ├── components/            # Reusable components (NavBar, PrimaryButton)
-│   ├── pages/                 # Individual route pages
-│   │   ├── Home.jsx
-│   │   ├── About.jsx
-│   │   ├── Jobs.jsx
-│   │   ├── Contact.jsx
-│   │   ├── Companies.jsx
-│   │   └── Login.jsx
-│   ├── pages/                 # Individual route pages (Home, About, Jobs, etc.)
-│   ├── seed/                  # Static frontend data (jobPosts.js)
-│   ├── services/              # Axios setup (api.js)
-│   ├── state/                 # Auth context (login/logout/session)
-│   ├── App.css                
-│   ├── App.jsx                # App routes and layout
-│   └── index.css 
-│   ├── index.js               # React entry file
-├── .env                       # Backend API base URL
+│   ├── assets/                  # Images and illustrations (e.g., image2.jpg)
+│   ├── components/              # Reusable UI components
+│   │   ├── AuthRedirector/
+│   │   │   └── index.jsx
+│   │   ├── NavBar/
+│   │   │   └── index.jsx
+│   │   └── PrimaryButton/
+│   │       └── index.jsx
+│   │
+│   ├── pages/                   # Page-level components (each page in its own folder)
+│   │   ├── Home/
+│   │   │   └── index.jsx
+│   │   ├── About/
+│   │   │   └── index.jsx
+│   │   ├── Jobs/
+│   │   │   └── index.jsx
+│   │   ├── Contact/
+│   │   │   └── index.jsx
+│   │   ├── Company_Showcase/
+│   │   │   └── index.jsx
+│   │   └── Login/
+│   │       └── index.jsx
+│   │
+│   ├── seed/                    # Static frontend data (jobPosts.js)
+│   ├── services/                # Axios setup and API base URL (api.js)
+│   ├── state/                   # Context for login/logout/session (AuthContext.jsx)
+│   ├── App.jsx                  # Main app layout and route definitions
+│   ├── index.js                 # CRA entry file (ReactDOM.createRoot)
+│   ├── App.css
+│   └── index.css
+│
+├── .env                         # Contains REACT_APP_API_BASE_URL for backend API
 ├── .gitignore
 ├── package.json
 └── README.md

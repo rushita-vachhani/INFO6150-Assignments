@@ -1,15 +1,17 @@
 import * as React from 'react';
 import { Routes, Route, Navigate } from 'react-router-dom'
 import { Container, Box } from '@mui/material'
-import Home from './pages/Home.jsx'
-import About from './pages/About.jsx'
-import Jobs from './pages/Jobs.jsx'
-import Contact from './pages/Contact.jsx'
-import Companies from './pages/Companies.jsx'
-import Login from './pages/Login.jsx'
+// import Home from './pages/Home.jsx'
+import Home from './pages/Home';
+import About from './pages/About/index.jsx'
+import Jobs from './pages/Jobs';
+import Contact from './pages/Contact';
+import Companies from './pages/Company_Showcase';
+import Login from './pages/Login/index.jsx'
 import { useAuth } from './state/AuthContext.jsx'
-import NavBar from './components/NavBar.jsx';
-import AuthRedirector from './components/AuthRedirector.jsx';
+// import NavBar from './components/NavBar/index.jsx';
+import NavBar from './components/NavBar';
+import AuthRedirector from './components/AuthRedirector/index.jsx';
 
 function ProtectedRoute({ children }) {
   const { isAuthed } = useAuth();

@@ -12,9 +12,9 @@ import {
 } from "@mui/material";
 import SearchIcon from "@mui/icons-material/Search";
 import { useNavigate } from "react-router-dom";
-import PrimaryButton from "../components/PrimaryButton.jsx";
-import { useAuth } from "../state/AuthContext.jsx";
-import heroImg from "../assets/image2.jpg";
+import PrimaryButton from "../../components/PrimaryButton/index.jsx";
+import { useAuth } from "../../state/AuthContext.jsx";
+import heroImg from "../../assets/image2.jpg";
 
 export default function Home() {
   const navigate = useNavigate();

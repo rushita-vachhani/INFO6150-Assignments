@@ -4,11 +4,27 @@ import React, {
 import { createAPI } from "../services/api.js";
 
 const AuthContext = createContext(null);
+function parseJwt(token) {
+  if (!token) {
+    return null;
+  }
+  try {
+    const base64Url = token.split(".")[1];
+    const base64 = base64Url.replace(/-/g, "+").replace(/_/g, "/");
+    const jsonPayload = decodeURIComponent(atob(base64).split("").map(function (c) {
+      return "%" + ("00" + c.charCodeAt(0).toString(16)).slice(-2);
+    }).join(""));
+    return JSON.parse(jsonPayload);
+  } catch (error) {
+    return null;
+  }
+}
 
 export function AuthProvider({ children }) {
   const [token, setToken] = useState(() => localStorage.getItem("token") || "");
   const isAuthed = Boolean(token);
   const api = useMemo(() => createAPI(token), [token]);
+  const user = useMemo(() => parseJwt(token), [token]);
 
   // Keep a single channel instance (if supported)
   const chanRef = useRef(null);
@@ -47,7 +63,7 @@ export function AuthProvider({ children }) {
     return () => window.removeEventListener("storage", handleStorageChange);
   }, []);
 
-  const value = { token, isAuthed, api, login, logout };
+  const value = { token, isAuthed, api, login, logout, user };
   return <AuthContext.Provider value={value}>{children}</AuthContext.Provider>;
 }
 

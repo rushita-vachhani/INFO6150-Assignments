@@ -12,9 +12,9 @@ import {
   IconButton,
 } from "@mui/material";
 import { useNavigate } from "react-router-dom";
-import { useAuth } from "../state/AuthContext.jsx";
-import PrimaryButton from "../components/PrimaryButton.jsx";
-import heroImg from "../assets/image2.jpg"; 
+import { useAuth } from "../../state/AuthContext.jsx";
+import PrimaryButton from "../../components/PrimaryButton";
+import heroImg from "../../assets/image2.jpg"; 
 import { Visibility, VisibilityOff } from "@mui/icons-material";
 
 export default function Login() {

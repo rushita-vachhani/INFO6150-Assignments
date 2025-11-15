@@ -1,6 +1,6 @@
 import { useEffect } from 'react';
 import { useLocation, useNavigate } from 'react-router-dom';
-import { useAuth } from '../state/AuthContext.jsx';
+import { useAuth } from '../../state/AuthContext.jsx';
 
 const publicPaths = ['/login', '/'];
 

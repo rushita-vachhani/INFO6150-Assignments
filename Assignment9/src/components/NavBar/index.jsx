@@ -8,7 +8,7 @@ import LoginIcon from "@mui/icons-material/Login";
 import LogoutIcon from "@mui/icons-material/Logout";
 import { NavLink, useNavigate } from "react-router-dom";
 import { useTheme } from "@mui/material/styles";
-import { useAuth } from "../state/AuthContext.jsx";
+import { useAuth } from "../../state/AuthContext.jsx";
 
 function ElevationScroll({ children }) {
   const trigger = useScrollTrigger({ disableHysteresis: true, threshold: 4 });
@@ -39,7 +39,7 @@ const linkSx = {
 };
 
 export default function NavBar() {
-  const { isAuthed, logout } = useAuth();
+  const { isAuthed, logout, user } = useAuth();
   const navigate = useNavigate();
   const theme = useTheme();
   const isMdUp = useMediaQuery(theme.breakpoints.up("md"));
@@ -108,14 +108,19 @@ export default function NavBar() {
           <Box sx={{ ml: { md: 2 } }}>
             {isMdUp ? (
               isAuthed ? (
-                <Button
-                  color="inherit"
-                  startIcon={<LogoutIcon />}
-                  onClick={handleLogout}
-                  sx={{ textTransform: "none" }}
-                >
-                  Logout
-                </Button>
+                <Stack direction="row" alignItems="center" spacing={1}>
+                  <Typography variant="body2" sx={{ color: "rgba(255,255,255,0.8)" }}>
+                    {user?.email}
+                  </Typography>
+                  <Button
+                    color="inherit"
+                    startIcon={<LogoutIcon />}
+                    onClick={handleLogout}
+                    sx={{ textTransform: "none" }}
+                  >
+                    Logout
+                  </Button>
+                </Stack>
               ) : (
                 <Button
                   color="inherit"
@@ -157,14 +162,14 @@ export default function NavBar() {
                 </ListItemButton>
               ))}
             </List>
-            <Box sx={{ mt: 1 }}>
+            <Box sx={{ mt: 0 }}>
               {isAuthed ? (
                 <ListItemButton onClick={() => { setOpen(false); handleLogout(); }}>
-                  Logout
+                  LOGOUT
                 </ListItemButton>
               ) : (
                 <ListItemButton onClick={() => { setOpen(false); navigate("/login"); }}>
-                  Sign In
+                  LOG IN
                 </ListItemButton>
               )}
             </Box>

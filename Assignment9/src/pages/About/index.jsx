@@ -1,6 +1,6 @@
 
 import {
-  Box, Container, Typography, Grid, Paper, Stack, Avatar, Chip, Divider, Button
+  Box, Container, Typography, Grid, Paper, Stack, Avatar, Divider, Button
 } from "@mui/material";
 import LinkedInIcon from "@mui/icons-material/LinkedIn";
 
