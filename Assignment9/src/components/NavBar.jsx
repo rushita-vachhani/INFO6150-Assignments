@@ -25,6 +25,7 @@ const authedPages = [
 
 const unauthedPages = [
   { to: "/", label: "HOME" },
+  
 ];
 
 const linkSx = {

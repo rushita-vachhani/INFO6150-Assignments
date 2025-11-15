@@ -8,18 +8,31 @@ import {
   Stack,
   Box,
   Alert,
+  InputAdornment,
+  IconButton,
 } from "@mui/material";
 import { useNavigate } from "react-router-dom";
 import { useAuth } from "../state/AuthContext.jsx";
 import PrimaryButton from "../components/PrimaryButton.jsx";
-import heroImg from "../assets/image2.jpg"; // reuse same illustration for consistency
+import heroImg from "../assets/image2.jpg"; 
+import { Visibility, VisibilityOff } from "@mui/icons-material";
 
 export default function Login() {
-  const { api, login } = useAuth();
+  const { api, login, isAuthed } = useAuth();
   const [email, setEmail] = React.useState("");
   const [password, setPassword] = React.useState("");
+  const [showPassword, setShowPassword] = React.useState(false);
   const [error, setError] = React.useState("");
   const navigate = useNavigate();
+
+  React.useEffect(() => {
+    if (isAuthed) {
+      navigate("/companies");
+    }
+  }, [isAuthed, navigate]);
+
+  const handleClickShowPassword = () => setShowPassword((show) => !show);
+  const handleMouseDownPassword = (event) => event.preventDefault();
 
   async function handleSubmit(e) {
     e.preventDefault();
@@ -105,11 +118,25 @@ export default function Login() {
               />
               <TextField
                 label="Password"
-                type="password"
+                type={showPassword ? "text" : "password"}
                 required
                 value={password}
                 onChange={(e) => setPassword(e.target.value)}
                 fullWidth
+                InputProps={{
+                  endAdornment: (
+                    <InputAdornment position="end">
+                      <IconButton
+                        aria-label="toggle password visibility"
+                        onClick={handleClickShowPassword}
+                        onMouseDown={handleMouseDownPassword}
+                        edge="end"
+                      >
+                        {showPassword ? <VisibilityOff /> : <Visibility />}
+                      </IconButton>
+                    </InputAdornment>
+                  ),
+                }}
               />
               {error && <Alert severity="error">{error}</Alert>}
 
