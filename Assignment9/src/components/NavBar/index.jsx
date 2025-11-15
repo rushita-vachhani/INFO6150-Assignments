@@ -118,7 +118,7 @@ export default function NavBar() {
                     onClick={handleLogout}
                     sx={{ textTransform: "none" }}
                   >
-                    Logout
+                    LOGOUT
                   </Button>
                 </Stack>
               ) : (
@@ -128,13 +128,13 @@ export default function NavBar() {
                   onClick={() => navigate("/login")}
                   sx={{ textTransform: "none" }}
                 >
-                  Sign In
+                  LOG IN
                 </Button>
               )
             ) : (
               <IconButton
                 color="inherit"
-                aria-label={isAuthed ? "Logout" : "Sign in"}
+                aria-label={isAuthed ? "LOGOUT" : "LOG IN"}
                 onClick={isAuthed ? handleLogout : () => navigate("/login")}
               >
                 {isAuthed ? <LogoutIcon /> : <LoginIcon />}

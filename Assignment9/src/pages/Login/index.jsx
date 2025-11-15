@@ -37,6 +37,19 @@ export default function Login() {
   async function handleSubmit(e) {
     e.preventDefault();
     setError("");
+
+     // Basic email format validation
+    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    if (!emailRegex.test(email)) {
+      setError("Please enter a valid email address.");
+      return;
+    }
+
+    if (!password.trim()) {
+      setError("Password cannot be empty.");
+      return;
+    }
+
     try {
       const res = await api.post("/auth/login", { email, password });
       login(res.data.token);
@@ -140,7 +153,7 @@ export default function Login() {
               />
               {error && <Alert severity="error">{error}</Alert>}
 
-              <PrimaryButton type="submit">Sign In</PrimaryButton>
+              <PrimaryButton type="submit">LOG IN</PrimaryButton>
             </Stack>
           </CardContent>
         </Card>
