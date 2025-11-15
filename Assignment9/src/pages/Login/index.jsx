@@ -27,7 +27,7 @@ export default function Login() {
 
   React.useEffect(() => {
     if (isAuthed) {
-      navigate("/companies");
+      navigate("/home");
     }
   }, [isAuthed, navigate]);
 
@@ -53,7 +53,7 @@ export default function Login() {
     try {
       const res = await api.post("/auth/login", { email, password });
       login(res.data.token);
-      navigate("/companies");
+      navigate("/home");
     } catch (err) {
       setError(err?.response?.data?.error || "Login failed");
     }
@@ -126,7 +126,10 @@ export default function Login() {
                 type="email"
                 required
                 value={email}
-                onChange={(e) => setEmail(e.target.value)}
+                onChange={(e) => {
+                  setEmail(e.target.value);
+                  setError("");
+                }}
                 fullWidth
               />
               <TextField
@@ -134,7 +137,10 @@ export default function Login() {
                 type={showPassword ? "text" : "password"}
                 required
                 value={password}
-                onChange={(e) => setPassword(e.target.value)}
+                onChange={(e) => {
+                  setPassword(e.target.value);
+                  setError("");
+                }}
                 fullWidth
                 InputProps={{
                   endAdornment: (
