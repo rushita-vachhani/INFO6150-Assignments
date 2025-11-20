@@ -130,13 +130,25 @@ export async function login(req, res) {
     const ok = await bcrypt.compare(password, user.password);
     if (!ok) return res.status(401).json({ error: "Invalid credentials" });
 
+    // Include user.type in JWT payload
     const token = jwt.sign(
-      { sub: user.id, email: user.email },
+      {
+        sub: user.id,
+        email: user.email,
+        type: user.type, // <-- IMPORTANT
+      },
       process.env.JWT_SECRET,
       { expiresIn: "2h" }
     );
 
-    return res.status(200).json({ message: "Login successful", token });
+    return res.status(200).json({
+      message: "Login successful",
+      token,
+      user: {
+        email: user.email,
+        type: user.type,
+      },
+    });
   } catch (err) {
     return res.status(500).json({ error: "Server error" });
   }

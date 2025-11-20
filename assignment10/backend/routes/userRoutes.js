@@ -10,20 +10,74 @@ import {
 } from "../controllers/userController.js";
 
 import { authRequired } from "../middleware/auth.js";
+import { body } from "express-validator";
 
 const router = express.Router();
 
-// Public
-router.post("/user/create", createUser);
-router.post("/auth/login", login);
+// ----------------------------
+// PUBLIC ROUTES
+// ----------------------------
 
-// Auth Required
-router.put("/user/edit", authRequired, editUser);
-router.delete("/user/delete", authRequired, deleteUser);
+// CREATE USER (admin or employee)
+router.post(
+  "/user/create",
+  [
+    body("fullName").notEmpty().withMessage("Full name is required"),
+    body("email").isEmail().withMessage("Valid email is required"),
+    body("password").notEmpty().withMessage("Password is required"),
+    body("type")
+      .isIn(["admin", "employee"])
+      .withMessage("Type must be admin or employee"),
+  ],
+  createUser
+);
+
+// LOGIN
+router.post(
+  "/auth/login",
+  [
+    body("email").isEmail().withMessage("Email is required"),
+    body("password").notEmpty().withMessage("Password is required"),
+  ],
+  login
+);
+
+// ----------------------------
+// PROTECTED ROUTES
+// ----------------------------
+
+// EDIT USER
+router.put(
+  "/user/edit",
+  authRequired,
+  [
+    body("email").isEmail().withMessage("Valid email is required"),
+    body("fullName").optional().isString(),
+    body("password").optional().isString(),
+  ],
+  editUser
+);
+
+// DELETE USER
+router.delete(
+  "/user/delete",
+  authRequired,
+  [body("email").isEmail().withMessage("Valid email is required")],
+  deleteUser
+);
+
+// GET ALL USERS (with password — assignment only)
 router.get("/user/getAll", authRequired, getAllUsers);
-router.post("/user/uploadImage", authRequired, uploadImage);
 
-// Assignment 10: Admin user list (no password)
+// UPLOAD IMAGE
+router.post(
+  "/user/uploadImage",
+  authRequired,
+  [body("email").isEmail().withMessage("Valid email is required")],
+  uploadImage
+);
+
+// ADMIN USER LIST (no password)
 router.get("/users", authRequired, getUsers);
 
 export default router;

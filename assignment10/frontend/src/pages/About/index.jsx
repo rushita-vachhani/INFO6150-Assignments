@@ -96,11 +96,11 @@ function FounderCard({
 export default function About() {
   return (
     <Box sx={{ bgcolor: "#fff" }}>
-      <Container sx={{ py: { xs: 4, md: 6 } }}>
+      <Container sx={{ py: { xs: 4, md: 1 } }}>
       
 
         {/* Our Mission */}
-        <Box sx={{ textAlign: "center", mb: { xs: 6, md: 8 } }}>
+        <Box sx={{ textAlign: "center", mb: { xs: 6, md: 0 } }}>
           <Typography variant="h3" fontWeight={800} gutterBottom>
             OUR MISSION
           </Typography>
@@ -113,7 +113,7 @@ export default function About() {
         </Box>
 
         {/* Founders */}
-        <Box sx={{ textAlign: "center", mb: 3 }}>
+        <Box sx={{ textAlign: "center", mb: 3, mt: 2 }}>
           <Typography variant="h4" fontWeight={800}>FOUNDERS</Typography>
           <Typography color="text.secondary" sx={{ mt: 1, mb: 3 }}>
             We are a small and mighty team of AI pioneers.

@@ -49,8 +49,8 @@ export default function Contact() {
         fontWeight={800}
         sx={{
           textAlign: "center",
-          mb: { xs: 6, md: 4 },
-          mt: { xs: 2, md: 4 },
+          mb: { xs: 6, md: 0 },
+          mt: { xs: 2, md: 0 },
         }}
         gutterBottom
       >

@@ -39,7 +39,7 @@ export default function Home() {
       <Typography
         variant="h3"
         fontWeight={800}
-        sx={{ textAlign: "center", mb: { xs: 6, md: 4 }, mt: { xs: 2, md: 4 } }}
+        sx={{ textAlign: "center", mb: { xs: 6, md: 0 }, mt: { xs: 2, md: 0 } }}
         gutterBottom
       >
         HOME
