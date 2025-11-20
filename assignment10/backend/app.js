@@ -29,7 +29,7 @@ app.use("/docs", swaggerUi.serve, swaggerUi.setup(swaggerDocument));
 
 // API routes
 app.use("/", userRoutes);
-app.use("/api", jobRoutes);
+app.use("/", jobRoutes);
 
 // health
 app.get("/health", (req, res) => res.json({ ok: true }));

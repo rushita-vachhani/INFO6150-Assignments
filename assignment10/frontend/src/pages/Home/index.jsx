@@ -1,0 +1,180 @@
+import * as React from "react";
+import {
+  Box,
+  Container,
+  Grid,
+  Card,
+  CardContent,
+  Typography,
+  TextField,
+  Stack,
+  Paper,
+} from "@mui/material";
+import SearchIcon from "@mui/icons-material/Search";
+import { useNavigate } from "react-router-dom";
+import { useSelector } from "react-redux";
+import PrimaryButton from "../../components/PrimaryButton/index.jsx";
+import heroImg from "../../assets/image2.jpg";
+
+export default function Home() {
+  const navigate = useNavigate();
+
+  // Assignment 10: Redux replaces useAuth()
+  const { isAuthenticated, user } = useSelector((state) => state.auth);
+
+  const handleSearchClick = () => {
+    if (!isAuthenticated) {
+      navigate("/login");
+      return;
+    }
+
+    // If user logged in, send them to their job page
+    if (user?.type === "admin") navigate("/admin/employees");
+    else navigate("/employee/jobs");
+  };
+
+  return (
+    <>
+      {/* Title */}
+      <Typography
+        variant="h3"
+        fontWeight={800}
+        sx={{ textAlign: "center", mb: { xs: 6, md: 4 }, mt: { xs: 2, md: 4 } }}
+        gutterBottom
+      >
+        HOME
+      </Typography>
+
+      <Container maxWidth="lg" sx={{ px: 0 }}>
+        {/* Hero Section */}
+        <Card
+          variant="outlined"
+          sx={{
+            borderRadius: 3,
+            overflow: "hidden",
+            display: "flex",
+            flexDirection: { xs: "column", md: "row" },
+            mb: { xs: 6, md: 8 },
+          }}
+        >
+          <Box
+            component="img"
+            src={heroImg}
+            alt="Career growth illustration"
+            sx={{
+              width: { xs: "100%", md: "50%" },
+              height: { xs: 260, md: "auto" },
+              objectFit: "contain",
+              bgcolor: "#fff",
+              p: 2,
+            }}
+          />
+
+          <CardContent
+            sx={{
+              flex: 1,
+              p: { xs: 3, md: 6 },
+              display: "flex",
+              flexDirection: "column",
+              justifyContent: "center",
+              gap: 2.5,
+              bgcolor: "#fafafa",
+            }}
+          >
+            <Typography variant="h4" fontWeight={800} sx={{ color: "#004d40" }}>
+              Find your job better and faster
+            </Typography>
+            <Typography variant="body1" color="text.secondary">
+              Discover roles that match your skills and interests. Start searching and
+              apply with confidence.
+            </Typography>
+
+            <Stack
+              direction={{ xs: "column", sm: "row" }}
+              spacing={1}
+              sx={{
+                bgcolor: "white",
+                borderRadius: 2,
+                boxShadow: 1,
+                p: 1,
+                alignItems: "stretch",
+                maxWidth: 520,
+              }}
+            >
+              <TextField
+                fullWidth
+                variant="standard"
+                placeholder="Search by skill, company, or job"
+                InputProps={{ disableUnderline: true, sx: { pl: 1.5 } }}
+              />
+
+              <PrimaryButton
+                onClick={handleSearchClick}
+                startIcon={<SearchIcon />}
+                sx={{ px: 3, alignSelf: { xs: "stretch", sm: "auto" } }}
+              >
+                SEARCH
+              </PrimaryButton>
+            </Stack>
+          </CardContent>
+        </Card>
+
+        {/* Features Section */}
+        <Grid
+          container
+          spacing={3}
+          sx={{
+            mb: 8,
+            justifyContent: "center",
+            alignItems: "stretch",
+          }}
+        >
+          {[
+            {
+              title: "Curated Jobs",
+              body: "Browse a hand-picked list of opportunities with clear skills and salary ranges.",
+            },
+            {
+              title: "Company Showcase",
+              body: "Explore companies and see real profile images pulled from the backend.",
+            },
+            {
+              title: "Fast Apply",
+              body: "Jump straight to the application with one click from the listings.",
+            },
+            {
+              title: "AI Career Guidance",
+              body: "Use smart suggestions to tailor your resume and find jobs that fit your long-term goals.",
+            },
+          ].map((f, i) => (
+            <Grid item xs={12} sm={6} md={3} key={i} sx={{ display: "flex" }}>
+              <Paper
+                variant="outlined"
+                sx={{
+                  p: 3,
+                  borderRadius: 2,
+                  width: "100%",
+                  display: "flex",
+                  flexDirection: "column",
+                  justifyContent: "flex-start",
+                  transition: "transform 0.2s, box-shadow 0.2s",
+                  "&:hover": {
+                    transform: "translateY(-4px)",
+                    boxShadow: 3,
+                  },
+                }}
+              >
+                <Typography variant="h6" fontWeight={700}>
+                  {f.title}
+                </Typography>
+                <Typography variant="body2" color="text.secondary" sx={{ mt: 1 }}>
+                  {f.body}
+                </Typography>
+              </Paper>
+            </Grid>
+          ))}
+        </Grid>
+      </Container>
+    </>
+  );
+}
