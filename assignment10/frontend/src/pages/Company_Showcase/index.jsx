@@ -71,16 +71,6 @@ export default function Companies() {
 
   return (
     <>
-      {/* Title */}
-      <Typography
-        variant="h3"
-        fontWeight={800}
-        sx={{ textAlign: "center", mb: { xs: 6, md: 4 }, mt: { xs: 2, md: 0 } }}
-        gutterBottom
-      >
-        COMPANY SHOWCASE
-      </Typography>
-
       <Container maxWidth="lg">
         {loading ? (
           // Skeleton Loading State

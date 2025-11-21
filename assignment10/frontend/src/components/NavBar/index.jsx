@@ -58,9 +58,6 @@ export default function NavBar() {
               <Button color="inherit" component={Link} to="/admin/add-job">
                 Add Job
               </Button>
-              <Button color="inherit" component={Link} to="/companies">
-                Companies
-              </Button>
               <Button color="inherit" component={Link} to="/contact">
                 Contact
               </Button>

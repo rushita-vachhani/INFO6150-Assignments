@@ -43,20 +43,6 @@ export default function Contact() {
 
   return (
     <>
-      {/* Title */}
-      <Typography
-        variant="h3"
-        fontWeight={800}
-        sx={{
-          textAlign: "center",
-          mb: { xs: 6, md: 0 },
-          mt: { xs: 2, md: 0 },
-        }}
-        gutterBottom
-      >
-        CONTACT
-      </Typography>
-
       <Container maxWidth="lg" sx={{ display: "flex", justifyContent: "center" }}>
         <Card
           variant="outlined"

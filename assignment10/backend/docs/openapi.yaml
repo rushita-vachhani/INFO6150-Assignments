@@ -45,7 +45,7 @@ paths:
                   example: "rv@northeastern.edu"
                 password:
                   type: string
-                  example: "Nu@12345"
+                  example: "Nu#4106522"
                 type:
                   type: string
                   enum: [admin, employee]
@@ -84,10 +84,10 @@ paths:
               properties:
                 email:
                   type: string
-                  example: "admin@test.com"
+                  example: "rv@northeastern.edu"
                 password:
                   type: string
-                  example: "Admin@123"
+                  example: "Nu#4106522"
       responses:
         "200":
           description: Login successful

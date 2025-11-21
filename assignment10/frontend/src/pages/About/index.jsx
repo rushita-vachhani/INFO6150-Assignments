@@ -24,6 +24,7 @@ function FounderCard({
         bgcolor: "#f6f8fb",
         border: "1px solid",
         borderColor: "divider",
+        width: "100%",
       }}
     >
       {/* Header */}
