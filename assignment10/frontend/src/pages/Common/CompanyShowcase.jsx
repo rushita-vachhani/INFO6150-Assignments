@@ -17,14 +17,14 @@ import { useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
 
 import api from "../../services/api";
-import appleImg from "../../assets/apple.png";
+import defaultCompanyImage from "../../assets/defaultCompanyImage.png";
 
 export default function CompanyShowcase() {
   const navigate = useNavigate();
   const [companies, setCompanies] = React.useState([]);
   const [loading, setLoading] = React.useState(true);
   const [page, setPage] = React.useState(1);
-  const pageSize = 8; // Show 8 companies per page
+  const pageSize = 8; // Show no. companies per page
 
   const { user } = useSelector((state) => state.auth);
 
@@ -39,10 +39,8 @@ export default function CompanyShowcase() {
         if (!mounted) return;
 
         const companyData = res.data || [];
-
-        // Map users → company cards
         const mapped = companyData.map((company, idx) => {
-          let image = appleImg; // fallback
+          let image = defaultCompanyImage; 
 
           if (company.imagePath) {
             image = company.imagePath.startsWith("http")
