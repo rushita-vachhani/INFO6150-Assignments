@@ -1,6 +1,6 @@
 
 import {
-  Box, Container, Typography, Grid, Paper, Stack, Avatar, Divider, Button
+  Box, Typography, Grid, Paper, Stack, Avatar, Divider, Button
 } from "@mui/material";
 import LinkedInIcon from "@mui/icons-material/LinkedIn";
 
@@ -59,7 +59,7 @@ function FounderCard({
 
       <Divider sx={{ my: 3 }} />
 
-      {/* Highlights (auto wraps nicely) */}
+      {/* Highlights */}
       <Grid container spacing={2}>
         {highlights.map((h, i) => (
           <Grid
@@ -96,34 +96,30 @@ function FounderCard({
 
 export default function About() {
   return (
-    <Box sx={{ bgcolor: "#fff" }}>
-      <Container sx={{ py: { xs: 4, md: 1 } }}>
-      
+    <>
+      {/* Our Mission */}
+      <Box sx={{ textAlign: "center", mb: { xs: 6, md: 0 } }}>
+        <Typography variant="h3" fontWeight={800} gutterBottom>
+          OUR MISSION
+        </Typography>
+        <Typography variant="h6" sx={{ maxWidth: 900, mx: "auto" }} color="text.secondary">
+          We empower you with equal opportunities to build your dream career.
+          Applying to numerous jobs without a clear strategy won’t land the ideal role.
+          With JobBest’s AI job copilot, you’ll be connected to the best opportunities
+          and guided at every step - so the offer you deserve comes sooner.
+        </Typography>
+      </Box>
 
-        {/* Our Mission */}
-        <Box sx={{ textAlign: "center", mb: { xs: 6, md: 0 } }}>
-          <Typography variant="h3" fontWeight={800} gutterBottom>
-            OUR MISSION
-          </Typography>
-          <Typography variant="h6" sx={{ maxWidth: 900, mx: "auto" }} color="text.secondary">
-            We empower you with equal opportunities to build your dream career.
-            Applying to numerous jobs without a clear strategy won’t land the ideal role.
-            With JobBest’s AI job copilot, you’ll be connected to the best opportunities
-            and guided at every step - so the offer you deserve comes sooner.
-          </Typography>
-        </Box>
+      {/* Founders */}
+      <Box sx={{ textAlign: "center", mb: 3, mt: 2 }}>
+        <Typography variant="h4" fontWeight={800}>FOUNDERS</Typography>
+        <Typography color="text.secondary" sx={{ mt: 1, mb: 3 }}>
+          We are a small and mighty team of AI pioneers.
+        </Typography>
+      </Box>
 
-        {/* Founders */}
-        <Box sx={{ textAlign: "center", mb: 3, mt: 2 }}>
-          <Typography variant="h4" fontWeight={800}>FOUNDERS</Typography>
-          <Typography color="text.secondary" sx={{ mt: 1, mb: 3 }}>
-            We are a small and mighty team of AI pioneers.
-          </Typography>
-        </Box>
-
-        {/* One founder card (you can duplicate this block for more founders later) */}
-        <FounderCard />
-      </Container>
-    </Box>
+      {/* founder card*/}
+      <FounderCard />
+    </>
   );
 }

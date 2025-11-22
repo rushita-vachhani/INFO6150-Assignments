@@ -35,10 +35,8 @@ export default function EmployeeJobs() {
   useEffect(() => {
     dispatch(fetchJobs());
 
-    // Check for success message from location state
     if (location.state?.message) {
       setSnackbar({ open: true, message: location.state.message });
-      // Clear the location state to prevent the message from re-appearing on refresh
       navigate(location.pathname, { replace: true, state: {} });
     }
   }, [dispatch, location.pathname, location.state?.message, navigate]);
@@ -81,7 +79,7 @@ export default function EmployeeJobs() {
           sx={{
             position: "fixed",
             borderRadius: 2,
-            top: { xs: 72, md: 85 }, // Position below the NavBar
+            top: { xs: 72, md: 85 }, 
             right: { xs: 16, md: 32 },
             bgcolor: "#0c554eff",
             "&:hover": { bgcolor: "#1ba898ff" },
@@ -95,16 +93,15 @@ export default function EmployeeJobs() {
     <Box sx={{
       display: 'flex',
       flexDirection: 'column',
-      // Adjust height to fill viewport minus the NavBar (64px) and its margin-bottom (24px)
       height: 'calc(100vh - 88px)'
     }}>
       {/* Scrollable Job List Area (70% height) */}
       <Container maxWidth="lg" sx={{
         flex: '1 1 100%',
         overflowY: 'auto',
-        overflowX: 'hidden', // Prevent horizontal scroll
+        overflowX: 'hidden', 
         px: { xs: 2, md: 4 },
-        py: 0, // Remove vertical padding
+        py: 0, 
       }}>
         <Box sx={{ py: 2 }}>
           {paginated.map((job, idx) => (
@@ -260,7 +257,7 @@ function JobCard({ job, userType }) {
 /* --------------- Show More Component --------------- */
 function ShowMoreText({ text = "" }) {
   const [expanded, setExpanded] = useState(false);
-  const maxLength = 120; // Increased for better readability
+  const maxLength = 120; 
   
   if (!text || text.length <= maxLength) {
     return (

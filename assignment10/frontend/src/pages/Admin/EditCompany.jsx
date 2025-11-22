@@ -73,14 +73,13 @@ export default function EditCompany() {
     const allowedTypes = ["image/jpeg", "image/png", "image/gif"];
     if (!allowedTypes.includes(file.type)) {
       setErrors({ ...errors, image: "Invalid file format. Only JPEG, PNG, and GIF are allowed." });
-      setImage(null); // Clear the invalid file from state
-      e.target.value = null; // Clear the file input
+      setImage(null); 
+      e.target.value = null;
       return;
     }
 
-    // If valid, set the image and clear any previous image error
     setImage(file);
-    setRemoveImage(false); // A new upload overrides a removal request
+    setRemoveImage(false); 
     const newErrors = { ...errors };
     delete newErrors.image;
     setErrors(newErrors);
@@ -102,10 +101,8 @@ export default function EditCompany() {
 
 
     try {
-      // Step 1: Update the company text data
       await api.put(`/companies/edit/${companyId}`, { ...form, removeImage });
 
-      // Step 2: If a new image was selected, upload it
       if (image) {
         const formData = new FormData();
         formData.append("companyId", companyId);
@@ -115,7 +112,6 @@ export default function EditCompany() {
         });
       }
 
-      // Step 3: Navigate on success
       navigate("/companies", {
         state: { message: "Company updated successfully!" },
       });
@@ -133,7 +129,7 @@ export default function EditCompany() {
     setRemoveImage(true);
   };
 
-  if (pageLoading && !form.name) { // Only show initial page loader
+  if (pageLoading && !form.name) {
     return <Container sx={{ display: 'flex', justifyContent: 'center', mt: 10 }}><CircularProgress /></Container>;
   }
 

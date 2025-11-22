@@ -101,7 +101,6 @@ export default function CompanyShowcase() {
       }}>
       <Box sx={{ flex: '1 1 100%', overflowY: 'auto', px: { xs: 2, md: 4 }, py: 3, maxWidth: "1200px", width: "100%", mx: "auto" }}>
         {loading ? (
-          // Skeleton Loading State
           <Grid container spacing={3}>
             {Array.from({ length: 6 }).map((_, i) => (
               <Grid item xs={12} sm={6} md={4} key={i}>
@@ -119,7 +118,6 @@ export default function CompanyShowcase() {
             <Typography>No companies available yet.</Typography>
           </Box>
         ) : (
-          // Render Company Cards
           <Grid container spacing={3} justifyContent="center" alignItems="stretch">
             {paginatedCompanies.map((company) => (
               <Grid 
@@ -131,9 +129,9 @@ export default function CompanyShowcase() {
                   variant="outlined"
                   sx={{
                     borderRadius: 2,
-                    height: 360, // Enforce a fixed height for all cards
+                    height: 360, 
                     display: "flex",
-                    width: 250, // Ensure card fills the grid item
+                    width: 250, 
                     flexDirection: "column",
                   }}
                 >
@@ -162,7 +160,7 @@ export default function CompanyShowcase() {
                     <Typography
                       variant="h6"
                       fontWeight={700}
-                      sx={{ color: "#004d40", minHeight: "3.2rem" }} // Enforce min-height for 2 lines
+                      sx={{ color: "#004d40", minHeight: "3.2rem" }}
                     >
                       {company.name}
                     </Typography>
@@ -176,7 +174,7 @@ export default function CompanyShowcase() {
                         "-webkit-box-orient": "vertical",
                         overflow: "hidden",
                         textOverflow: "ellipsis",
-                        wordBreak: "break-word", // Force long words to wrap
+                        wordBreak: "break-word", 
                       }}
                     >
                       {company.description || "No description available."}

@@ -7,14 +7,11 @@ import Contact from "./pages/Common/Contact";
 import CompanyShowcase from "./pages/Common/CompanyShowcase";
 import Login from "./pages/Common/Login";
 import NavBar from "./components/NavBar";
-
-// NEW IMPORTS FOR ASSIGNMENT 10
 import ProtectedRoute from "./components/ProtectedRoutes/ProtectedRoute";
 
-// NEW PAGES
 import Employees from "./pages/Admin/Employees";
 import AddJob from "./pages/Admin/AddJob";
-import AddCompany from "./pages/Admin/AddCompany"; // <-- Import new page
+import AddCompany from "./pages/Admin/AddCompany"; 
 import EditCompany from "./pages/Admin/EditCompany";
 import EmployeeJobs from "./pages/Employees/Jobs";
 

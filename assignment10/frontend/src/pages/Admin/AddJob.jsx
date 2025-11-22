@@ -28,13 +28,13 @@ export default function AddJob() {
   const handleChange = (e) => {
     const { name, value } = e.target;
 
-    // For salary, prevent non-digit characters including 'e', '+', '-'
+    // For salary, prevent non-digit characters
     if (name === 'salary' && value !== '' && !/^\d+$/.test(value)) {
       return;
     }
 
     setForm({ ...form, [name]: value });
-    // Clear validation error for the field being edited
+    // Clear validation error 
     if (errors[e.target.name]) {
       setErrors({ ...errors, [e.target.name]: null });
     }
@@ -52,7 +52,7 @@ export default function AddJob() {
       return;
     }
 
-    setErrors({}); // Clear errors before submission
+    setErrors({}); 
 
     try {
       await dispatch(createJob({ ...form, salary: Number(form.salary) })).unwrap();
@@ -60,7 +60,6 @@ export default function AddJob() {
         state: { message: "Job created successfully!" },
       });
     } catch (error) {
-      // Handle API errors (e.g., server down, duplicate entry)
       setErrors({
         submit:
           error.message ||

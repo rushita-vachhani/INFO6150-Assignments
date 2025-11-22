@@ -14,7 +14,6 @@ import multer from "multer";
 import path from "path";
 import { body } from "express-validator";
 
-// Multer configuration for user image uploads
 const storage = multer.diskStorage({
   destination: "public/images/",
   filename: function (req, file, cb) {
@@ -86,14 +85,14 @@ router.delete(
   deleteUser
 );
 
-// GET ALL USERS (with password — assignment only)
+// GET ALL USERS (with password)
 router.get("/getAll", authRequired, getAllUsers);
 
 // UPLOAD IMAGE
 router.post(
   "/user/uploadImage",
   authRequired,
-  upload.single("image"), // <-- Apply multer middleware
+  upload.single("image"), 
   [body("email").isEmail().withMessage("Valid email is required")],
   uploadImage
 );

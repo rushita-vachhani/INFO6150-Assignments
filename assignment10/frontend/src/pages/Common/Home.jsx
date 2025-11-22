@@ -16,7 +16,7 @@ import heroImg from "../../assets/image2.jpg";
 export default function Home() {
   const navigate = useNavigate();
 
-  // Assignment 10: Redux replaces useAuth()
+  //Redux replaces useAuth()
   const { isAuthenticated, user } = useSelector((state) => state.auth);
 
   const handleSearchClick = () => {
@@ -25,7 +25,6 @@ export default function Home() {
       return;
     }
 
-    // If user logged in, send them to their job page
     if (user?.type === "admin") navigate("/admin/employees");
     else navigate("/employee/jobs");
   };

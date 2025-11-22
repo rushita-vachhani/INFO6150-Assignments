@@ -8,7 +8,6 @@ export default function ProtectedRoute({ children, allowedRoles }) {
     return <Navigate to="/login" />;
   }
 
-  // If allowedRoles are specified and the user's role is not in the array, redirect.
   if (allowedRoles && !allowedRoles.includes(role)) {
     return <Navigate to="/" />;
   }

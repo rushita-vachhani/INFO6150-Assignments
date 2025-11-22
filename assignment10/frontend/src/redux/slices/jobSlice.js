@@ -27,7 +27,6 @@ const jobSlice = createSlice({
         state.loading = false;
       })
       .addCase(createJob.fulfilled, (state) => {
-        // refresher handled by page
       });
   },
 });

@@ -18,7 +18,6 @@ const storage = multer.diskStorage({
   },
 });
 
-// “JPEG/PNG/GIF only” per spec (add image/jpg alias, which some OSes use)
 const ALLOWED = new Set([
   "image/jpeg",
   "image/jpg",
@@ -27,7 +26,6 @@ const ALLOWED = new Set([
 ]);
 
 function fileFilter(req, file, cb) {
-  // helpful for debugging
   console.log(
     "[upload] field=%s name=%s mimetype=%s",
     file.fieldname,
@@ -36,11 +34,9 @@ function fileFilter(req, file, cb) {
   );
 
   if (!ALLOWED.has(file.mimetype)) {
-    // throw an error -> caught by global error handler as 400 JSON
     return cb(new Error("Invalid file format. Only JPEG, PNG, and GIF are allowed."));
   }
   return cb(null, true);
 }
 
 export const uploadSingleImage = multer({ storage, fileFilter }).single("image");
-// NOTE: the form-data field name must be exactly "image"

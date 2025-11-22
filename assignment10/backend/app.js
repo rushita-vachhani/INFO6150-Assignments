@@ -5,7 +5,7 @@ import cors from "cors";
 import YAML from "yamljs";
 import swaggerUi from "swagger-ui-express";
 import path from "path";
-import multer from "multer"; // for error-type checks
+import multer from "multer"; 
 
 import userRoutes from "./routes/userRoutes.js";
 import jobRoutes from "./routes/jobRoutes.js";
@@ -32,8 +32,6 @@ app.use("/docs", swaggerUi.serve, swaggerUi.setup(swaggerDocument));
 app.use("/api", userRoutes);
 app.use("/api/jobs", jobRoutes);
 app.use("/api/companies", companyRoutes);
-
-// health
 app.get("/health", (req, res) => res.json({ ok: true }));
 
 // ----- Global error handler (keeps invalid image format as 400 JSON) -----

@@ -12,11 +12,10 @@ export default function AuthRedirector() {
   useEffect(() => {
     const isPublic = publicPaths.includes(location.pathname);
 
-    // If the user is logged out and on a private page, redirect them to login.
     if (!isAuthed && !isPublic) {
       navigate('/login');
     }
   }, [isAuthed, location.pathname, navigate]);
 
-  return null; // This component does not render anything.
+  return null;
 }

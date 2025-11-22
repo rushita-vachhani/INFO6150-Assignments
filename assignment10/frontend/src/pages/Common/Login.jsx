@@ -54,7 +54,6 @@ export default function Login() {
 
     setLoading(true);
     try {
-      // Login backend
       const res = await api.post("/auth/login", { email, password });
       const token = res.data.token;
 

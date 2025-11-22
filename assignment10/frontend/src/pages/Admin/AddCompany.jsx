@@ -46,12 +46,11 @@ export default function AddCompany() {
     const allowedTypes = ["image/jpeg", "image/png", "image/gif"];
     if (!allowedTypes.includes(file.type)) {
       setErrors({ ...errors, image: "Invalid file format. Only JPEG, PNG, and GIF are allowed." });
-      setImage(null); // Clear the invalid file from state
-      e.target.value = null; // Clear the file input
+      setImage(null); 
+      e.target.value = null;
       return;
     }
 
-    // If valid, set the image and clear any previous image error
     setImage(file);
     const newErrors = { ...errors };
     delete newErrors.image;
@@ -70,11 +69,9 @@ export default function AddCompany() {
     setLoading(true);
 
     try {
-      // Step 1: Create the company text data
       const createResponse = await api.post("/companies/create", { name, description });
       const companyId = createResponse.data.company._id;
 
-      // Step 2: If an image was selected, upload it
       if (image) {
         const formData = new FormData();
         formData.append("companyId", companyId);
@@ -85,7 +82,6 @@ export default function AddCompany() {
         });
       }
 
-      // Step 3: Navigate on success
       navigate("/companies", {
         state: { message: "Company created successfully!" },
       });

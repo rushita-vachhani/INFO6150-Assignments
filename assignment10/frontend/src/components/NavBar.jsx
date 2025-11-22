@@ -47,7 +47,6 @@ const employeePages = [
 const adminPages = [
   ...commonPages,
   { to: "/admin/employees", label: "EMPLOYEES" },
-  // { to: "/admin/add-job", label: "ADD JOB" },
   { to: "/employee/jobs", label: "JOBS" },
   { to: "/companies", label: "COMPANIES" }
 ];

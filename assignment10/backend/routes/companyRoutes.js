@@ -12,7 +12,6 @@ import {
 
 const router = express.Router();
 
-// Multer storage configuration to preserve file extensions
 const storage = multer.diskStorage({
   destination: "public/images/",
   filename: function (req, file, cb) {
@@ -35,9 +34,9 @@ const fileFilter = (req, file, cb) => {
 const upload = multer({ storage: storage, fileFilter: fileFilter });
 
 router.get("/", authRequired, getAllCompanies);
-router.post("/create", authRequired, createCompany); // Admin only in a real app
-router.get("/:id", authRequired, getCompanyById); // Get a single company
-router.put("/edit/:id", authRequired, editCompany); // Edit a company's details
-router.post("/uploadImage", authRequired, upload.single("image"), uploadCompanyImage); // Admin only
+router.post("/create", authRequired, createCompany); 
+router.get("/:id", authRequired, getCompanyById);
+router.put("/edit/:id", authRequired, editCompany);
+router.post("/uploadImage", authRequired, upload.single("image"), uploadCompanyImage); 
 
 export default router;
