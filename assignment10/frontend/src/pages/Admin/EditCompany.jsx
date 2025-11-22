@@ -9,7 +9,7 @@ import {
   Card,
   CardContent,
   Button,
-  Box,
+  Backdrop,
   CircularProgress,
   IconButton,
 } from "@mui/material";
@@ -24,7 +24,7 @@ export default function EditCompany() {
   const [existingImage, setExistingImage] = useState(null);
   const [image, setImage] = useState(null);
   const [removeImage, setRemoveImage] = useState(false);
-  const [loading, setLoading] = useState(true);
+  const [pageLoading, setPageLoading] = useState(true);
   const [errors, setErrors] = useState({});
 
   useEffect(() => {
@@ -33,15 +33,15 @@ export default function EditCompany() {
         const { name, description, imagePath } = res.data;
         setForm({ name, description });
         if (imagePath) {
-          setRemoveImage(false); // Reset removal flag on data load
+          setRemoveImage(false); 
           setExistingImage(imagePath.split("/").pop());
         }
-        setLoading(false);
+        setPageLoading(false);
       })
       .catch(err => {
         console.error(err);
         setErrors({ submit: "Failed to load company data." });
-        setLoading(false);
+        setPageLoading(false);
       });
   }, [companyId]);
 
@@ -98,6 +98,7 @@ export default function EditCompany() {
     }
 
     setErrors({});
+    setPageLoading(true);
 
 
     try {
@@ -121,6 +122,8 @@ export default function EditCompany() {
     } catch (error) {
       const errorMessage = error.response?.data?.error || "An unexpected error occurred.";
       setErrors({ submit: errorMessage });
+    } finally {
+      setPageLoading(false);
     }
   };
 
@@ -130,12 +133,19 @@ export default function EditCompany() {
     setRemoveImage(true);
   };
 
-  if (loading) {
-    return <Box sx={{ display: 'flex', justifyContent: 'center', mt: 10 }}><CircularProgress /></Box>;
+  if (pageLoading && !form.name) { // Only show initial page loader
+    return <Container sx={{ display: 'flex', justifyContent: 'center', mt: 10 }}><CircularProgress /></Container>;
   }
 
   return (
     <Container maxWidth="md">
+      <Backdrop
+        sx={{ zIndex: (theme) => theme.zIndex.drawer + 1 }}
+        open={pageLoading}
+      >
+        <CircularProgress color="inherit" />
+      </Backdrop>
+
       <Card variant="outlined" sx={{ borderRadius: 3, width: "100%" }}>
         <CardContent sx={{ p: { xs: 3, md: 4 } }}>
           <Typography variant="h4" fontWeight={800} sx={{ mb: 1 }}>

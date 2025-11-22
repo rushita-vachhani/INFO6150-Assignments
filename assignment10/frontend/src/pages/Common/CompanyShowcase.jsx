@@ -1,6 +1,5 @@
 import * as React from "react";
 import {
-  Container,
   Grid,
   Card,
   CardContent,
@@ -11,7 +10,6 @@ import {
   Fab,
   IconButton,
   Pagination,
-  Stack,
 } from "@mui/material";
 import AddIcon from "@mui/icons-material/Add";
 import EditIcon from "@mui/icons-material/Edit";
@@ -88,6 +86,7 @@ export default function CompanyShowcase() {
             top: { xs: 72, md: 80 },
             right: { xs: 16, md: 32 },
             bgcolor: "#0c554eff",
+            borderRadius: 2,
             "&:hover": { bgcolor: "#1ba898ff" },
           }}
         >
@@ -95,7 +94,12 @@ export default function CompanyShowcase() {
           Add Company
         </Fab>
       )}
-      <Container maxWidth="lg" sx={{ px: { xs: 0, sm: 2 } }}>
+      <Box sx={{
+        display: 'flex',
+        flexDirection: 'column',
+        height: 'calc(100vh - 88px)'
+      }}>
+      <Box sx={{ flex: '1 1 100%', overflowY: 'auto', px: { xs: 2, md: 4 }, py: 3, maxWidth: "1200px", width: "100%", mx: "auto" }}>
         {loading ? (
           // Skeleton Loading State
           <Grid container spacing={3}>
@@ -116,7 +120,7 @@ export default function CompanyShowcase() {
           </Box>
         ) : (
           // Render Company Cards
-          <Grid container spacing={3} justifyContent="center" alignItems="stretch" sx={{ mb: 4 }}>
+          <Grid container spacing={3} justifyContent="center" alignItems="stretch">
             {paginatedCompanies.map((company) => (
               <Grid 
                 item 
@@ -183,8 +187,13 @@ export default function CompanyShowcase() {
             ))}
           </Grid>
         )}
+        </Box>
         {companies.length > pageSize && (
-          <Stack sx={{ mt: 4, alignItems: "center" }}>
+          <Box sx={{
+            flexShrink: 0, display: 'flex', justifyContent: 'center', alignItems: 'center',
+            py: 2, borderTop: '1px solid #e0e0e0', bgcolor: 'background.paper',
+            boxShadow: '0 -2px 10px rgba(0,0,0,0.05)'
+          }}>
             <Pagination
               count={Math.ceil(companies.length / pageSize)}
               page={page}
@@ -201,9 +210,9 @@ export default function CompanyShowcase() {
                 },
               }}
             />
-          </Stack>
+          </Box>
         )}
-      </Container>
+      </Box>
     </>
   );
 }

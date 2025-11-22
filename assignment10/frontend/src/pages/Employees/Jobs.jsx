@@ -10,6 +10,7 @@ import {
   Pagination,
   Snackbar,
   Alert,
+  Container,
   Fab,
 } from "@mui/material";
 import AddIcon from "@mui/icons-material/Add";
@@ -25,7 +26,7 @@ export default function EmployeeJobs() {
 
   // Pagination
   const [page, setPage] = useState(1);
-  const pageSize = 5;
+  const pageSize = 10;
 
   const paginated = items.slice((page - 1) * pageSize, page * pageSize);
   
@@ -98,20 +99,19 @@ export default function EmployeeJobs() {
       height: 'calc(100vh - 88px)'
     }}>
       {/* Scrollable Job List Area (70% height) */}
-      <Box sx={{
+      <Container maxWidth="lg" sx={{
         flex: '1 1 100%',
         overflowY: 'auto',
         overflowX: 'hidden', // Prevent horizontal scroll
         px: { xs: 2, md: 4 },
         py: 0, // Remove vertical padding
-        maxWidth: "1200px",
-        width: "100%",
-        mx: "auto"
       }}>
-        {paginated.map((job, idx) => (
-          <JobCard key={job.id || idx} job={job} userType={user?.type} />
-        ))}
-      </Box>
+        <Box sx={{ py: 2 }}>
+          {paginated.map((job, idx) => (
+            <JobCard key={job.id || idx} job={job} userType={user?.type} />
+          ))}
+        </Box>
+      </Container>
 
       {/* Fixed Pagination Area (20% height) */}
       <Box sx={{

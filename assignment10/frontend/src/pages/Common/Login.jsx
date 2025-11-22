@@ -10,6 +10,8 @@ import {
   Alert,
   InputAdornment,
   IconButton,
+  Backdrop,
+  CircularProgress,
 } from "@mui/material";
 
 import { useNavigate } from "react-router-dom";
@@ -29,6 +31,7 @@ export default function Login() {
   const [password, setPassword] = React.useState("");
   const [showPassword, setShowPassword] = React.useState(false);
   const [error, setError] = React.useState("");
+  const [loading, setLoading] = React.useState(false);
 
   const handleClickShowPassword = () => setShowPassword((show) => !show);
   const handleMouseDownPassword = (e) => e.preventDefault();
@@ -49,6 +52,7 @@ export default function Login() {
       return;
     }
 
+    setLoading(true);
     try {
       // Login backend
       const res = await api.post("/auth/login", { email, password });
@@ -77,12 +81,21 @@ export default function Login() {
 
     } catch (err) {
       setError(err?.response?.data?.error || "Login failed");
+    } finally {
+      setLoading(false);
     }
   }
 
   return (
     <>
       {/* Page Title */}
+      <Backdrop
+        sx={{ color: '#fff', zIndex: (theme) => theme.zIndex.drawer + 1 }}
+        open={loading}
+      >
+        <CircularProgress color="inherit" />
+      </Backdrop>
+
       <Typography
         variant="h3"
         fontWeight={800}

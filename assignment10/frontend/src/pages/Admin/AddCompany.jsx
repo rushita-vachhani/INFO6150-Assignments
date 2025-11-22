@@ -9,6 +9,8 @@ import {
   Card,
   CardContent,
   Button,
+  Backdrop,
+  CircularProgress,
 } from "@mui/material";
 import PrimaryButton from "../../components/PrimaryButton";
 import CloudUploadIcon from '@mui/icons-material/CloudUpload';
@@ -19,6 +21,7 @@ export default function AddCompany() {
   const [description, setDescription] = useState("");
   const [image, setImage] = useState(null);
   const [errors, setErrors] = useState({});
+  const [loading, setLoading] = useState(false);
 
   const handleDescriptionChange = (e) => {
     const { value } = e.target;
@@ -64,6 +67,7 @@ export default function AddCompany() {
     }
 
     setErrors({});
+    setLoading(true);
 
     try {
       // Step 1: Create the company text data
@@ -88,11 +92,20 @@ export default function AddCompany() {
     } catch (error) {
       const errorMessage = error.response?.data?.error || "An unexpected error occurred.";
       setErrors({ submit: errorMessage });
+    } finally {
+      setLoading(false);
     }
   };
 
   return (
     <Container maxWidth="md">
+      <Backdrop
+        sx={{ color: '#fff', zIndex: (theme) => theme.zIndex.drawer + 1 }}
+        open={loading}
+      >
+        <CircularProgress color="inherit" />
+      </Backdrop>
+
       <Card variant="outlined" sx={{ borderRadius: 3, width: "100%" }}>
         <CardContent sx={{ p: { xs: 3, md: 4 } }}>
           <Typography variant="h4" fontWeight={800} sx={{ mb: 1 }}>
