@@ -7,7 +7,7 @@ import Contact from "./pages/Common/Contact";
 import CompanyShowcase from "./pages/Common/CompanyShowcase";
 import Login from "./pages/Common/Login";
 import NavBar from "./components/NavBar";
-import ProtectedRoute from "./components/ProtectedRoutes/ProtectedRoute";
+import ProtectedRoute from "./components/ProtectedRoute";
 
 import Employees from "./pages/Admin/Employees";
 import AddJob from "./pages/Admin/AddJob";
