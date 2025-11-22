@@ -6,13 +6,11 @@ import {
   Card,
   CardContent,
   Typography,
-  TextField,
-  Stack,
   Paper,
 } from "@mui/material";
 import { useNavigate } from "react-router-dom";
 import { useSelector } from "react-redux";
-import PrimaryButton from "../../components/PrimaryButton/index.jsx";
+import PrimaryButton from "../../components/PrimaryButton.jsx";
 import heroImg from "../../assets/image2.jpg";
 
 export default function Home() {

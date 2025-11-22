@@ -10,7 +10,27 @@ import {
 } from "../controllers/userController.js";
 
 import { authRequired } from "../middleware/auth.js";
+import multer from "multer";
+import path from "path";
 import { body } from "express-validator";
+
+// Multer configuration for user image uploads
+const storage = multer.diskStorage({
+  destination: "public/images/",
+  filename: function (req, file, cb) {
+    const uniqueSuffix = Date.now() + "-" + Math.round(Math.random() * 1e9);
+    cb(null, "user-" + uniqueSuffix + path.extname(file.originalname));
+  },
+});
+
+const fileFilter = (req, file, cb) => {
+  const allowedTypes = /jpeg|jpg|png|gif/;
+  if (allowedTypes.test(file.mimetype) && allowedTypes.test(path.extname(file.originalname).toLowerCase())) {
+    return cb(null, true);
+  }
+  cb(new Error("Invalid file format. Only JPEG, PNG, and GIF are allowed."));
+};
+const upload = multer({ storage: storage, fileFilter: fileFilter });
 
 const router = express.Router();
 
@@ -67,12 +87,13 @@ router.delete(
 );
 
 // GET ALL USERS (with password — assignment only)
-router.get("/user/getAll", authRequired, getAllUsers);
+router.get("/getAll", authRequired, getAllUsers);
 
 // UPLOAD IMAGE
 router.post(
   "/user/uploadImage",
   authRequired,
+  upload.single("image"), // <-- Apply multer middleware
   [body("email").isEmail().withMessage("Valid email is required")],
   uploadImage
 );

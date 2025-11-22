@@ -19,7 +19,7 @@ import LoginIcon from "@mui/icons-material/Login";
 import { NavLink, useNavigate } from "react-router-dom";
 import { useTheme } from "@mui/material/styles";
 import { useSelector, useDispatch } from "react-redux";
-import { logout } from "../../redux/slices/authSlice";
+import { logout } from "../redux/slices/authSlice";
 
 function ElevationScroll({ children }) {
   const trigger = useScrollTrigger({

@@ -1,10 +1,10 @@
 import { Routes, Route, Navigate } from "react-router-dom";
 import { Container, Box } from "@mui/material";
-import Home from "./pages/Home";
-import About from "./pages/About";
-import Contact from "./pages/Contact";
-import Companies from "./pages/Company_Showcase";
-import Login from "./pages/Login";
+import Home from "./pages/Common/Home";
+import About from "./pages/Common/About";
+import Contact from "./pages/Common/Contact";
+import Companies from "./pages/Common/CompanyShowcase";
+import Login from "./pages/Common/Login";
 import NavBar from "./components/NavBar";
 
 // NEW IMPORTS FOR ASSIGNMENT 10
@@ -13,6 +13,8 @@ import ProtectedRoute from "./components/ProtectedRoutes/ProtectedRoute";
 // NEW PAGES
 import Employees from "./pages/Admin/Employees";
 import AddJob from "./pages/Admin/AddJob";
+import AddCompany from "./pages/Admin/AddCompany"; // <-- Import new page
+import EditCompany from "./pages/Admin/EditCompany";
 import EmployeeJobs from "./pages/Employees/Jobs";
 
 export default function App() {
@@ -49,6 +51,24 @@ export default function App() {
             }
           />
 
+          <Route
+            path="/admin/add-company"
+            element={
+              <ProtectedRoute allowedRoles={["admin"]}>
+                <AddCompany />
+              </ProtectedRoute>
+            }
+          />
+
+          <Route
+            path="/admin/edit-company/:companyId"
+            element={
+              <ProtectedRoute allowedRoles={["admin"]}>
+                <EditCompany />
+              </ProtectedRoute>
+            }
+          />
+
           {/* Protected by login + EMPLOYEE ONLY */}
           <Route
             path="/employee/jobs"
@@ -63,7 +83,7 @@ export default function App() {
           <Route
             path="/companies"
             element={
-              <ProtectedRoute allowedRoles={["employee"]}>
+              <ProtectedRoute allowedRoles={["admin", "employee"]}>
                 <Companies />
               </ProtectedRoute>
             }

@@ -9,17 +9,18 @@ import multer from "multer"; // for error-type checks
 
 import userRoutes from "./routes/userRoutes.js";
 import jobRoutes from "./routes/jobRoutes.js";
+import companyRoutes from "./routes/companyRoutes.js";
 
 const app = express();
 
-app.use(helmet());
+app.use(helmet({
+  crossOriginResourcePolicy: false,
+}));
 app.use(cors());
 app.use(express.json());
+app.use(express.static('public'));
 app.use(express.urlencoded({ extended: true }));
 app.use(morgan("dev"));
-
-// serve uploaded files
-app.use("/images", express.static(path.join(process.cwd(), "images")));
 
 // Swagger docs
 const swaggerDocument = YAML.load(
@@ -28,8 +29,9 @@ const swaggerDocument = YAML.load(
 app.use("/docs", swaggerUi.serve, swaggerUi.setup(swaggerDocument));
 
 // API routes
-app.use("/", userRoutes);
-app.use("/", jobRoutes);
+app.use("/api", userRoutes);
+app.use("/api/jobs", jobRoutes);
+app.use("/api/companies", companyRoutes);
 
 // health
 app.get("/health", (req, res) => res.json({ ok: true }));

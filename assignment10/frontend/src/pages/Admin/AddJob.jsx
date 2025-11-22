@@ -4,7 +4,6 @@ import { useNavigate } from "react-router-dom";
 import { createJob } from "../../redux/slices/jobSlice";
 import {
   TextField,
-  Paper,
   Typography,
   Stack,
   Container,
@@ -157,6 +156,7 @@ export default function AddJob() {
                   color: "#0c554eff",
                   "&:hover": {
                     borderColor: "#1ba898ff",
+                    color: "#1ba898ff"
                   },
                 }}>
                 BACK TO JOBS

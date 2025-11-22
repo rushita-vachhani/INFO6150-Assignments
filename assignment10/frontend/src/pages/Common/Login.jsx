@@ -14,10 +14,10 @@ import {
 
 import { useNavigate } from "react-router-dom";
 import { useDispatch } from "react-redux";
-import { loginSuccess } from "../../redux/slices/authSlice";
-import api from "../../services/api";
+import { loginSuccess } from "../../redux/slices/authSlice.js";
+import api from "../../services/api.js";
 
-import PrimaryButton from "../../components/PrimaryButton/index.jsx";
+import PrimaryButton from "../../components/PrimaryButton.jsx";
 import heroImg from "../../assets/image2.jpg";
 import { Visibility, VisibilityOff } from "@mui/icons-material";
 

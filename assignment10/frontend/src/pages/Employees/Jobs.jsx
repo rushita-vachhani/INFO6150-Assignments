@@ -40,7 +40,7 @@ export default function EmployeeJobs() {
       // Clear the location state to prevent the message from re-appearing on refresh
       navigate(location.pathname, { replace: true, state: {} });
     }
-  }, [dispatch]);
+  }, [dispatch, location.pathname, location.state?.message, navigate]);
 
   const handleSnackbarClose = (event, reason) => {
     if (reason === 'clickaway') {

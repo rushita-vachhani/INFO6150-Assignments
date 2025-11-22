@@ -71,7 +71,7 @@ export async function deleteUser(req, res) {
 
 export async function getAllUsers(req, res) {
   try {
-    const users = await User.find({}, { fullName: 1, email: 1, password: 1, _id: 0 });
+    const users = await User.find({}, { fullName: 1, email: 1, imagePath: 1, _id: 0 });
     return res.status(200).json({ users });
   } catch (err) {
     return res.status(500).json({ error: "Server error" });
@@ -106,7 +106,7 @@ export async function uploadImage(req, res) {
       return res.status(400).json({ error: "Invalid file format. Only JPEG, PNG, and GIF are allowed." });
     }
 
-    const relPath = path.posix.join("/images", path.basename(req.file.path));
+    const relPath = path.posix.join("/images", req.file.filename);
     user.imagePath = relPath;
     await user.save();
 
