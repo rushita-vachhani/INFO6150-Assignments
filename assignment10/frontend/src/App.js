@@ -8,8 +8,7 @@ import Login from "./pages/Login";
 import NavBar from "./components/NavBar";
 
 // NEW IMPORTS FOR ASSIGNMENT 10
-import AdminRoute from "./components/ProtectedRoutes/AdminRoute";
-import EmployeeRoute from "./components/ProtectedRoutes/EmployeeRoute";
+import ProtectedRoute from "./components/ProtectedRoutes/ProtectedRoute";
 
 // NEW PAGES
 import Employees from "./pages/Admin/Employees";
@@ -35,18 +34,18 @@ export default function App() {
           <Route
             path="/admin/employees"
             element={
-              <AdminRoute>
+              <ProtectedRoute allowedRoles={["admin"]}>
                 <Employees />
-              </AdminRoute>
+              </ProtectedRoute>
             }
           />
 
           <Route
             path="/admin/add-job"
             element={
-              <AdminRoute>
+              <ProtectedRoute allowedRoles={["admin"]}>
                 <AddJob />
-              </AdminRoute>
+              </ProtectedRoute>
             }
           />
 
@@ -54,9 +53,9 @@ export default function App() {
           <Route
             path="/employee/jobs"
             element={
-              <EmployeeRoute>
+              <ProtectedRoute allowedRoles={["admin", "employee"]}>
                 <EmployeeJobs />
-              </EmployeeRoute>
+              </ProtectedRoute>
             }
           />
 
@@ -64,9 +63,9 @@ export default function App() {
           <Route
             path="/companies"
             element={
-              <EmployeeRoute>
+              <ProtectedRoute allowedRoles={["employee"]}>
                 <Companies />
-              </EmployeeRoute>
+              </ProtectedRoute>
             }
           />
 

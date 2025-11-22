@@ -2,16 +2,13 @@ import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { fetchUsers } from "../../redux/slices/userSlice";
 import {
-  Table,
-  TableBody,
-  TableCell,
-  TableHead,
-  TableRow,
-  Paper,
   Typography,
   Chip,
   Box,
   Skeleton,
+  Card,
+  CardContent,
+  Stack,
 } from "@mui/material";
 
 export default function Employees() {
@@ -24,78 +21,64 @@ export default function Employees() {
 
   return (
     <>
-      <Box
-        sx={{
-          width: "100%",          // full width
-          px: { xs: 1, md: 4 },   // horizontal padding for screens
-        }}
-        >
-
-        <Paper
-          elevation={0}
-          sx={{
-            p: 3,
-            borderRadius: 3,
-            border: "1px solid #e0e0e0",
-            bgcolor: "#fafafa",
-            width: "100%",        
-          }}
-        >
-          <Typography variant="h6" fontWeight={700} sx={{ mb: 2 }}>
-            User Directory
-          </Typography>
-
-          {/* Loading State */}
-          {loading ? (
-            <>
-              {[1, 2, 3, 4].map((i) => (
-                <Skeleton key={i} height={50} sx={{ mb: 1 }} />
-              ))}
-            </>
-          ) : (
-            <Table>
-              <TableHead>
-                <TableRow
+      {loading ? (
+        <Stack spacing={2}>
+          {[...Array(5)].map((_, i) => (
+            <Skeleton key={i} variant="rounded" height={80} />
+          ))}
+        </Stack>
+      ) : (
+        <Stack spacing={2}>
+          {items.map((user) => (
+            <Card
+              key={user.email}
+              variant="outlined"
+              sx={{
+                borderRadius: 2,
+                transition: "box-shadow 0.2s ease-in-out",
+                "&:hover": {
+                  boxShadow: "0 4px 12px rgba(0,0,0,0.1)",
+                },
+              }}
+            >
+              <CardContent
+                sx={{
+                  display: "flex",
+                  flexDirection: { xs: "column", sm: "row" },
+                  alignItems: { xs: "flex-start", sm: "center" },
+                  justifyContent: "space-between",
+                  gap: 2,
+                }}
+              >
+                <Box>
+                  <Typography variant="h6" fontWeight={600}>
+                    {user.fullName}
+                  </Typography>
+                  <Typography variant="body2" color="text.secondary">
+                    {user.email}
+                  </Typography>
+                </Box>
+                <Chip
+                  label={user.type === "admin" ? "Admin" : "Employee"}
+                  color={user.type === "admin" ? "primary" : "success"}
+                  size="small"
                   sx={{
-                    backgroundColor: "#f5f5f5",
+                    fontWeight: 600,
+                    bgcolor:
+                      user.type === "admin"
+                        ? "rgba(12, 85, 78, 0.1)"
+                        : "rgba(46, 125, 50, 0.1)",
+                    color:
+                      user.type === "admin"
+                        ? "rgb(12, 85, 78)"
+                        : "rgb(46, 125, 50)",
                   }}
-                >
-                  <TableCell sx={{ fontWeight: 700 }}>Full Name</TableCell>
-                  <TableCell sx={{ fontWeight: 700 }}>Email</TableCell>
-                  <TableCell sx={{ fontWeight: 700 }}>Role</TableCell>
-                </TableRow>
-              </TableHead>
-
-              <TableBody>
-                {items.map((u, idx) => (
-                  <TableRow
-                    key={idx}
-                    sx={{
-                      "&:hover": {
-                        backgroundColor: "#f0f7ff",
-                        cursor: "pointer",
-                      },
-                    }}
-                  >
-                    <TableCell>{u.fullName}</TableCell>
-                    <TableCell>{u.email}</TableCell>
-
-                    <TableCell>
-                      <Chip
-                        label={u.type === "admin" ? "Admin" : "Employee"}
-                        color={u.type === "admin" ? "primary" : "success"}
-                        variant="outlined"
-                        size="small"
-                        sx={{ fontWeight: 600 }}
-                      />
-                    </TableCell>
-                  </TableRow>
-                ))}
-              </TableBody>
-            </Table>
-          )}
-        </Paper>
-      </Box>
+                />
+              </CardContent>
+            </Card>
+          ))}
+        </Stack>
+      )}
     </>
   );
 }

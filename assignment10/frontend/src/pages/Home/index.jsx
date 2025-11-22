@@ -10,7 +10,6 @@ import {
   Stack,
   Paper,
 } from "@mui/material";
-import SearchIcon from "@mui/icons-material/Search";
 import { useNavigate } from "react-router-dom";
 import { useSelector } from "react-redux";
 import PrimaryButton from "../../components/PrimaryButton/index.jsx";
@@ -79,33 +78,16 @@ export default function Home() {
               apply with confidence.
             </Typography>
 
-            <Stack
-              direction={{ xs: "column", sm: "row" }}
-              spacing={1}
+            <PrimaryButton
+              onClick={handleSearchClick}
+              size="large"
               sx={{
-                bgcolor: "white",
-                borderRadius: 2,
-                boxShadow: 1,
-                p: 1,
-                alignItems: "stretch",
-                maxWidth: 520,
+                alignSelf: "flex-start",
+                px: 4,
               }}
             >
-              <TextField
-                fullWidth
-                variant="standard"
-                placeholder="Search by skill, company, or job"
-                InputProps={{ disableUnderline: true, sx: { pl: 1.5 } }}
-              />
-
-              <PrimaryButton
-                onClick={handleSearchClick}
-                startIcon={<SearchIcon />}
-                sx={{ px: 3, alignSelf: { xs: "stretch", sm: "auto" } }}
-              >
-                SEARCH
-              </PrimaryButton>
-            </Stack>
+              Browse Jobs
+            </PrimaryButton>
           </CardContent>
         </Card>
 

@@ -12,19 +12,6 @@ import {
 
 import api from "../../services/api"; // <-- NEW (correct)
 import appleImg from "../../assets/apple.png";
-import googleImg from "../../assets/google.png";
-import metaImg from "../../assets/meta.png";
-import jpmorganImg from "../../assets/jp.png";
-import tcsImg from "../../assets/tcs.png";
-
-// Fallback static companies
-const MOCK_COMPANIES = [
-  { id: "apple", name: "Apple", img: appleImg },
-  { id: "google", name: "Google", img: googleImg },
-  { id: "meta", name: "Meta", img: metaImg },
-  { id: "jpmorgan", name: "J.P. Morgan", img: jpmorganImg },
-  { id: "tcs", name: "TCS", img: tcsImg },
-];
 
 export default function Companies() {
   const [companies, setCompanies] = React.useState([]);
@@ -59,7 +46,7 @@ export default function Companies() {
           };
         });
 
-        setCompanies([...MOCK_COMPANIES, ...mapped]);
+        setCompanies([...mapped]);
       })
       .catch((err) => console.error(err))
       .finally(() => mounted && setLoading(false));
