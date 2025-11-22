@@ -1,8 +1,9 @@
 openapi: 3.0.0
 info:
-  title: Assignment 10 - Admin & Employee Portal API
-  description: Secure API for users, authentication, images, and job management with role-based access.
-  version: 2.0.0
+  title: Assignment 10 - Full-Stack Job Portal API
+  description: |
+    A comprehensive API for a full-stack job portal application. This API manages users, authentication, jobs, and companies, featuring role-based access control (Admin vs. Employee) and secure endpoints for all CRUD operations.
+  version: 1.0.0
 
 servers:
   - url: http://localhost:4000
@@ -14,21 +15,21 @@ tags:
     description: Authentication endpoints
   - name: Jobs
     description: Job listings and management
-  - name: Admin
-    description: Admin-only operations
+  - name: Companies
+    description: Company profiles and logo management
 
 paths:
 
   ###############################################
   # USER CREATE
   ###############################################
-  /user/create:
+  /api/user/create:
     post:
       summary: Create User (Admin or Employee)
       tags: [User]
       description: |
-        Allows creation of a new **admin** or **employee** user.  
-        *Only admins should call this in real apps, but for assignment usage, no restriction is enforced.*
+        Creates a new user with a specified role (`admin` or `employee`). 
+        In a production environment, this endpoint would typically be protected and restricted to admins.
       requestBody:
         required: true
         content:
@@ -57,17 +58,19 @@ paths:
             application/json:
               example:
                 message: "User created successfully."
-        "400":
-          description: Validation failed
+        "409":
+          description: Conflict - User already exists
           content:
             application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
               example:
-                error: "User already exists."
+                error: "User with this email already exists."
 
   ###############################################
   # LOGIN
   ###############################################
-  /auth/login:
+  /api/auth/login:
     post:
       summary: Login
       tags: [Auth]
@@ -111,7 +114,7 @@ paths:
   ###############################################
   # EDIT USER
   ###############################################
-  /user/edit:
+  /api/user/edit:
     put:
       summary: Edit User
       tags: [User]
@@ -152,7 +155,7 @@ paths:
   ###############################################
   # DELETE USER
   ###############################################
-  /user/delete:
+  /api/user/delete:
     delete:
       summary: Delete User
       tags: [User]
@@ -186,7 +189,7 @@ paths:
   ###############################################
   # UPLOAD IMAGE
   ###############################################
-  /user/uploadImage:
+  /api/user/uploadImage:
     post:
       summary: Upload Profile Image
       tags: [User]
@@ -225,7 +228,7 @@ paths:
   ###############################################
   # GET ALL USERS
   ###############################################
-  /user/getAll:
+  /api/user/getAll:
     get:
       summary: Get All Users (Password Included - Assignment Use Only)
       tags: [User]
@@ -247,11 +250,11 @@ paths:
 
   ###############################################
   # ADMIN: GET CLEAN USERS LIST
-  ###############################################
+  ############################################### 
   /api/users:
     get:
-      summary: Admin - Get All Users (No Password)
-      tags: [Admin]
+      summary: Get All Users (Admin)
+      tags: [User]
       security:
         - bearerAuth: []
       responses:
@@ -270,10 +273,10 @@ paths:
   ###############################################
   # ADMIN: CREATE JOB
   ###############################################
-  /api/create/job:
+  /api/jobs/create:
     post:
-      summary: Admin - Create Job
-      tags: [Jobs]
+      summary: Create Job (Admin)
+      tags: [Jobs, Admin]
       security:
         - bearerAuth: []
       description: Admin-only job creation.
@@ -330,6 +333,154 @@ paths:
                     salary: 160000
                     description: "React, GraphQL, Webpack"
 
+  ###############################################
+  # COMPANIES: CREATE
+  ###############################################
+  /api/companies/create:
+    post:
+      summary: Create Company (Admin)
+      tags: [Companies, Admin]
+      security:
+        - bearerAuth: []
+      description: Creates a new company profile.
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              required: [name]
+              properties:
+                name:
+                  type: string
+                  example: "Northeastern University"
+                description:
+                  type: string
+                  example: "A private research university."
+      responses:
+        "201":
+          description: Company created successfully.
+          content:
+            application/json:
+              example:
+                message: "Company created successfully"
+                company:
+                  _id: "60d21b4667d0d8992e610c85"
+                  name: "Northeastern University"
+                  description: "A private research university."
+        "400":
+          description: Bad Request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+              example:
+                error: "Company name is required."
+
+  ###############################################
+  # COMPANIES: GET ALL
+  ###############################################
+  /api/companies:
+    get:
+      summary: Get All Companies
+      tags: [Companies]
+      security:
+        - bearerAuth: []
+      description: Retrieves a list of all company profiles.
+      responses:
+        "200":
+          description: A list of companies.
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Company'
+              example:
+                - _id: "60d21b4667d0d8992e610c85"
+                  name: "Northeastern University"
+                  description: "A private research university."
+                  imagePath: "/images/neu-logo.png"
+
+  ###############################################
+  # COMPANIES: GET BY ID
+  ###############################################
+  /api/companies/{id}:
+    get:
+      summary: Get Company by ID
+      tags: [Companies]
+      security:
+        - bearerAuth: []
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: string
+      responses:
+        "200":
+          description: Company details.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Company'
+
+  ###############################################
+  # COMPANIES: EDIT
+  ###############################################
+  /api/companies/edit/{id}:
+    put:
+      summary: Edit Company (Admin)
+      tags: [Companies, Admin]
+      security:
+        - bearerAuth: []
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                name:
+                  type: string
+                description:
+                  type: string
+                removeImage:
+                  type: boolean
+      responses:
+        "200":
+          description: Company updated successfully.
+
+  ###############################################
+  # COMPANIES: UPLOAD IMAGE
+  ###############################################
+  /api/companies/uploadImage:
+    post:
+      summary: Upload Company Logo (Admin)
+      tags: [Companies, Admin]
+      security:
+        - bearerAuth: []
+      requestBody:
+        content:
+          multipart/form-data:
+            schema:
+              type: object
+              required: [companyId, image]
+              properties:
+                companyId:
+                  type: string
+                image:
+                  type: string
+                  format: binary
+      responses:
+        "200":
+          description: Image uploaded successfully.
+
 components:
 
   ##############################
@@ -372,6 +523,18 @@ components:
         type:
           type: string
           enum: [admin, employee]
+
+    Company:
+      type: object
+      properties:
+        _id:
+          type: string
+        name:
+          type: string
+        description:
+          type: string
+        imagePath:
+          type: string
 
     Error:
       type: object
